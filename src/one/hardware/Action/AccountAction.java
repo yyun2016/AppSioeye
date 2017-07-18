@@ -1,8 +1,20 @@
 package one.hardware.Action;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+import android.os.Environment;
+import android.util.Property;
 import one.hardware.Util.Base;
 
 public class AccountAction extends Base {
+	private static Logger logger=Logger.getLogger(AccountAction.class.getName());
+
 	/**
 	 * Click com.hicam:id/logout_btn按钮
 	 */
@@ -44,5 +56,38 @@ public class AccountAction extends Base {
 			}
 		}
 		return isSuccess;
+	}
+	public static String getUserName(){
+        String config= Environment.getExternalStorageDirectory()+ File.separator+"config.properties";
+        logger.info(config);
+        String userName=getValueByKey(config,"user_name");
+        logger.info("userName:"+userName);
+        return userName;
+    }
+
+    public static String getPassword(){
+        String config= Environment.getExternalStorageDirectory()+ File.separator+"config.properties";
+        String user_password=getValueByKey(config,"user_password");
+        logger.info(config);
+        logger.info("user_password:"+user_password);
+        return user_password;
+    }
+    public static String getValueByKey(String filePath, String key) {
+		Properties pps = new Properties();
+		File file=new File(filePath);
+		if (file.exists()){
+			try {
+				InputStream in = new BufferedInputStream (new FileInputStream(filePath));
+				pps.load(in);
+				String value = pps.getProperty(key);
+				System.out.println(key + " = " + value);
+				return value;
+			}catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}else{
+			return null;
+		}
 	}
 }

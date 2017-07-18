@@ -27,7 +27,9 @@ public class AccountCase extends Base{
 	        common.waitTime(1);
 			common.ScrollViewByText("Account");
 			common.clickViewByText("Account");
-			AccountAction.loginAccount("eyes", "eye1321");
+			String userName=AccountAction.getUserName();
+			String passWord=AccountAction.getPassword();
+			AccountAction.loginAccount(userName, passWord);
 			boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
 			if (login) {
 				common.infoLog(" 账号登陆成功");
