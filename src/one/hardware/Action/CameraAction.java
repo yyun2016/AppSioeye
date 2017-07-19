@@ -219,7 +219,7 @@ public class CameraAction extends Base {
 		  "20P",
 		  "30P};
 	 */
-	public static void configBurst(String burst) throws Exception{
+	public static void configBurstRate(String burst) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[3]);
 		CameraAction.cameraSetting();
 		common.clickViewByText("Burst Rate");
@@ -263,12 +263,21 @@ public class CameraAction extends Base {
 	}
 	/**
 	 * 图片设置
-	 *   "4M(16:9)",
-		  "3M(4:3)",
-		  "2M(16:9)"};
+	 *   "18M(4:3)",
+		  "13M(16:9)",
+		  "8M(4:3)"};
 	 */
 	public static void configImageSize(String size) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[2]);
+		CameraAction.cameraSetting();
+		common.clickViewByText("Image Size");
+		common.ScrollViewByText(size);
+		common.clickViewByText(size);
+		common.infoLog("Image Size设置为 :"+size);
+		common.device.pressBack();
+	}
+	public static void configBurstImageSize(String size) throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[3]);
 		CameraAction.cameraSetting();
 		common.clickViewByText("Image Size");
 		common.ScrollViewByText(size);
