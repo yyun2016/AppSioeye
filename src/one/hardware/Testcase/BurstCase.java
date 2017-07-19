@@ -2,8 +2,6 @@ package one.hardware.Testcase;
 
 import java.util.HashSet;
 
-import org.junit.Assert;
-
 import com.ckt.demo.UiAutomatorHelper;
 
 
@@ -20,10 +18,10 @@ public class BurstCase extends Base{
 			common.initDevice();
 			common.startCamera();
 			common.deletePhoto();
-
+			
+			
 			CameraAction.configBurstImageSize(Camera.imsge_size[0]);
 			CameraAction.configBurstRate(Camera.burst[1]);
-
 			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
 			if (isExistSD) {
@@ -31,19 +29,16 @@ public class BurstCase extends Base{
 			}else {
 				burstPath="/storage/sdcard0/Photo";
 			}
-
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
 			common.waitTime(16);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=10) {
 				common.infoLog("expect图片总数：10张-实际图片数量为："+piccnt);
 				common.failcase(runcase);
-				Assert.fail("张数错误");
 			}else {
 				common.infoLog("expect图片总数：10张-Success");
 				for (String photopath : resultHashSet) {
@@ -51,22 +46,21 @@ public class BurstCase extends Base{
 					double exp= 16/9;
 					if (hw==exp) {
 						common.infoLog(photopath+" -图片比列验证成功");
+						common.passcase();
 					}else {
 						common.infoLog(photopath+" -图片比列验证失败");
 						common.failcase(runcase);
-						Assert.fail("图片比例验证失败");
 					}
 				}
 			}
 			//common.backToIdl();
-			common.passcase();
 			common.startLog( "*****End to run " + runcase + " *****");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			common.handleException(e.getMessage());
 		}
 	}
-	public void testBurst20P4M169() throws Exception{
+	public void testBurst20P18M43() throws Exception{
 		String burstcfg = one.hardware.Page.Camera.burst[1];
 		String imgesz =one.hardware.Page.Camera.imsge_size[0];
 		try {
