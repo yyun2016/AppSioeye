@@ -9,7 +9,7 @@ import one.hardware.Util.Base;
 
 public class LiveCase extends Base{
 	/*
-	 * 		  "480@30FPS",
+	 * 	  "480@30FPS",
 		  "480@60FPS",
 		  "480@120FPS",
 		  "720@30FPS",
