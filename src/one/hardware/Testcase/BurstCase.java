@@ -2,29 +2,18 @@ package one.hardware.Testcase;
 
 import java.util.HashSet;
 
+import org.junit.Assert;
+
+import com.ckt.demo.UiAutomatorHelper;
+
+
 import one.hardware.Action.CameraAction;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 public class BurstCase extends Base{
-	public void testA() throws Exception{
-		String burstcfg = one.hardware.Page.Camera.burst[0];
-		String imgesz =one.hardware.Page.Camera.imsge_size[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			common.deletePhoto();
-			common.passcase();
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	public void testBurst10P4M169() throws Exception{
-		String burstcfg = one.hardware.Page.Camera.burst[0];
-		String imgesz =one.hardware.Page.Camera.imsge_size[0];
+	
+	public void testBurst10P18M43() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -32,13 +21,21 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstImageSize(Camera.imsge_size[0]);
+			CameraAction.configBurstRate(Camera.burst[1]);
 
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
+			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
+			String burstPath=null;
+			if (isExistSD) {
+				burstPath="/storage/sdcard1/Photo";
+			}else {
+				burstPath="/storage/sdcard0/Photo";
+			}
+
+			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(10000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Photo");
+			common.waitTime(16);
+			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
@@ -46,6 +43,7 @@ public class BurstCase extends Base{
 			if (piccnt!=10) {
 				common.infoLog("expect图片总数：10张-实际图片数量为："+piccnt);
 				common.failcase(runcase);
+				Assert.fail("张数错误");
 			}else {
 				common.infoLog("expect图片总数：10张-Success");
 				for (String photopath : resultHashSet) {
@@ -56,6 +54,7 @@ public class BurstCase extends Base{
 					}else {
 						common.infoLog(photopath+" -图片比列验证失败");
 						common.failcase(runcase);
+						Assert.fail("图片比例验证失败");
 					}
 				}
 			}
@@ -78,7 +77,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -124,7 +123,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -171,7 +170,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -218,7 +217,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -264,7 +263,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -311,7 +310,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -358,7 +357,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -405,7 +404,7 @@ public class BurstCase extends Base{
 			common.deletePhoto();
 
 			CameraAction.configImageSize(imgesz);
-			CameraAction.configBurst(burstcfg);
+			CameraAction.configBurstRate(burstcfg);
 
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
@@ -437,5 +436,11 @@ public class BurstCase extends Base{
 			// TODO Auto-generated catch block
 			common.handleException(e.getMessage());
 		}
+	}
+	public static void main(String args[]){
+//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.AccountCase", "", "2");
+		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "2");
+//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstDownToUp", "testBurstDownToUp", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P18M43", "2");
 	}
 }
