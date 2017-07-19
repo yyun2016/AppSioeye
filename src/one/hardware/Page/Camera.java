@@ -25,16 +25,21 @@ public class Camera {
 		  "20P",
 		  "30P"};
 	public static String[] video_quality ={
-		  "480@30FPS",
+		  "480@25FPS",
 		  "480@60FPS",
 		  "480@120FPS",
-		  "720@30FPS",
+		  "720@25FPS",
 		  "720@60FPS",
-		  "1080@30FPS"};
+		  "720@120FPS",
+		  "1080@25FPS",
+		  "1080@60FPS",
+		  "1080@120FPS",
+		  "2K@25FPS",
+		  "4K@25FPS",};
 	public static String[] imsge_size ={
-		  "18M(16:9)",
-		  "13M(4:3)",
-		  "8M(16:9)"};
+		  "18M(4:3)",
+		  "13M(16:9)",
+		  "8M(4:3)"};
 	public static String[] nav_menu ={
 		  "Live Stream",
 		  "Video",
@@ -46,6 +51,12 @@ public class Camera {
 	public static String[] video_Angle ={"Super Wide","Wide","Medium"};
 	
 	public static String[] lapse_time ={"2s","3s","5s","10s"};
+	public static String[] lapse_quality ={
+			"480@30FPS",
+			"720@30FPS",
+			"1080@30FPS",
+			"2K@30FPS",
+			"4K@30FPS"};
 	//com.hicam:id/camera_mode_label
 	//00:00:09
 	
