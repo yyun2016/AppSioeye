@@ -455,6 +455,6 @@ public class BurstCase extends Base{
 //		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.AccountCase", "", "2");
 		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "2");
 //		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstDownToUp", "testBurstDownToUp", "2");
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P18M43", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P18M43", "1");
 	}
 }
