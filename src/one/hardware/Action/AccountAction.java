@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import com.android.uiautomator.core.UiDevice;
+
 import android.os.Environment;
 import android.util.Property;
 import one.hardware.Util.Base;
@@ -89,5 +91,23 @@ public class AccountAction extends Base {
 		}else{
 			return null;
 		}
+	}
+    public static boolean isLogin() throws Exception{
+		boolean isLogin = false;
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+			if (common.findViewByText2("^Log out").exists()) {
+				isLogin= true;
+				logger.info("已经登陆");
+				UiDevice.getInstance().pressBack();
+			}else {
+				isLogin = false;
+				common.infoLog("没有登录");
+				UiDevice.getInstance().pressBack();
+			}
+		common.waitTime(1);
+		return isLogin;
 	}
 }

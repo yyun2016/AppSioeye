@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
+
+
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.VideoNode;
 import android.graphics.Bitmap;
@@ -192,6 +194,18 @@ public class Common {
 			infoLog("播放视频-Fail");
 		}
 	}
+	/**
+	 * 判断是否存在SD卡
+	 * @return
+	 * 用来确定照片或者视频存放的路径
+	 */
+	public boolean isExistSDCard() {  
+	    if (android.os.Environment.getExternalStorageState().equals(  
+	    android.os.Environment.MEDIA_MOUNTED)) {  
+	    return true;  
+	    } else  
+	    return false;  
+	    } 
 
 	/**
 	 * 返回文件差集
@@ -762,6 +776,7 @@ public class Common {
 				+ " Failed");
 		System.out.println("[" + TAG + runcase + "] " + TestResult
 				+ "The Test Case " + runcase + " Failed");
+//		Assert.fail("The Test Case " + runcase+ " Failed");
 	}
 
 	/**
