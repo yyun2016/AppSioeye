@@ -35,7 +35,10 @@ public class Camera {
 		  "1080@60FPS",
 		  "1080@120FPS",
 		  "2K@25FPS",
-		  "4K@25FPS",};
+		  "4K@25FPS",
+		  "480@25FPS(SD)",
+		  "480@25FPS(HD)",
+		  "720@25FPS(HD)"};
 	public static String[] imsge_size ={
 		  "18M(4:3)",
 		  "13M(16:9)",
