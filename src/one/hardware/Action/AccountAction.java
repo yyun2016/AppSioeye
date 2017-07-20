@@ -60,6 +60,10 @@ public class AccountAction extends Base {
 		}
 		return isSuccess;
 	}
+	/**
+	 * 获取相机中config.properties文件中的UserName
+	 * @return
+	 */
 	public static String getUserName(){
         String config= Environment.getExternalStorageDirectory()+ File.separator+"config.properties";
         logger.info(config);
@@ -67,7 +71,10 @@ public class AccountAction extends Base {
         logger.info("userName:"+userName);
         return userName;
     }
-
+	/**
+	 * 获取相机中config.properties文件中的Password
+	 * @return
+	 */
     public static String getPassword(){
         String config= Environment.getExternalStorageDirectory()+ File.separator+"config.properties";
         String user_password=getValueByKey(config,"user_password");
@@ -93,6 +100,12 @@ public class AccountAction extends Base {
 			return null;
 		}
 	}
+    /**
+     * 判断账号是否登录
+     * @return
+     * 返回值true为已登录
+     * @throws Exception
+     */
     public static boolean isLogin() throws Exception{
 		boolean isLogin = false;
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
