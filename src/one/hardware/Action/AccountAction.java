@@ -12,6 +12,7 @@ import com.android.uiautomator.core.UiDevice;
 
 import android.os.Environment;
 import android.util.Property;
+import one.hardware.Page.Account;
 import one.hardware.Util.Base;
 
 public class AccountAction extends Base {
@@ -109,5 +110,22 @@ public class AccountAction extends Base {
 			}
 		common.waitTime(1);
 		return isLogin;
+	}
+    /**
+	 * 判断直播账号是否登录
+	 * @throws Exception 
+	 */
+	public static boolean islogin() throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		if (common.findViewById(Account.login_btn_login).exists()) {
+            System.out.println("not login");
+            return false;
+        } else {
+            System.out.println("Already login");
+            return true;
+        }
 	}
 }
