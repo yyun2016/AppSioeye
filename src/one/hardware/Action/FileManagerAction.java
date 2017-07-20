@@ -9,12 +9,15 @@ public class FileManagerAction extends Base {
 	 */
 	public static  void playVideoByFileManager(String videoName) throws Exception {
 		common.startFileManager();
-		common.findViewByText("Internal storage").clickAndWaitForNewWindow();
+		common.findViewByText("Rapid Storage").clickAndWaitForNewWindow();
 		common.ScrollViewByText("Video");
 		common.clickViewByText("Video");
 		
 		//common.ScrollViewByText(videoName);
+		
 		common.clickViewByText(videoName);
+		common.clickViewByText("Gallery");
+		common.clickViewByText("Just once");
 		CameraAction.playVideoBtn().clickAndWaitForNewWindow();
 		common.waitTime(3);
 		//Can't play this video.
