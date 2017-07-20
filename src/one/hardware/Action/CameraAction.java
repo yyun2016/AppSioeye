@@ -182,6 +182,16 @@ public class CameraAction extends Base {
 		  "720@60FPS",
 		  "1080@30FPS"};
 	 */
+	public static void configLiveQuality(String quality) throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Video Quality");
+		common.clickViewByText("Video Quality");
+		common.ScrollViewByText(quality);
+		common.clickViewByText(quality);
+		common.infoLog("Video Quality设置为 :"+common.findViewByText(quality).getText());
+		common.device.pressBack();
+	}
 	public static void configVideoQuality(String quality) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[1]);
 		CameraAction.cameraSetting();
@@ -231,6 +241,15 @@ public class CameraAction extends Base {
 	 * Angle设置
 	 *  {"Super Wide","Wide","Medium"};
 	 */
+	public static void configLiveAngle(String angle) throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Video Angle");
+		common.clickViewByText("Video Angle");
+		common.clickViewByText(angle);
+		common.infoLog("Video Angle设置为 :"+angle);
+		common.device.pressBack();
+	}
 	public static void configVideoAngle(String angle) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[1]);
 		CameraAction.cameraSetting();
