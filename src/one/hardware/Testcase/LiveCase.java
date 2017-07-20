@@ -2,425 +2,164 @@ package one.hardware.Testcase;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.logging.Logger;
+
+import com.android.uiautomator.core.UiDevice;
+import com.ckt.demo.UiAutomatorHelper;
+
+import android.R.menu;
+import one.hardware.Action.AccountAction;
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
+import one.hardware.Action.LiveAction;
 import one.hardware.Action.VideoNode;
 import one.hardware.Util.Base;
 
 public class LiveCase extends Base{
+	private static Logger logger=Logger.getLogger(LiveCase.class.getName());
 	/*
-	 * 	  "480@30FPS",
+	 * 		  "480@30FPS",
 		  "480@60FPS",
 		  "480@120FPS",
 		  "720@30FPS",
 		  "720@60FPS",
 		  "1080@30FPS"};
 	 * */
-	private void videoQualityAngle(String quality,String angle) throws Exception{
-		try {
-			initUIAutomator(this.getName());
+	private void LiveQualityAngle(String quality,String angle) throws Exception{
+		
+			/*initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
 			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-			CameraAction.cameraVideo();
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(10000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				common.VideoInfo(videopath);
-				FileManagerAction.playVideoByFileManager(videoName);
-
-				if (common.findViewByText2("^Can't play this video.*").exists()) {
-					common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-					common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-					common.failcase(runcase);
-					throw new Exception("FindObject" + "Can't play this video");
-				}else {
-					common.infoLog(videoName+" 播放成功");
-					common.passcase();
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	public void testLive() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-
-			common.startCamera();
-			CameraAction.cameraLive();
-			Thread.sleep(10000);
-
+			CameraAction.configLiveQuality(quality);
+			CameraAction.configLiveAngle(angle);
+			CameraAction.cameraLive();*/
+		
+		initUIAutomator(this.getName());
+		common.startLog("*****Start to run " + runcase + " *****");
+		common.initDevice();
+		common.pmclear();
+		common.startCamera();
+		CameraAction.configLiveQuality(quality);
+		CameraAction.configLiveAngle(angle);
+		CameraAction.cameraLive();
+		
+		HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+		//判断账号是否登录
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Live&Save");
+		CameraAction.openCompoundButton("Live&Save");
+		common.waitTime(2);
+        if (common.findViewByText2("OK").exists()) {
+            common.clickViewByText("OK");
+        }
+        common.waitTime(1);
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		String userName=AccountAction.getUserName();
+		String passWord=AccountAction.getPassword();
+		AccountAction.loginAccount(userName, passWord);
+		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
+		if (login) {
+			logger.info(" 账号登陆成功");
 			common.passcase();
-
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
+		}else {
+			logger.info(" 账号登陆失败");
+			common.failcase(runcase);
 		}
-	}
-	public void testL48030fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[0];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
+		common.cameraKey();
+		/*if(CameraAction.cameraRecordTime()){
 			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					FileManagerAction.playVideoByFileManager(videoName);
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
+		}else if(!CameraAction.cameraRecordTime()){
+			common.failcase(runcase);
 		}
+		if(CameraAction.cameraRecordTime()){
+			common.passcase();
+		}else{
+			common.cameraKey();
+			common.failcase(runcase);
+		}*/
+		CameraAction.cameraRecordTime();
+		sleep(20000);
+		CameraAction.cameraRecordTime();
+		common.cameraKey();
+		sleep(5000);
+		HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+		HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
+
+		common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
+		LiveAction.checkLiveAndSaveVideo(resultHashSet);
 	}
-	public void testL48060fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[1];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					
-					FileManagerAction.playVideoByFileManager(videoName);
-					
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
+	
+	/**
+	 * 默认设置480@25(SD)普通视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025SDMedium() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[2]);
 	}
-	public void testL480120fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[2];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					FileManagerAction.playVideoByFileManager(videoName);
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
+	/**
+	 * 默认设置480@25(SD)宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025SDWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[1]);
 	}
-	public void testL72030fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[3];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					
-					FileManagerAction.playVideoByFileManager(videoName);
-					
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
+	/**
+	 * 默认设置480@25(SD)超宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025SDSuperWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[0]);
 	}
-	public void testL72060fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[4];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					
-					FileManagerAction.playVideoByFileManager(videoName);
-					
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
+	/**
+	 * 默认设置480@25(HD)普通视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025HDMedium() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[2]);
 	}
-	public void testL108030fpsSuperWide() throws Exception{
-		String quality = one.hardware.Page.Camera.video_quality[5];
-		String angle =one.hardware.Page.Camera.video_Angle[0];
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			common.startCamera();
-			CameraAction.configVideoQuality(quality);
-			CameraAction.configVideoAngle(angle);
-
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
-
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-			common.cameraKey();
-			CameraAction.cameraRecordTime();
-			sleep(20000);
-			CameraAction.cameraRecordTime();
-			common.cameraKey();
-			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-
-			if (resultHashSet.size()==1) {
-				String videopath = resultHashSet.iterator().next();
-				common.infoLog("new file:"+videopath);
-				String videoName = new File(videopath).getName();
-				VideoNode activeNode = common.VideoInfo(videopath);
-				
-				if (common.checkVideoInfo(480, activeNode)) {
-					common.infoLog("video info check success-"+videopath);
-					
-					FileManagerAction.playVideoByFileManager(videoName);
-					
-					if (common.findViewByText2("^Can't play this video.*").exists()) {
-						common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-						common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-						common.failcase(runcase);
-						throw new Exception("FindObject" + "Can't play this video");
-					}else {
-						common.infoLog(videoName+" 播放成功");
-						common.passcase();
-					}
-				}else {
-					common.infoLog("video info check failed"+videopath);
-					common.failcase(runcase);
-				}
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
+	/**
+	 * 默认设置480@25(HD)宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025HDWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[1]);
+	}
+	/**
+	 * 默认设置480@25(HD)超宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave48025HDSuperWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[0]);
+	}
+	/**
+	 * 默认设置720@25(HD)普通视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave72025HDMedium() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[2]);
+	}
+	/**
+	 * 默认设置720@25(HD)宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave72025HDWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[1]);
+	}
+	/**
+	 * 默认设置720@25(HD)超宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave72025HDSuperWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[0]);
+	}
+	
+	
+	public static void main(String args[]){
+//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.AccountCase", "", "2");
+		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "2");
+//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstDownToUp", "testBurstDownToUp", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "testLiveAndSave48025SDMedium", "2");
 	}
 }
