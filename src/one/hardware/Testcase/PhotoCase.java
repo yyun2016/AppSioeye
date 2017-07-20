@@ -1,26 +1,30 @@
 package one.hardware.Testcase;
 
 import java.util.HashSet;
+
+import com.ckt.demo.UiAutomatorHelper;
+
 import one.hardware.Action.CameraAction;
 import one.hardware.Util.Base;
 
 /**
  * 图片设置
- *   "4M(16:9)",
-	  "3M(4:3)",
-	  "2M(16:9)"};
+ *   "18M(4:3)",
+	 "13M(16:9)",
+	 "8M(4:3)"};
  */
 public class PhotoCase extends Base{
-	public void testPhoto4M169() throws Exception{
-		try {
+	//参数说明：photoSize= "18M(4:3)"，a,b为对应的照片比例，即a=4,b=3
+	private void PhotoConfig(String photoSize,int a,int b) throws Exception{
+		try{
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
 			common.startCamera();
 			common.deletePhoto();
 			
-			CameraAction.configImageSize("4M(16:9)");
-			
+			CameraAction.configImageSize(photoSize);
+		
 			HashSet<String> beforeTakePhotoList = common.FileList("/sdcard/Photo");
 			common.cameraKey();
 			sleep(3000);
@@ -30,7 +34,7 @@ public class PhotoCase extends Base{
 			if (resultHashSet.size()==1) {
 				String photopath = resultHashSet.iterator().next();
 				double hw = common.getPicHeightWidth(photopath);
-				double exp= 16/9;
+				double exp= a/b;
 				if (hw==exp) {
 					common.infoLog(photopath+" -拍照成功");
 					common.passcase();
@@ -47,27 +51,39 @@ public class PhotoCase extends Base{
 			common.handleException(e.getMessage());
 		}
 	}
-	public void testPhoto3M43() throws Exception{
-		try {
+	/**
+	 * 打开防抖。自动翻转开关-多次拍照
+	 * @param photoSize：照片大小
+	 * @param a：照片比例
+	 * @param b：照片比例
+	 * @throws Exception
+	 */
+	private void photosAndAntiShakeConfig(String photoSize,int a,int b) throws Exception{
+		try{
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
 			common.startCamera();
 			common.deletePhoto();
 			
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[2]);
-			CameraAction.configImageSize("3M(4:3)");
+			CameraAction.configImageSize(photoSize);
+			CameraAction.cameraSetting();
+			CameraAction.openCompoundButton("Anti-shake");
 			
+		
 			HashSet<String> beforeTakePhotoList = common.FileList("/sdcard/Photo");
-			common.cameraKey();
+			for(int i=0;i<10;i++){
+				common.cameraKey();
+				common.waitTime(1);
+			}
 			sleep(3000);
 			HashSet<String> afterTakePhotoList = common.FileList("/sdcard/Photo");
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
-			if (resultHashSet.size()==1) {
+			if (resultHashSet.size()==10) {
 				String photopath = resultHashSet.iterator().next();
 				double hw = common.getPicHeightWidth(photopath);
-				double exp= 4/3;
+				double exp= a/b;
 				if (hw==exp) {
 					common.infoLog(photopath+" -拍照成功");
 					common.passcase();
@@ -84,27 +100,33 @@ public class PhotoCase extends Base{
 			common.handleException(e.getMessage());
 		}
 	}
-	public void testPhoto2M169() throws Exception{
-		try {
+	
+	private void photosAndAutoConfig(String photoSize,int a,int b) throws Exception{
+		try{
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
 			common.startCamera();
 			common.deletePhoto();
 			
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[2]);
-			CameraAction.configImageSize("2M(16:9)");
+			CameraAction.configImageSize(photoSize);
+			CameraAction.cameraSetting();
 			
+			CameraAction.openCompoundButton("Auto");
+		
 			HashSet<String> beforeTakePhotoList = common.FileList("/sdcard/Photo");
-			common.cameraKey();
+			for(int i=0;i<10;i++){
+				common.cameraKey();
+				common.waitTime(1);
+			}
 			sleep(3000);
 			HashSet<String> afterTakePhotoList = common.FileList("/sdcard/Photo");
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
-			if (resultHashSet.size()==1) {
+			if (resultHashSet.size()==10) {
 				String photopath = resultHashSet.iterator().next();
 				double hw = common.getPicHeightWidth(photopath);
-				double exp= 16/9;
+				double exp= a/b;
 				if (hw==exp) {
 					common.infoLog(photopath+" -拍照成功");
 					common.passcase();
@@ -120,5 +142,70 @@ public class PhotoCase extends Base{
 			// TODO Auto-generated catch block
 			common.handleException(e.getMessage());
 		}
+	}
+	/*
+	 *  18M(4:3)
+	 */
+	public void testPhoto18M43() throws Exception{
+		PhotoConfig("18M(4:3)",16,9);
+		
+	}
+	/*
+	 *  13M(16:9)
+	 */
+	public void testPhoto13M169() throws Exception{
+		PhotoConfig("13M(16:9)",16,9);
+	}
+	/*
+	 *  8M(4:3)
+	 */
+	public void testPhoto8M43() throws Exception{
+		PhotoConfig("8M(4:3)",4,3);
+			
+	}
+	/*
+	 * 防抖+连续拍照18M(4:3)
+	 */
+	public void testPhotoAndAntiShake18M43ByManyTimes() throws Exception{
+
+		photosAndAntiShakeConfig("18M(4:3)",16,9);
+	}
+	/*
+	 * 防抖+连续拍照13M(16:9)
+	 */
+	public void testPhotoAndAntiShake13M169ByManyTimes() throws Exception{
+
+		photosAndAntiShakeConfig("13M(16:9)",16,9);
+	}
+	/*
+	 * 防抖+连续拍照8M(4:3)
+	 */
+	public void testPhotoAndAntiShake8M43ByManyTimes() throws Exception{
+		photosAndAntiShakeConfig("8M(4:3)",4,3);
+	}
+	
+	/*
+	 * 自动翻转+连续拍照18M(4:3)
+	 */
+	public void testPhotoAndAuto18M43ByManyTimes() throws Exception{
+		photosAndAutoConfig("18M(4:3)",16,9);
+	}
+	/*
+	 * 自动翻转+连续拍照13M(16:9)
+	 */
+	public void testPhotoAndAuto13M169ByManyTimes() throws Exception{
+		photosAndAutoConfig("13M(16:9)",16,9);
+	}
+	/*
+	 * 自动翻转+连续拍照8M(4:3)
+	 */
+	public void testPhotoAndAuto8M43ByManyTimes() throws Exception{
+		photosAndAutoConfig("8M(4:3)",4,3);
+	}
+
+
+	public static void main(String args[]){
+
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.PhotoCase", "testPhotoAndAuto18M43ByManyTimes", "2");
 	}
 }
