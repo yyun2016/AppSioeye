@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import com.ckt.demo.UiAutomatorHelper;
 
-
+import android.os.Environment;
 import one.hardware.Action.CameraAction;
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
@@ -27,12 +27,13 @@ public class BurstCase extends Base{
 			
 			CameraAction.configBurstImageSize(Camera.imsge_size[0]);
 			CameraAction.configBurstRate(Camera.burst[0]);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (Environment.isExternalStorageEmulated()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
+				common.infoLog("存在SD卡；path："+burstPath);
 			}else {
 				burstPath="/storage/sdcard0/Photo";
+				common.infoLog("不存在SD卡；path："+burstPath);
 			}
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
@@ -75,9 +76,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(Camera.imsge_size[0]);
 			CameraAction.configBurstRate(Camera.burst[1]);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -127,9 +127,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -179,9 +178,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -231,9 +229,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -283,9 +280,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -335,9 +331,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -387,9 +382,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -439,9 +433,8 @@ public class BurstCase extends Base{
 
 			CameraAction.configImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
-			Boolean isExistSD=common.isExistSDCard();//判断是否存在SD卡
 			String burstPath=null;
-			if (isExistSD) {
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 			}else {
 				burstPath="/storage/sdcard0/Photo";
@@ -479,7 +472,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public static void main(String args[]){
-//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.AccountCase", "", "2");
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "", "1");
 	}
 }

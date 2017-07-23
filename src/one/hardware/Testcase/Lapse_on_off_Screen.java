@@ -19,34 +19,30 @@ import java.io.File;
 
 
 public class Lapse_on_off_Screen extends Base {
-	public void testLapseLapse_on_off_Screen() throws Exception {
+	public void testLapse_on_off_Screen() throws Exception {
 		try{
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();         			
-			common.startCamera();		  
+			common.startCamera();
+			String lapsePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				lapsePath="/storage/sdcard1/Video";
+			}else {
+				lapsePath="/sdcard/Video";
+			}
 			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);  
-			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");   	
+
+			HashSet<String> beforeTakeVideoList = common.FileList(lapsePath);   	
 			common.cameraKey();               																									
-			sleep(1000);	
-						
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);         //按电源键6次
-			sleep(1000);
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);   
-			sleep(1000);
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);   
-			sleep(1000);
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);   
-			sleep(1000);
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);   
-			sleep(1000);
-			UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);   
-			sleep(1000);
-						
+			common.waitTime(1);
+			for(int n=0;n<=5;n++){
+				UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);         //按电源键6次
+				sleep(1000);
+			}					
 			common.cameraKey();
 			sleep(20000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");   				 
+			HashSet<String> afterTakeVideoList = common.FileList(lapsePath);   				 
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList); 
 			
 			if (resultHashSet.size()==1) {  						 
@@ -69,6 +65,6 @@ public class Lapse_on_off_Screen extends Base {
 		}
 	}
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Lapse_on_off_Screen", "testLapseLapse_on_off_Screen", "7");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Lapse_on_off_Screen", "testLapse_on_off_Screen", "1");		
 	}
 }
