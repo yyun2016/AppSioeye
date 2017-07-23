@@ -11,11 +11,13 @@ import java.util.HashSet;
 import java.util.Random;
 
 
+
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.VideoNode;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
+import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import com.android.uiautomator.core.Configurator;
@@ -71,7 +73,7 @@ public class Common {
 		stopGallery();
 		deleteVideo();
 		deletePhoto();
-	}
+	}  
 	/**
 	 * 获取图片的 height-wide
 	 */
@@ -200,12 +202,13 @@ public class Common {
 	 * 用来确定照片或者视频存放的路径
 	 */
 	public boolean isExistSDCard() {  
-	    if (android.os.Environment.getExternalStorageState().equals(  
-	    android.os.Environment.MEDIA_MOUNTED)) {  
+//	    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+		if(Environment.isExternalStorageEmulated()){
 	    return true;  
 	    } else  
-	    return false;  
-	    } 
+	    return false;
+		
+		 }
 
 	/**
 	 * 返回文件差集
@@ -388,8 +391,7 @@ public class Common {
 		// /Test Info
 		int n = 1;
 		while (n < 11) {
-			Runtime.getRuntime()
-			.exec("am start -n com.mediatek.filemanager/.FileManagerOperationActivity");
+			Runtime.getRuntime().exec("am start -n com.mediatek.filemanager/.FileManagerOperationActivity");
 			waitTime(5);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
