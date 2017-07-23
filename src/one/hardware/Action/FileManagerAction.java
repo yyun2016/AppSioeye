@@ -17,7 +17,9 @@ public class FileManagerAction extends Base {
 		
 		common.clickViewByText(videoName);
 		common.clickViewByText("Gallery");
+		if (common.findViewByText2("Just once").exists()){
 		common.clickViewByText("Just once");
+		}
 		CameraAction.playVideoBtn().clickAndWaitForNewWindow();
 		common.waitTime(3);
 		//Can't play this video.
