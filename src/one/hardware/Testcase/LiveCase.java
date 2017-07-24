@@ -25,70 +25,56 @@ public class LiveCase extends Base{
 		  "720@60FPS",
 		  "1080@30FPS"};
 	 * */
-	private void LiveQualityAngle(String quality,String angle) throws Exception{
-		
-			/*initUIAutomator(this.getName());
+	private void LiveQualityAngle(String quality,String angle) throws Exception{	
+		try{
+			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
+			common.pmclear();
 			common.startCamera();
 			CameraAction.configLiveQuality(quality);
 			CameraAction.configLiveAngle(angle);
-			CameraAction.cameraLive();*/
-		
-		initUIAutomator(this.getName());
-		common.startLog("*****Start to run " + runcase + " *****");
-		common.initDevice();
-		common.pmclear();
-		common.startCamera();
-		CameraAction.configLiveQuality(quality);
-		CameraAction.configLiveAngle(angle);
-		CameraAction.cameraLive();
-		
-		HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
-		//判断账号是否登录
-		CameraAction.cameraSetting();
-		common.ScrollViewByText("Live&Save");
-		CameraAction.openCompoundButton("Live&Save");
-		common.waitTime(2);
-        if (common.findViewByText2("OK").exists()) {
-            common.clickViewByText("OK");
-        }
-        common.waitTime(1);
-		common.ScrollViewByText("Account");
-		common.clickViewByText("Account");
-		String userName=AccountAction.getUserName();
-		String passWord=AccountAction.getPassword();
-		AccountAction.loginAccount(userName, passWord);
-		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
-		if (login) {
-			logger.info(" 账号登陆成功");
-			common.passcase();
-		}else {
-			logger.info(" 账号登陆失败");
-			common.failcase(runcase);
-		}
-		common.cameraKey();
-		/*if(CameraAction.cameraRecordTime()){
-			sleep(20000);
-		}else if(!CameraAction.cameraRecordTime()){
-			common.failcase(runcase);
-		}
-		if(CameraAction.cameraRecordTime()){
-			common.passcase();
-		}else{
+			CameraAction.cameraLive();
+			
+			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			//判断账号是否登录
+			CameraAction.cameraSetting();
+			common.ScrollViewByText("Live&Save");
+			CameraAction.openCompoundButton("Live&Save");
+			common.waitTime(2);
+	        if (common.findViewByText2("OK").exists()) {
+	            common.clickViewByText("OK");
+	        }
+	        common.waitTime(1);
+			common.ScrollViewByText("Account");
+			common.clickViewByText("Account");
+			String userName=AccountAction.getUserName();
+			String passWord=AccountAction.getPassword();
+			AccountAction.loginAccount(userName, passWord);
+			boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
+			if (login) {
+				logger.info(" 账号登陆成功");
+				common.passcase();
+			}else {
+				logger.info(" 账号登陆失败");
+				common.failcase(runcase);
+			}
 			common.cameraKey();
-			common.failcase(runcase);
-		}*/
-		CameraAction.cameraRecordTime();
-		sleep(20000);
-		CameraAction.cameraRecordTime();
-		common.cameraKey();
-		sleep(5000);
-		HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
-		HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
+			
+			CameraAction.cameraRecordTime();
+			sleep(20000);
+			CameraAction.cameraRecordTime();
+			common.cameraKey();
+			sleep(5000);
+			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
-		common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
-		LiveAction.checkLiveAndSaveVideo(resultHashSet);
+			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
+			LiveAction.checkLiveAndSaveVideo(resultHashSet);
+		}catch(Exception e){
+			// TODO Auto-generated catch block
+			common.handleException(e.getMessage());
+		}
 	}
 	
 	/**
@@ -160,6 +146,6 @@ public class LiveCase extends Base{
 //		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.AccountCase", "", "2");
 		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "2");
 //		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstDownToUp", "testBurstDownToUp", "2");
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "testLiveAndSave48025SDMedium", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "", "2");
 	}
 }
