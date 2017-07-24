@@ -18,6 +18,9 @@ public class Sleeptime_setting extends Base {
 	/*
 	 * 启动settings->device->sleep time
 	 * ruixiang.xu 20170724
+	 * 
+	 * 
+	 * 
 	 */
 	public void navToSleepTime()throws Exception{
 		
