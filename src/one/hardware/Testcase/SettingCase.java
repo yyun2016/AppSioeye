@@ -26,8 +26,7 @@ public class SettingCase extends Base{
 			common.ScrollViewByText("Display");
 			common.clickViewByText("Display");
 			common.clickViewByText("Sleep");
-			common.clickViewByText("Never");
-			
+			common.clickViewByText("Never");		
 			device.pressBack();
 			device.pressBack();
 			device.pressBack();
