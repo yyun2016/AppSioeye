@@ -1,14 +1,17 @@
 package one.hardware.Testcase;
 /*
- * case:普通录像中，单击power键，熄屏，正常录制；
+ * case:打开camera，切换到到普通录像模式
+ * 		普通录像中，单击power键，熄屏，正常录制；
  * 		再次点击power键，亮屏，正常录制
  */
 import java.io.File;
 import java.util.HashSet;
 import com.ckt.demo.UiAutomatorHelper;
 import android.view.KeyEvent;
+import android.widget.ScrollView;
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 import one.hardware.Util.Common;
 
@@ -23,7 +26,12 @@ public class VideoClickPower extends Base{
 				common.infoLog("点击POWER使屏幕点亮");
 			}
 			common.initDevice();
-			common.startCamera();
+			common.startCamera();  //打开camera
+			common.device.pressMenu();
+			sleep(500);
+			common.ScrollViewByText(one.hardware.Page.Camera.nav_menu[1]); //找到video模式
+			common.clickViewByText(one.hardware.Page.Camera.nav_menu[1]);
+			
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
 			common.infoLog("亮屏录制"+WaitTime+"秒");
 			common.cameraKey();
