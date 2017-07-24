@@ -18,4 +18,10 @@ public class SettingPage extends Base{
     public static String gallery_live_retry="android:id/button1";
     public static String gallery_live_cancel="android:id/button2";
 
+    //settingsPage    
+    public static String settings_class_name="android.widget.FrameLayout";
+    public static String settings_package_name="com.android.settings";
+    public static String device_id="com.android.settings:id/device";
+    
+    
 }
