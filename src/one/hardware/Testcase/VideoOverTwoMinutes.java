@@ -1,6 +1,8 @@
 package one.hardware.Testcase;
 /*
  * case：普通录像超过两分钟，录制结果无异常
+ * 打开camera，按menu键，找到video，并点击；
+ * 录制125秒，判断结果
  */
 import java.io.File;
 import java.util.HashSet;
@@ -27,6 +29,12 @@ public class VideoOverTwoMinutes extends Base{
 			}
 			common.initDevice();			
 			common.startCamera();
+			common.device.pressMenu();
+			sleep(500);
+			common.ScrollViewByText(one.hardware.Page.Camera.nav_menu[1]); //找到video对象
+			common.clickViewByText(one.hardware.Page.Camera.nav_menu[1]); //点击video
+			
+			
 			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");			
 			common.cameraKey();
 			CameraAction.cameraRecordTime();
@@ -69,6 +77,6 @@ public class VideoOverTwoMinutes extends Base{
 		}
 	}
 	public static void main(String[] args){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.VideoOverTwoMinutes", "testVideoOverTwoMinutes", "11");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.VideoOverTwoMinutes", "testVideoOverTwoMinutes", "1");
 	}
 }
