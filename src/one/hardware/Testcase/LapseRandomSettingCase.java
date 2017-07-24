@@ -11,19 +11,16 @@ import one.hardware.Action.CameraAction;
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 import java.lang.Math;
+import java.util.logging.Logger;
 
-public class ExchangeSetting_ReturnToLapse extends Base {
-
+public class LapseRandomSettingCase extends Base {
+	
 	public String getRightValue(String text) throws UiObjectNotFoundException{
 		String value="";
-		UiCollection videos = new UiCollection(
-				new UiSelector().className("android.widget.ScrollView"));
-		int count = videos.getChildCount(new UiSelector()
-		.className("android.widget.RelativeLayout"));
+		UiCollection videos = new UiCollection(new UiSelector().className("android.widget.ScrollView"));
+		int count = videos.getChildCount(new UiSelector().className("android.widget.RelativeLayout"));
 		for (int instance = 0; instance < count; instance++) {
-			UiObject uiObject = videos.getChildByInstance(
-					new UiSelector().className("android.widget.RelativeLayout"),
-					instance);
+			UiObject uiObject = videos.getChildByInstance(new UiSelector().className("android.widget.RelativeLayout"),instance);
 			UiObject sObject = uiObject.getChild(new UiSelector().className("android.widget.TextView"));
 			if (uiObject.exists() && uiObject.isEnabled() == true&& sObject.exists()) {
 				if (sObject.getText().equals(text)) {
@@ -36,38 +33,45 @@ public class ExchangeSetting_ReturnToLapse extends Base {
 	}
 	public boolean isExistVideoQuality(String vquality){
 		boolean isexist =false;
-
 		return isexist;
 	}
-	public void  testExchangeSetting_ReturnToLapse() throws Exception  {		
+	/**
+	 * 随机20次修改延时录像设置
+	 * 检查是否修改成功
+	 * @throws Exception
+	 */
+	public void  testRandomChangeLapseSetting() throws Exception  {		
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();         			
+			common.initDevice();
 			common.startCamera();				 		 
-			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);  
+			CameraAction.navconfig(Camera.nav_menu[5]);  
 
 			for(int i=1;i<20;i++){	
 				common.infoLog("第"+i+"次循环开始");
-				int lapsesize = one.hardware.Page.Camera.lapse_time.length;       
-				int anglesize = one.hardware.Page.Camera.video_Angle.length;		
-				int qualitysize = one.hardware.Page.Camera.video_quality.length;			 
+				int lapsesize = Camera.lapse_time.length;
+				int anglesize = Camera.video_Angle.length;		
+				int qualitysize = Camera.lapse_quality.length;			 
 				int l =(int)(Math.random()*(lapsesize-1)); 			
 				int a =(int)(Math.random()*(anglesize-1));			
 				int q =(int)(Math.random()*(qualitysize-1));				
 
 				//value to set
-				String expect_lapse_quality =Camera.video_quality[q];
+				String expect_lapse_quality =Camera.lapse_quality[q];
+				common.infoLog(" 期望lapseuality为："+expect_lapse_quality);
 				String expect_lapse_angle = Camera.video_Angle[a];
+				common.infoLog(" 期望lapseAngle为："+expect_lapse_angle);
 				String expect_lapse_lapsetime = Camera.lapse_time[l];
-				//随即的视频质量当前机器是否支持,如果不支持，跳过
+				//随机的视频质量当前机器是否支持,如果不支持，跳过
 				if (CameraAction.isExistVideoQuality(expect_lapse_quality)) {
 					//action
 					CameraAction.configVideoQuality(5,expect_lapse_quality);
+					common.infoLog("startConfigAngle");
 					CameraAction.configVideoAngle(5,expect_lapse_angle);
 					CameraAction.configTimeLapse(5,expect_lapse_lapsetime);
 
-					CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);				
+					CameraAction.navconfig(Camera.nav_menu[5]);				
 					CameraAction.cameraSetting();
 
 					//value get
@@ -103,17 +107,24 @@ public class ExchangeSetting_ReturnToLapse extends Base {
 						}									
 					}		
 					common.infoLog("第"+i+"次循环结束");
-				}
-				//no exception
-				common.passcase();
-				common.startLog( "*****End to run "  + runcase +"*****");			
-			} 
+				}			
+			}
+			common.passcase();
+			//no exception
+			common.startLog( "*****End to run "  + runcase +"*****");
 		}catch (Exception e) {
 			common.handleException(e.getMessage());	
 		}			
 	}
-//	public static void main(String[] args) {
-//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.ExchangeSetting_ReturnToLapse", "testExchangeSetting_ReturnToLapse", "2");
+//	public void testConfigAngle() throws Exception{
+//		initUIAutomator(this.getName());
+//		common.startLog("*****Start to run " + runcase + " *****");
+//		common.initDevice();
+//		common.startCamera();
+//		CameraAction.configVideoAngle(5,"Wide");
 //	}
+	public static void main(String[] args) {
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseRandomSettingCase", "testRandomChangeLapseSetting", "2");
+	}
 
 }
