@@ -68,7 +68,7 @@ public class LapseRandomSettingCase extends Base {
 					//action
 					CameraAction.configVideoQuality(5,expect_lapse_quality);
 					common.infoLog("startConfigAngle");
-					CameraAction.configVideoAngle(5,expect_lapse_angle);
+					CameraAction.configVideoModeAndAngle(5,expect_lapse_angle);
 					CameraAction.configTimeLapse(5,expect_lapse_lapsetime);
 
 					CameraAction.navconfig(Camera.nav_menu[5]);				
