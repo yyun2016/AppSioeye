@@ -267,24 +267,29 @@ public class CameraAction extends Base {
 	 * angle为视场角，不区分首字母大小写
 	 * @throws Exception
 	 */
-	public static void configVideoAngle(int index,String angle) throws Exception{
-		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[index]);
-		CameraAction.cameraSetting();
-		common.ScrollViewByText("Video Angle");
-		common.clickViewByText("Video Angle");
-		int ang=0;
-		if (angle=="Wide"||angle=="wide") {
-			ang=1;}
-		if (angle=="Medium"||angle=="medium") {
-			ang=2;}
-		UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(ang));
-		tObject.click();
-		ang=0;
-//		common.ScrollViewByText(angle);
-//		common.clickViewByText(angle);
-		common.infoLog("Video Angle设置为 :"+angle);
-		common.device.pressBack();
-	}
+	public static void configVideoModeAndAngle(int index,String angle) throws Exception{
+		  CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[index]);
+		  CameraAction.cameraSetting();
+		  common.ScrollViewByText("Video Angle");
+		  common.clickViewByText("Video Angle");
+		  if (angle=="Super Wide"||angle=="super wide") {
+		   common.clickViewByText("Super Wide");
+		  }
+		  if (angle=="Medium"||angle=="medium") {
+		   common.clickViewByText("Medium");
+		  }
+		  int ang=3;
+		  if (angle=="Wide"||angle=="wide") {
+		   ang=1;
+		   UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(ang));
+		   tObject.click();
+		   }
+		  common.infoLog("ang:"+ang);
+		  common.infoLog("Video Angle设置为 :"+angle);
+		  common.device.pressBack();
+		 }
+	
+	
 	
 	public static void configVideoAngle(int angle) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[1]);
