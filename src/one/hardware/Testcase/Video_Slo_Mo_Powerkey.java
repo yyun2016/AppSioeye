@@ -2,10 +2,13 @@ package one.hardware.Testcase;
 /**
  * 睡眠时间设置15s 60s 10min Never
  * */
+
 import com.ckt.demo.UiAutomatorHelper;
 import android.view.KeyEvent;
 import one.hardware.Action.CameraAction;
 import one.hardware.Util.Base;
+
+
 public class Video_Slo_Mo_Powerkey  extends Base{
 	public void test()throws Exception{
 		try {
