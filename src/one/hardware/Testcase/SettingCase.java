@@ -67,8 +67,11 @@ public class SettingCase extends Base{
 					common.takeScreen("wifi连接错误！");
 					common.failcase(runcase);
 			}
-							
-				common.startLog( "*****End to run " + runcase + " *****");			
+			device.pressBack();
+			device.pressBack();
+			common.clickViewByText("Wi-Fi");
+			common.clickViewById("com.mediatek:id/imageswitch");//最终关闭wifi		
+			common.startLog( "*****End to run " + runcase + " *****");			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -76,6 +79,6 @@ public class SettingCase extends Base{
 		}
 	}
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", " one.hardware.Testcase.SettingCase", "", "3");
+		new UiAutomatorHelper("AppSioeye", " one.hardware.Testcase.SettingCase", "", "2");
 	}
 }
