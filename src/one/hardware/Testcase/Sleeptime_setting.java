@@ -1,8 +1,5 @@
 package one.hardware.Testcase;
 import com.android.uiautomator.core.UiDevice;
-/**
- * ç¡çœ æ—¶é—´è®¾ç½®15s 60s 10min Never
- * */
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiScrollable;
 import com.android.uiautomator.core.UiSelector;
@@ -13,22 +10,30 @@ import android.widget.AbsListView.SelectionBoundsAdjuster;
 import android.widget.ScrollView;
 import one.hardware.Util.Base;
 
+/**
+ * Ë¯ÃßÊ±¼äÉèÖÃ15s 60s 10min Never
+ * */
+
+
+
 public class Sleeptime_setting extends Base {
 	
 	/*
-	 * å¯åŠ¨settings->device->sleep time
+	 * Æô¶¯settings->device->sleep time->ÉèÖÃ²»Í¬µÄÏ¢ÆÁÊ±¼ä£¬²¢µÈ´ı
 	 * ruixiang.xu 20170724
 	 * 
-	 * 
+	 * 	string_sleep_time ÓÃÓÚÉèÖÃÏ¢ÆÁ
+	 *  int_sleep_time  ÓÃÓÚµÈ´ıÏ¢ÆÁ
 	 * 
 	 */
-	public void navToSleepTime()throws Exception{
+	private void navToSleepTime(String sleep,int time)throws Exception{
 		
 		
 		try {
 			
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
+			device.wakeUp();
 			UiDevice.getInstance().pressBack();
 			UiDevice.getInstance().pressBack();
 			UiDevice.getInstance().pressBack();
@@ -38,185 +43,93 @@ public class Sleeptime_setting extends Base {
 			common.clickViewByText("Device");
 			common.ScrollViewByText("Display");
 			common.clickViewByText("Display");
-			
 			common.ScrollViewByText2("Sleep");
 			common.clickViewByText("Sleep");
 			
+			common.findViewByText(sleep).click();
+			common.infoLog("µÈ´ıÏ¢ÆÁÊ±¼ä"+sleep);
+
+			sleep(time+4000); // ÎªÁËµÈ´ı³¹µ×ĞİÃß£¬Ôö¼Ó4sµÈ´ıÊ±¼ä
+			
+			
+			if(time!=700) {
+				
+				if (!common.device.isScreenOn())
+				{
+					common.passcase();
+				}else {
+					common.failcase(runcase);
+				}
+				
+				
+				
+			}else {
+				common.infoLog("²âÊÔnever³£ÁÁÆÁ");
+				if (common.device.isScreenOn())
+				{
+					common.passcase();
+				}
+				else {
+					common.failcase(runcase);
+				}
+				
+			}
 			
 			
 		}catch (Exception e) {
 			// TODO: handle exception
 			common.handleException(e.getMessage());
 			
+		}finally {
+			device.wakeUp();
+			common.findViewByText("Never").click();
+			common.startLog( "*****End to run " + runcase + " *****");
 		}
-		
-		
-		
-		
-		/*int i,j,k;
-		System.out.println("è‹¦é€¼å¯»æ‰¾settingä¸­");
-		outer:
-			for (k=1;k>0;k++)
-			{
-				if (k%2 == 0)
-				{
-					for (i=k;i>0;i--)
-					{
-						UiObject sObject = new UiObject(new UiSelector().className(one.hardware.Page.SettingPage.settings_class_name));
-						sObject.swipeLeft(5);
-						System.out.println("Orz..");
-						if (common.findViewByText2("Settings").exists() == true)
-						{
-							System.out.println("o(âˆ©_âˆ©)o æ‰¾åˆ°äº†");
-							break outer;
-						}	
-					}
-				}
-				else{
-					for (j=k;j>0;j--)
-					{
-						UiObject sObject = new UiObject(new UiSelector().className("android.widget.FrameLayout"));
-						sObject.swipeRight(10);
-						System.out.println("Orz.");
-						if (common.findViewByText2("Settings").exists() == true)
-						{
-							System.out.println("o(âˆ©_âˆ©)o æ‰¾åˆ°äº†");
-							break outer;
-						}				
-					}		
-				}
-			}*/
 		
 	}
 	
 	
 	/*
-	 * 15sæ¯å± ï¼Œæœ€åè®¾ç½®ä¸ºå¸¸äº®
+	 * 15sÏ¢ÆÁ
 	 */
-	public void test15Seconds() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			navToSleepTime();
-			common.findViewByText("15 seconds").click();
-			common.infoLog("ç­‰å¾…15s");
-			common.waitTime(16);
-			if (!common.device.isScreenOn())
-			{
-				common.passcase();
-			}
-			else {
-				common.failcase(runcase);
-			}
-		} catch (Exception e) {
-			// TODO: Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-		finally {
-			common.device.wakeUp();
-			common.findViewByText("Never").click();
-			common.startLog( "*****End to run " + runcase + " *****");
-		}
-	}
-	
-	
-	/*
-	 * 60sæ¯å± ï¼Œæœ€åè®¾ç½®ä¸ºå¸¸äº®
-	 */
-	public void test60Seconds() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			navToSleepTime();
-			common.findViewByText("60 seconds").click();
-			common.infoLog("ç­‰å¾…60s");
-			common.waitTime(61);
-			if (!common.device.isScreenOn())
-			{
-				common.passcase();
-			}
-			else {
-				common.failcase(runcase);
-			}
-		} catch (Exception e) {
-			// TODO: Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-		finally {
-			common.device.wakeUp();
-			common.findViewByText("Never").click();
-			common.startLog( "*****End to run " + runcase + " *****");
-		}
+	public void test15Seconds() throws Exception {
+		String sleep=one.hardware.Page.SettingPage.string_sleep_time[0];
+		int time=one.hardware.Page.SettingPage.int_sleep_time[0];
+		navToSleepTime(sleep, time);
 	}
 	
 	/*
-	 * 10åˆ†é’Ÿæ¯å± ï¼Œæœ€åè®¾ç½®ä¸ºå¸¸äº®
+	 * 60sÏ¢ÆÁ
 	 */
-	public void test10minutes() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			navToSleepTime();
-			common.findViewByText("10 minutes").click();
-			common.infoLog("ç­‰å¾…10min");
-			common.waitTime(601);
-			if (!common.device.isScreenOn())
-			{
-				common.passcase();
-			}
-			else {
-				common.failcase(runcase);
-			}
-		} catch (Exception e) {
-			// TODO: Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-		finally {
-			common.device.wakeUp();
-			common.findViewByText("Never").click();
-			common.startLog( "*****End to run " + runcase + " *****");
-		}
+	public void test60Seconds() throws Exception {
+		String sleep=one.hardware.Page.SettingPage.string_sleep_time[1];
+		int time=one.hardware.Page.SettingPage.int_sleep_time[1];
+		navToSleepTime(sleep, time);
 	}
 	
 	/*
-	 * å¸¸äº®å± ï¼Œäº®å±10åˆ†é’Ÿåï¼Œæ£€æŸ¥å±å¹•çŠ¶æ€ï¼Œæ˜¯äº®å±åˆ™é€šè¿‡ï¼›
-	 * æœ€åè®¾ç½®ä¸ºå¸¸äº®
+	 * 10·ÖÖÓÏ¢ÆÁ
 	 */
-	public void testNever() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-
-			common.startLog("*****Start to run " + runcase + " *****");
-			common.initDevice();
-			navToSleepTime();
-			common.findViewByText("Never").click();
-			common.infoLog("ç­‰å¾…10min");
-			common.waitTime(601);
-			if (common.device.isScreenOn())
-			{
-				common.passcase();
-			}
-			else {
-				common.failcase(runcase);
-			}
-		} catch (Exception e) {
-			// TODO: Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-		finally {
-			common.device.wakeUp();
-			common.findViewByText("Never").click();
-			common.startLog( "*****End to run " + runcase + " *****");
-		}
+	public void test10minutes() throws Exception {
+		String sleep=one.hardware.Page.SettingPage.string_sleep_time[2];
+		int time=one.hardware.Page.SettingPage.int_sleep_time[2];
+		navToSleepTime(sleep, time);
 	}
-	//neverè®¾ç½®
+	
+	/*
+	 * never³£ÁÁÆÁÄ»
+	 */
+	public void testNever() throws Exception {
+		String sleep=one.hardware.Page.SettingPage.string_sleep_time[3];
+		int time=one.hardware.Page.SettingPage.int_sleep_time[3];
+		navToSleepTime(sleep, time);
+	}
+	
+	
 	public static void main(String args[]){
-		new UiAutomatorHelper("one.hardware.Testcase", "one.hardware.Testcase.Sleeptime_setting", "", "1");
+		new UiAutomatorHelper("one.hardware.Testcase", "one.hardware.Testcase.Sleeptime_setting", "test15Seconds", "1");
 	}
 
 }
+	
+	
