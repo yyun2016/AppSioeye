@@ -17,6 +17,13 @@ import android.view.KeyEvent;
 import one.hardware.Action.CameraAction;
 import one.hardware.Util.Base;
 
+/*
+ * 普通录像设置
+ * 1、普通录像设置为720@60、超宽视场角，打开video
+ * 2、切换到延时录像，通过3s来判断
+ * 3、再切换到普通录像，通过720@60来判断
+ * 
+ */
 public class VideoSettings extends Base{
 	String quality = one.hardware.Page.Camera.video_quality[4];  //视频质量720@60
 	String angle =one.hardware.Page.Camera.video_Angle[0];	 //超宽视场角
