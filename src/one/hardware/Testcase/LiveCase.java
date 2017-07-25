@@ -140,6 +140,27 @@ public class LiveCase extends Base{
 	public void testLiveAndSave72025HDSuperWide() throws Exception{
 		LiveQualityAngle(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[0]);
 	}
+	/**
+	 * 默认设置1080@25(HD)普通视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave108025HDMedium() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[2]);
+	}
+	/**
+	 * 默认设置1080@25(HD)宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave108025HDWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[1]);
+	}
+	/**
+	 * 默认设置1080@25(HD)超宽视角直播并保存
+	 * @throws Exception
+	 */
+	public void testLiveAndSave108025HDSuperWide() throws Exception{
+		LiveQualityAngle(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[0]);
+	}
 	
 	
 	public static void main(String args[]){
