@@ -319,7 +319,7 @@ public class BurstCase extends Base{
 			common.handleException(e.getMessage());
 		}
 	}
-	public void testBurst10P8M169() throws Exception{
+	public void testBurst10P8M43() throws Exception{
 		String burstcfg = one.hardware.Page.Camera.burst[0];
 		String imgesz =one.hardware.Page.Camera.imsge_size[2];
 		try {
