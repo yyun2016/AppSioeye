@@ -28,7 +28,7 @@ public class BurstCase extends Base{
 			CameraAction.configBurstImageSize(Camera.imsge_size[0]);
 			CameraAction.configBurstRate(Camera.burst[0]);
 			String burstPath=null;
-			if (Environment.isExternalStorageEmulated()) {//判断是否存在SD卡
+			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
 				common.infoLog("存在SD卡；path："+burstPath);
 			}else {
