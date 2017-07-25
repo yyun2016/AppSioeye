@@ -13,6 +13,7 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiSelector;
 import com.ckt.demo.UiAutomatorHelper;
 
+import android.R.string;
 import one.hardware.Util.Base;
 
 public class CameraAction extends Base {
@@ -258,6 +259,15 @@ public class CameraAction extends Base {
 		common.clickViewByText(angle);
 		common.infoLog("Video Angle设置为 :"+angle);
 		common.device.pressBack();
+	}
+	public static void configSlomoAngle(String angle) throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Video Angle");
+		common.clickViewByText("Video Angle");
+		common.clickViewByText(angle);
+		common.infoLog("Video Angle设置为 :"+angle);
+		common.device.pressBack();	
 	}
 	/**
 	 * 通用配置视场角方法
