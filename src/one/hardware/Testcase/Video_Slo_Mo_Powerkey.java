@@ -10,7 +10,7 @@ import one.hardware.Util.Base;
 
 
 public class Video_Slo_Mo_Powerkey  extends Base{
-	public void test()throws Exception{
+	public void testSloMoPowerKey()throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run  + runcase +  *****");
