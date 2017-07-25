@@ -3,30 +3,40 @@ package one.hardware.Testcase;
 import java.io.File;
 import java.util.HashSet;
 
+import com.ckt.demo.UiAutomatorHelper;
+
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
 import one.hardware.Action.VideoNode;
 import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
+	public static void main(String[] args) {
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testTLap2s48030AllAngle", "2");		
+	}
 	public void testTLap2s48030AllAngle() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[0];
+			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(t);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -45,7 +55,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -93,20 +103,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[1];
+			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -125,7 +140,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -173,20 +188,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[2];
+			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -205,7 +225,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -253,20 +273,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[3];
+			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -285,7 +310,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -333,20 +358,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[4];
+			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -365,7 +395,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -413,20 +443,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[5];
+			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -445,7 +480,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -493,20 +528,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[0];
+			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -525,7 +565,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -573,20 +613,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[1];
+			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -605,7 +650,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -653,20 +698,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[2];
+			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -685,7 +735,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -733,20 +783,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[3];
+			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -765,7 +820,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -813,20 +868,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[4];
+			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -845,7 +905,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -893,20 +953,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[5];
+			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -925,7 +990,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -973,20 +1038,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[0];
+			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1005,7 +1075,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1053,20 +1123,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[1];
+			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1085,7 +1160,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1133,20 +1208,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[2];
+			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1165,7 +1245,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1213,20 +1293,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[3];
+			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1245,7 +1330,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1293,20 +1378,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[4];
+			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1325,7 +1415,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1373,20 +1463,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[5];
+			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1405,7 +1500,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1453,20 +1548,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[0];
+			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1485,7 +1585,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1533,20 +1633,25 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[1];
+			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,quality);
+				CameraAction.configVideoModeAndAngle(5, t);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1565,7 +1670,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1613,7 +1718,12 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
 			String quality = one.hardware.Page.Camera.video_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
@@ -1626,7 +1736,7 @@ public class LapseCase extends Base{
 				CameraAction.configVideoAngle(angle);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1645,7 +1755,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1693,7 +1803,12 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
 			String quality = one.hardware.Page.Camera.video_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
@@ -1706,7 +1821,7 @@ public class LapseCase extends Base{
 				CameraAction.configVideoAngle(angle);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1725,7 +1840,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1773,7 +1888,12 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
 			String quality = one.hardware.Page.Camera.video_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
@@ -1786,7 +1906,7 @@ public class LapseCase extends Base{
 				CameraAction.configVideoAngle(angle);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1805,7 +1925,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();
@@ -1853,7 +1973,12 @@ public class LapseCase extends Base{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
-			
+			String videoFilePath=null;
+			if (common.isExistSDCard()) {//判断是否存在SD卡
+				videoFilePath="/storage/sdcard1/Video";
+			}else {
+				videoFilePath="/storage/sdcard0/Video";
+			}
 			boolean result = true;
 			String quality = one.hardware.Page.Camera.video_quality[5];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
@@ -1866,7 +1991,7 @@ public class LapseCase extends Base{
 				CameraAction.configVideoAngle(angle);
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				
-				HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(10000);
 				CameraAction.cameraRecordTime();
@@ -1885,7 +2010,7 @@ public class LapseCase extends Base{
 				sleep(3000);
 				
 				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
 					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 					if (resultHashSet.size()==1) {
 						String videopath = resultHashSet.iterator().next();

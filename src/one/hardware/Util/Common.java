@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 import android.view.KeyEvent;
 import com.android.uiautomator.core.Configurator;
@@ -202,12 +203,17 @@ public class Common {
 	 * 用来确定照片或者视频存放的路径
 	 */
 	public boolean isExistSDCard() {  
-//	    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-		if(Environment.isExternalStorageEmulated()){
-	    return true;  
-	    } else  
-	    return false;
-		
+		File path=new File ("/storage/sdcard1");
+		 StatFs statfs=new StatFs(path.getPath());
+		 int availaBlock=statfs.getAvailableBlocks();
+		 infoLog("sdcard1的availaBlock为："+availaBlock);
+		    if (availaBlock==0){
+		    	infoLog("不不不存在外置SD卡");
+		        return false;  
+		    }else{
+		    	infoLog("存存存存存在外置SD卡");
+		        return true;  
+		    }  
 		 }
 
 	/**

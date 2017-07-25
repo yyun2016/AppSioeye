@@ -298,9 +298,24 @@ public class CameraAction extends Base {
 		  common.infoLog("Video Angle设置为 :"+angle);
 		  common.device.pressBack();
 		 }
-	
-	
-	
+	public static void configVideoModeAndAngle(int index,int angle) throws Exception{
+		  CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[index]);
+		  CameraAction.cameraSetting();
+		  common.ScrollViewByText("Video Angle");
+		  common.clickViewByText("Video Angle");
+		  if (angle==0) {
+		   common.clickViewByText("Super Wide");
+		  }
+		  if (angle==2) {
+		   common.clickViewByText("Medium");
+		  }
+		  if (angle==1) {
+		   UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(angle));
+		   tObject.click();
+		   }
+		  common.infoLog("Video Angle设置为 :"+angle);
+		  common.device.pressBack();
+		 }
 	public static void configVideoAngle(int angle) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[1]);
 		CameraAction.cameraSetting();
