@@ -101,7 +101,7 @@ public class Review_Screen_onoff extends Base{
 		Review_Screen_onoff();
 	}
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Review_Screen_onoff ", "testReview_Screen_onoff()", "7");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Review_Screen_onoff ", "", "7");		
 	}
 
 }
