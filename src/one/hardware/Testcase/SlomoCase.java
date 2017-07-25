@@ -24,7 +24,7 @@ public class SlomoCase extends Base{
 	 * 
 	 */
 	
-	public void configSlomoAngleAndRecord(int index,String angle) throws Exception {
+	private void configSlomoAngleAndRecord(int index,String angle) throws Exception {
 		
 		try {
 			initUIAutomator(this.getName());
@@ -66,6 +66,7 @@ public class SlomoCase extends Base{
 					if (common.checkVideoInfo(1080, activeNode)) {
 						common.infoLog("video info check success-"+videopath);
 						FileManagerAction.playVideoByFileManager(videoName);
+						
 						if (common.findViewByText2("^Can't play this video.*").exists()) {
 							common.infoLog(videoName+" 播放失败" + "-Can't play this video");
 							common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
