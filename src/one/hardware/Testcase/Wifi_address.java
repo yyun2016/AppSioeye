@@ -1,6 +1,6 @@
 package one.hardware.Testcase;
 
-import com.android.uiautomator.core.UiCollection;
+
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiSelector;
 import com.ckt.demo.UiAutomatorHelper;
