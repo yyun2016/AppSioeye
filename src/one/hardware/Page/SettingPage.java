@@ -23,5 +23,25 @@ public class SettingPage extends Base{
     public static String settings_package_name="com.android.settings";
     public static String device_id="com.android.settings:id/device";
     
+   
+    //  休眠时间text  
+    public static String[] string_sleep_time={
+    		"15 seconds",
+    		"60 seconds",
+    		"10 minutes",
+    		"Never" };
+   
+    
+    //设置休眠时间时，等待的时间
+    public static int [] int_sleep_time= {
+    		15000,
+    		60000,
+    		600000,
+    		700000,		
+    };
+	
+	
+    
+    
     
 }
