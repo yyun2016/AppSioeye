@@ -60,7 +60,8 @@ public class Review_Screen_onoff extends Base{
 
 	public void testLiveMode_Screen_onoff() throws Exception{
 		initUIAutomator(this.getName());
-		common.startLog("*****Start to run " + runcase + " *****");    			
+		common.startLog("*****Start to run " + runcase + " *****");
+		common.initDevice();
 		common.startCamera();
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
 		Review_Screen_onoff();
