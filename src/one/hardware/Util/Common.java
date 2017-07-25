@@ -205,7 +205,7 @@ public class Common {
 	public boolean isExistSDCard() {  
 		File path=new File ("/storage/sdcard1");
 		 StatFs statfs=new StatFs(path.getPath());
-		 int availaBlock=statfs.getAvailableBlocks();
+		 Long availaBlock=statfs.getAvailableBlocksLong();
 		 infoLog("sdcard1的availaBlock为："+availaBlock);
 		    if (availaBlock==0){
 		    	infoLog("不不不存在外置SD卡");
