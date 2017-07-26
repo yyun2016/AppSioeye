@@ -24,11 +24,11 @@ public class PhotoCase extends Base{
 			common.deletePhoto();
 			
 			CameraAction.configImageSize(photoSize);
-			String path = CameraAction.getPhotoPath();
-			HashSet<String> beforeTakePhotoList = common.FileList(path);
+			String photo_path = CameraAction.getPhotoPath();
+			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			common.cameraKey();
 			sleep(3000);
-			HashSet<String> afterTakePhotoList = common.FileList(path);
+			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
 			if (resultHashSet.size()==1) {
@@ -113,14 +113,14 @@ public class PhotoCase extends Base{
 			CameraAction.cameraSetting();
 			
 			CameraAction.openCompoundButton("Auto");
-		
-			HashSet<String> beforeTakePhotoList = common.FileList("/sdcard/Photo");
+			String photo_path = CameraAction.getPhotoPath();
+			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			for(int i=0;i<10;i++){
 				common.cameraKey();
 				common.waitTime(1);
 			}
 			sleep(3000);
-			HashSet<String> afterTakePhotoList = common.FileList("/sdcard/Photo");
+			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
 			if (resultHashSet.size()==10) {
