@@ -380,8 +380,8 @@ public class CameraAction extends Base {
 		}
 	}
 	/**
-	 * Name:getPhotoPath
-	 * Description:判断是否存在SD卡，并返回photo文件目录
+	 * Name:getVideoPath
+	 * Description:判断是否存在SD卡，并返回Video文件目录
 	 * author yun.yang
 	 * date 2017年7月26日上午9:15:04
 		 */
@@ -397,7 +397,7 @@ public class CameraAction extends Base {
 	}
 	/**
 	 * Name:getPhotoPath
-	 * Description:判断是否存在SD卡，并返回video文件目录
+	 * Description:判断是否存在SD卡，并返回Photo文件目录
 	 * author yun.yang
 	 * date 2017年7月26日上午9:18:57
 		 */
