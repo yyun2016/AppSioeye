@@ -36,7 +36,8 @@ public class LiveCase extends Base{
 			CameraAction.configLiveAngle(angle);
 			CameraAction.cameraLive();
 			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			String video_path = CameraAction.getVideoPath();
+			HashSet<String> beforeTakeVideoList = common.FileList(video_path);
 			//判断账号是否登录
 			CameraAction.cameraSetting();
 			common.ScrollViewByText("Live&Save");
@@ -66,7 +67,8 @@ public class LiveCase extends Base{
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
 			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			
+			HashSet<String> afterTakeVideoList = common.FileList(video_path);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);

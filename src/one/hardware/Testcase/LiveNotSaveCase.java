@@ -40,14 +40,15 @@ public class LiveNotSaveCase extends Base {
 		common.waitTime(2);
 		CameraAction.configLiveQuality(quality);
         CameraAction.configLiveAngle(angle);
-        HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+        String video_path = CameraAction.getVideoPath();
+        HashSet<String> beforeTakeVideoList = common.FileList(video_path);
         common.cameraKey();
         CameraAction.cameraRecordTime();
         common.waitTime(20);
         CameraAction.cameraRecordTime();
         common.cameraKey();
         common.waitTime(5);
-        HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+        HashSet<String> afterTakeVideoList = common.FileList(video_path);
         HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
         if (resultHashSet.size() == 0) {
         	logger.info("LiveNotSave:true--------"+quality+"&"+angle+"直播:无保存视频");
