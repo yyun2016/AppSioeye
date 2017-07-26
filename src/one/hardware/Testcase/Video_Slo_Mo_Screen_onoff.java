@@ -13,7 +13,7 @@ public class Video_Slo_Mo_Screen_onoff extends Base {
 	 * 超宽视角，慢速录像连续亮灭屏
 	 */
 	
-	public void testAlo_Mo_SuperWide_Screen_onoff() throws Exception{
+	public void testSlo_Mo_SuperWide_Screen_onoff() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run  + runcase +  *****");
@@ -43,7 +43,7 @@ public class Video_Slo_Mo_Screen_onoff extends Base {
 	 * 宽视角，慢速录像连续亮灭屏
 	 */
 	
-	public void testAlo_Mo_Wide_Screen_onoff() throws Exception{
+	public void testSlo_Mo_Wide_Screen_onoff() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run  + runcase +  *****");
@@ -73,7 +73,7 @@ public class Video_Slo_Mo_Screen_onoff extends Base {
 	 * 普通视角，慢速录像连续亮灭屏
 	 */
 	
-	public void testAlo_Mo_Medium_Screen_onoff() throws Exception{
+	public void testSlo_Mo_Medium_Screen_onoff() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run  + runcase +  *****");

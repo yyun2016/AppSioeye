@@ -7,7 +7,7 @@ import java.util.HashSet;
 import com.ckt.demo.UiAutomatorHelper;
 import one.hardware.Action.CameraAction;
 public class Video_Slo_Mo_20m extends Base{
-	public void test()throws Exception{
+	public void testSloMo20m()throws Exception{
 		try {
 			String navm = one.hardware.Page.Camera.nav_menu[4];
 			initUIAutomator(this.getName());
