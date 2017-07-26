@@ -504,7 +504,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(2)) {
+					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -959,7 +959,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(3)) {
+					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1050,7 +1050,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(3)) {
+					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1414,7 +1414,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(5)) {
+					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1505,7 +1505,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(5)) {
+					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1596,7 +1596,7 @@ public class LapseCase extends Base{
 				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(5)) {
+					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1870,7 +1870,7 @@ public class LapseCase extends Base{
 				sleep(11000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(10)) {
+					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -1932,7 +1932,7 @@ public class LapseCase extends Base{
 	 * author yun.yang
 	 * date 2017年7月25日下午10:34:28
 	 */
-	public void testVideo72060AndLapse10sAllAngle() throws Exception{
+	public void testVideo72060AndLapse3sAllAngle() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -1952,7 +1952,7 @@ public class LapseCase extends Base{
 				common.startCamera();
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1961,7 +1961,7 @@ public class LapseCase extends Base{
 				sleep(11000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(10)) {
+					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
@@ -2023,7 +2023,7 @@ public class LapseCase extends Base{
 	 * author yun.yang
 	 * date 2017年7月25日下午10:35:29
 	 */
-	public void testVideo108025AndLapse10sAllAngle() throws Exception{
+	public void testVideo108025AndLapse5sAllAngle() throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -2043,7 +2043,7 @@ public class LapseCase extends Base{
 				common.startCamera();
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -2052,7 +2052,7 @@ public class LapseCase extends Base{
 				sleep(11000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 20; i++) {
-					if (!CameraAction.checklapsevalue(10)) {
+					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
