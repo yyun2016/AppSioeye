@@ -404,10 +404,10 @@ public class CameraAction extends Base {
 	public static String getPhotoPath() {
 		String photoFilePath=null;
 		if (common.isExistSDCard()) {//判断是否存在SD卡
-			photoFilePath="/storage/sdcard1/Video";
+			photoFilePath="/storage/sdcard1/Photo";
 			return photoFilePath;
 		}else {
-			photoFilePath="/storage/sdcard0/Video";
+			photoFilePath="/storage/sdcard0/Photo";
 			return photoFilePath;
 		}
 	}
