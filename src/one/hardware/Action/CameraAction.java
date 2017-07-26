@@ -379,4 +379,36 @@ public class CameraAction extends Base {
 		common.infoLog("stopSettingSuccessed");
 		}
 	}
+	/**
+	 * Name:getPhotoPath
+	 * Description:判断是否存在SD卡，并返回photo文件目录
+	 * author yun.yang
+	 * date 2017年7月26日上午9:15:04
+		 */
+	public static String getVideoPath() {
+		String videoFilePath=null;
+		if (common.isExistSDCard()) {//判断是否存在SD卡
+			videoFilePath="/storage/sdcard1/Video";
+			return videoFilePath;
+		}else {
+			videoFilePath="/storage/sdcard0/Video";
+			return videoFilePath;
+		}
+	}
+	/**
+	 * Name:getPhotoPath
+	 * Description:判断是否存在SD卡，并返回video文件目录
+	 * author yun.yang
+	 * date 2017年7月26日上午9:18:57
+		 */
+	public static String getPhotoPath() {
+		String photoFilePath=null;
+		if (common.isExistSDCard()) {//判断是否存在SD卡
+			photoFilePath="/storage/sdcard1/Video";
+			return photoFilePath;
+		}else {
+			photoFilePath="/storage/sdcard0/Video";
+			return photoFilePath;
+		}
+	}
 }
