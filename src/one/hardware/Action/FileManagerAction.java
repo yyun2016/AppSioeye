@@ -1,5 +1,7 @@
 package one.hardware.Action;
 
+import java.io.File;
+
 import one.hardware.Util.Base;
 
 public class FileManagerAction extends Base {
@@ -9,12 +11,15 @@ public class FileManagerAction extends Base {
 	 */
 	public static  void playVideoByFileManager(String videoName) throws Exception {
 		common.startFileManager();
+		if (common.isExistSDCard()) {
+			common.findViewByText("SD card").clickAndWaitForNewWindow();
+		}else{
 		common.findViewByText("Rapid Storage").clickAndWaitForNewWindow();
+		}
 		common.ScrollViewByText("Video");
 		common.clickViewByText("Video");
 		
-		//common.ScrollViewByText(videoName);
-		
+		common.ScrollViewByText(videoName);
 		common.clickViewByText(videoName);
 		common.clickViewByText("Gallery");
 		if (common.findViewByText2("Just once").exists()){
