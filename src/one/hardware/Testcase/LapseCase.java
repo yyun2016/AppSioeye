@@ -12,7 +12,7 @@ import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testTLap2s48030AllAngle", "2");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse5s4k30AllAngle", "2");		
 	}
 	/**
 	 * Name:testLapse2s48030AllAngle
@@ -38,9 +38,9 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -129,9 +129,9 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -159,7 +159,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(720, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -220,9 +220,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -250,7 +251,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(1080, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -311,9 +312,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -402,9 +404,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -493,9 +496,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -584,9 +588,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -675,9 +680,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -766,9 +772,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -857,9 +864,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -948,9 +956,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1039,9 +1048,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1130,9 +1140,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1221,9 +1232,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1312,9 +1324,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1403,9 +1416,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1494,9 +1508,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1585,9 +1600,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1676,9 +1692,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1767,9 +1784,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(5,quality);
 				CameraAction.configVideoModeAndAngle(5, t);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1859,9 +1877,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -1950,9 +1969,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -2041,9 +2061,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
@@ -2132,9 +2153,10 @@ public class LapseCase extends Base{
 				common.infoLog("start to test angle-"+angle);
 				common.initDevice();
 				common.startCamera();
+				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
+				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
