@@ -74,7 +74,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(Camera.imsge_size[0]);
+			CameraAction.configBurstImageSize(Camera.imsge_size[0]);
 			CameraAction.configBurstRate(Camera.burst[1]);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -125,7 +125,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -176,7 +176,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -227,7 +227,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -278,7 +278,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -329,7 +329,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -380,7 +380,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -431,7 +431,7 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configImageSize(imgesz);
+			CameraAction.configBurstImageSize(imgesz);
 			CameraAction.configBurstRate(burstcfg);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
@@ -472,6 +472,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "", "1");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P13M169", "1");
 	}
 }
