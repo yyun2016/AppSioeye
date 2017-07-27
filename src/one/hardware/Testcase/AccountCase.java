@@ -14,7 +14,7 @@ public class AccountCase extends Base{
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
 			common.initDevice();
-//			common.pmclear();
+			common.pmclear();
 			common.startCamera();
 			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
 			CameraAction.cameraSetting();
