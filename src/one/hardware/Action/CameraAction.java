@@ -346,8 +346,13 @@ public class CameraAction extends Base {
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[3]);
 		CameraAction.cameraSetting();
 		common.clickViewByText("Image Size");
-		common.ScrollViewByText(size);
-		common.clickViewByText(size);
+		if (size=="8M(4:3)") {
+			UiObject tObject = new UiObject(new UiSelector().className("android.widget.ListView").childSelector(new UiSelector().className("android.widget.RelativeLayout").index(2)));
+			tObject.click();
+		}else {
+			common.ScrollViewByText(size);
+			common.clickViewByText(size);
+		}
 		common.infoLog("Image Size设置为 :"+size);
 		common.device.pressBack();
 	}

@@ -92,7 +92,7 @@ public class Common {
 	 *            
 	 */
 	public void  deletePhoto(){
-		File f = new File("/mnt/sdcard/Photo");
+		File f = new File(CameraAction.getPhotoPath());
 		if (f.exists()&&f.isDirectory()) {
 			File[] fs = f.listFiles();
 			for (File file : fs) {
@@ -108,7 +108,7 @@ public class Common {
 	 *            
 	 */
 	public void  deleteVideo(){
-		File f = new File("/mnt/sdcard/Video");
+		File f = new File(CameraAction.getVideoPath());
 		if (f.exists()&&f.isDirectory()) {
 			File[] fs = f.listFiles();
 			for (File file : fs) {
@@ -197,21 +197,23 @@ public class Common {
 			infoLog("播放视频-Fail");
 		}
 	}
+
 	/**
-	 * 判断是否存在SD卡
-	 * @return
-	 * 用来确定照片或者视频存放的路径
-	 */
+	 * Name:isExistSDCard
+	 * Description:判断是否存在SD卡
+	 * author yun.yang
+	 * date 2017年7月28日下午8:52:55
+		 */
 	public boolean isExistSDCard() {  
 		File path=new File ("/storage/sdcard1");
 		 StatFs statfs=new StatFs(path.getPath());
 		 Long availaBlock=statfs.getAvailableBlocksLong();
 		 infoLog("sdcard1的availaBlock为："+availaBlock);
 		    if (availaBlock==0){
-		    	infoLog("不不不存在外置SD卡");
+		    	infoLog("notExistSDCard");
 		        return false;  
 		    }else{
-		    	infoLog("存存存存存在外置SD卡");
+		    	infoLog("ExistSDCard");
 		        return true;  
 		    }  
 		 }
