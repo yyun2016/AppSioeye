@@ -3,8 +3,6 @@ package one.hardware.Testcase;
 import java.util.HashSet;
 
 import com.ckt.demo.UiAutomatorHelper;
-
-import android.os.Environment;
 import one.hardware.Action.CameraAction;
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
@@ -200,7 +198,7 @@ public class BurstCase extends Base{
 				common.infoLog("expect图片总数：10张-Success");
 				for (String photopath : resultHashSet) {
 					double hw = common.getPicHeightWidth(photopath);
-					double exp= 4/3;
+					double exp= 16/9;
 					if (hw==exp) {
 						common.infoLog(photopath+" -图片比列验证成功");
 						common.passcase();
@@ -251,7 +249,7 @@ public class BurstCase extends Base{
 				common.infoLog("expect图片总数：20张-Success");
 				for (String photopath : resultHashSet) {
 					double hw = common.getPicHeightWidth(photopath);
-					double exp= 4/3;
+					double exp= 16/9;
 					if (hw==exp) {
 						common.infoLog(photopath+" -图片比列验证成功");
 						common.passcase();
@@ -302,7 +300,7 @@ public class BurstCase extends Base{
 				common.infoLog("expect图片总数：30张-Success");
 				for (String photopath : resultHashSet) {
 					double hw = common.getPicHeightWidth(photopath);
-					double exp= 4/3;
+					double exp= 16/9;
 					if (hw==exp) {
 						common.infoLog(photopath+" -图片比列验证成功");
 						common.passcase();
@@ -320,8 +318,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public void testBurst10P8M43() throws Exception{
-		String burstcfg = one.hardware.Page.Camera.burst[0];
-		String imgesz =one.hardware.Page.Camera.imsge_size[2];
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -329,8 +325,8 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configBurstImageSize(imgesz);
-			CameraAction.configBurstRate(burstcfg);
+			CameraAction.configBurstImageSize(Camera.imsge_size[2]);
+			CameraAction.configBurstRate(Camera.burst[0]);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
@@ -371,8 +367,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public void testBurst20P8M43() throws Exception{
-		String burstcfg = one.hardware.Page.Camera.burst[1];
-		String imgesz =one.hardware.Page.Camera.imsge_size[2];
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -380,8 +374,8 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configBurstImageSize(imgesz);
-			CameraAction.configBurstRate(burstcfg);
+			CameraAction.configBurstImageSize(Camera.imsge_size[2]);
+			CameraAction.configBurstRate(Camera.burst[1]);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
@@ -422,8 +416,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public void testBurst30P8M43() throws Exception{
-		String burstcfg = one.hardware.Page.Camera.burst[2];
-		String imgesz =one.hardware.Page.Camera.imsge_size[2];
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -431,8 +423,8 @@ public class BurstCase extends Base{
 			common.startCamera();
 			common.deletePhoto();
 
-			CameraAction.configBurstImageSize(imgesz);
-			CameraAction.configBurstRate(burstcfg);
+			CameraAction.configBurstImageSize(Camera.imsge_size[2]);
+			CameraAction.configBurstRate(Camera.burst[2]);
 			String burstPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
 				burstPath="/storage/sdcard1/Photo";
@@ -472,6 +464,6 @@ public class BurstCase extends Base{
 		}
 	}
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P13M169", "1");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.BurstCase", "testBurst10P13M169", "2");
 	}
 }
