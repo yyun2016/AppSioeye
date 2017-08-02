@@ -35,14 +35,14 @@ public class VideoOverTwoMinutes extends Base{
 			common.clickViewByText(one.hardware.Page.Camera.nav_menu[1]); //点击video
 			
 			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");			
+			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());			
 			common.cameraKey();
 			CameraAction.cameraRecordTime();
 			Common.waitTime(WaitTime);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
 			Common.waitTime(2);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
 			if (resultHashSet.size()==1 ) {

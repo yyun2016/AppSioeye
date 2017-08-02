@@ -47,14 +47,14 @@ public class VideoCase extends Base{
 			CameraAction.configVideoAngle(angle);
 			CameraAction.cameraVideo();
 			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.cameraKey();
 			CameraAction.cameraRecordTime();
 			sleep(10000);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
 			sleep(5000);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			
 			if (resultHashSet.size()==1) {

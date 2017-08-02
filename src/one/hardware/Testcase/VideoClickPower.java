@@ -32,7 +32,7 @@ public class VideoClickPower extends Base{
 			common.ScrollViewByText(one.hardware.Page.Camera.nav_menu[1]); //找到video模式
 			common.clickViewByText(one.hardware.Page.Camera.nav_menu[1]);
 			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.infoLog("亮屏录制"+WaitTime+"秒");
 			common.cameraKey();
 			
@@ -52,7 +52,7 @@ public class VideoClickPower extends Base{
 			
 			common.infoLog("总共录制"+3*WaitTime+"秒");			
 			sleep(3000);			
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			
 			if (resultHashSet.size()==1) {

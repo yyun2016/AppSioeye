@@ -15,11 +15,11 @@ public class Video_Slo_Mo_20m extends Base{
 			common.initDevice();
 			common.startCamera();
 			CameraAction.navconfig(navm);
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.cameraKey();
 			common.infoLog("等待20min");
 			common.waitTime(1201);
-			HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			boolean lx1= common.findViewById2("com.hicam:id/recording_time2").exists();
 			if (lx1 == true || resultHashSet.size() != 1)

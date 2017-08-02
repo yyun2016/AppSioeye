@@ -35,7 +35,7 @@ public class SlomoCase extends Base{
 			
 			CameraAction.configVideoModeAndAngle(index, angle); //切换拍摄模式和视场角
 			
-			HashSet<String> beforeTakeVideoList = common.FileList("/sdcard/video");
+			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.cameraKey();
 			sleep(10000);
 			CameraAction.cameraRecordTime();
@@ -56,7 +56,7 @@ public class SlomoCase extends Base{
 			
 			 Boolean result=true;
 			if (mostatus) {
-				HashSet<String> afterTakeVideoList = common.FileList("/sdcard/Video");
+				HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 				HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 				if (resultHashSet.size()==1) {
 					String videopath = resultHashSet.iterator().next();
