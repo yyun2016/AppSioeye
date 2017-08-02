@@ -120,34 +120,38 @@ public class Common {
 		}
 		
 	}
+	/**
+	 * Name:checkVideoInfo
+	 * Description:视频分辨率检查；int参数为XXP视频分辨率；其中2K=2000;4K=4000
+	 * author yun.yang
+	 * date 2017年8月2日下午4:03:22
+		 */
 	public boolean checkVideoInfo(int  height,VideoNode vd){
-		boolean result = true ; 
+		boolean result = false ; 
 		if (height==1080) {
-			if (vd.getHeight()==height) {
-				if (vd.getWidth()==1920) {
-					result =true;
-				}else {
-					result =false;
+			if (vd.getHeight()==1080&&vd.getWidth()==1920) {
+				result =true;
 				}
-			}
 		}
 		if (height==720) {
-			if (vd.getHeight()==height) {
-				if (vd.getWidth()==1280) {
-					result =true;
-				}else {
-					result =false;
+			if (vd.getHeight()==720&&vd.getWidth()==1280) {
+				result =true;
 				}
-			}
 		}
 		if (height==480) {
-			if (vd.getHeight()==height) {
-				if (vd.getWidth()==640) {
+			if (vd.getHeight()==480&&vd.getWidth()==640) {
 					result =true;
-				}else {
-					result =false;
 				}
-			}
+		}
+		if (height==2000) {
+			if (vd.getHeight()==1088&&vd.getWidth()==2048) {
+				result =true;
+				}
+		}
+		if (height==4000) {
+			if (vd.getHeight()==2176&&vd.getWidth()==3840) {
+				result =true;
+				}
 		}
 		return result;
 	}

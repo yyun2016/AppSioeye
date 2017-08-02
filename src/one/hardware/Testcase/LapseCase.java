@@ -8,11 +8,12 @@ import com.ckt.demo.UiAutomatorHelper;
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
 import one.hardware.Action.VideoNode;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse5s4k30AllAngle", "2");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "", "2");		
 	}
 	/**
 	 * Name:testLapse2s48030AllAngle
@@ -343,7 +344,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(2000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -435,7 +436,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(4000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -527,7 +528,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(1080, activeNode)) {
+						if (common.checkVideoInfo(480, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -619,7 +620,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(720, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -711,7 +712,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(1080, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -803,7 +804,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(2000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -895,7 +896,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(4000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -987,7 +988,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(480, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1079,7 +1080,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(1080, activeNode)) {
+						if (common.checkVideoInfo(720, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1171,7 +1172,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(1080, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1263,7 +1264,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(2000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1355,7 +1356,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(4000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1447,7 +1448,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(480, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1723,7 +1724,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(2000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1815,7 +1816,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(4000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1880,6 +1881,7 @@ public class LapseCase extends Base{
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,Camera.lapse_quality[4]);
 				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
@@ -1908,7 +1910,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(4000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -1972,6 +1974,7 @@ public class LapseCase extends Base{
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,Camera.lapse_quality[3]);
 				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
@@ -2000,7 +2003,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(2000, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -2064,6 +2067,7 @@ public class LapseCase extends Base{
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,Camera.lapse_quality[2]);
 				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
@@ -2092,7 +2096,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
+						if (common.checkVideoInfo(1080, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -2156,6 +2160,7 @@ public class LapseCase extends Base{
 				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
 				CameraAction.configVideoQuality(quality);
 				CameraAction.configVideoAngle(angle);
+				CameraAction.configVideoQuality(5,Camera.lapse_quality[1]);
 				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
@@ -2184,7 +2189,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(1080, activeNode)) {
+						if (common.checkVideoInfo(720, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
