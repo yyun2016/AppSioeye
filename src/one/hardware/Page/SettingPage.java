@@ -24,7 +24,7 @@ public class SettingPage extends Base{
     public static String device_id="com.android.settings:id/device";
     
    
-    //  ĞİÃßÊ±¼ätext  
+    //  ä¼‘çœ æ—¶é—´å­—ç¬¦å‹æ•°ç»„
     public static String[] string_sleep_time={
     		"15 seconds",
     		"60 seconds",
@@ -32,7 +32,7 @@ public class SettingPage extends Base{
     		"Never" };
    
     
-    //ÉèÖÃĞİÃßÊ±¼äÊ±£¬µÈ´ıµÄÊ±¼ä
+    //ä¼‘çœ æ—¶é—´ç›¸åº”çš„ç­‰å¾…æ—¶é•¿ï¼Œå•ä½ms
     public static int [] int_sleep_time= {
     		15000,
     		60000,

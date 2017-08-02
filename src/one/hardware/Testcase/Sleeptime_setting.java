@@ -11,7 +11,7 @@ import android.widget.ScrollView;
 import one.hardware.Util.Base;
 
 /**
- * Ë¯ÃßÊ±¼äÉèÖÃ15s 60s 10min Never
+ * Ë¯æµ‹è¯•ä¼‘çœ æ—¶é—´ï¼š15s 60s 10min Never
  * */
 
 
@@ -19,11 +19,11 @@ import one.hardware.Util.Base;
 public class Sleeptime_setting extends Base {
 	
 	/*
-	 * Æô¶¯settings->device->sleep time->ÉèÖÃ²»Í¬µÄÏ¢ÆÁÊ±¼ä£¬²¢µÈ´ı
+	 * æ‰“å¼€settings->device->sleep time->è®¾ç½®ä¸åŒçš„ä¼‘çœ æ—¶é—´
 	 * ruixiang.xu 20170724
 	 * 
-	 * 	string_sleep_time ÓÃÓÚÉèÖÃÏ¢ÆÁ
-	 *  int_sleep_time  ÓÃÓÚµÈ´ıÏ¢ÆÁ
+	 * 	string_sleep_time é€‰æ‹©ä¸åŒçš„ä¼‘çœ æ—¶é—´ï¼Œå­—ç¬¦å‹æ•°ç»„  "15 seconds","60 seconds","10 minutes","Never"
+	 *  int_sleep_time  è®¾ç½®ä¸åŒçš„ä¼‘çœ æ—¶é—´åï¼Œç­‰å¾…å“åº”çš„æ—¶é—´ï¼Œintå‹æ•°ç»„ï¼Œå•ä½æ˜¯msã€‚
 	 * 
 	 */
 	private void navToSleepTime(String sleep,int time)throws Exception{
@@ -47,9 +47,9 @@ public class Sleeptime_setting extends Base {
 			common.clickViewByText("Sleep");
 			
 			common.findViewByText(sleep).click();
-			common.infoLog("µÈ´ıÏ¢ÆÁÊ±¼ä"+sleep);
+			common.infoLog("æ­£åœ¨æµ‹è¯•"+sleep);
 
-			sleep(time+4000); // ÎªÁËµÈ´ı³¹µ×ĞİÃß£¬Ôö¼Ó4sµÈ´ıÊ±¼ä
+			sleep(time+4000); // ç­‰å¾…å“åº”çš„ä¼‘çœ æ—¶é—´
 			
 			
 			if(time!=700) {
@@ -64,7 +64,7 @@ public class Sleeptime_setting extends Base {
 				
 				
 			}else {
-				common.infoLog("²âÊÔnever³£ÁÁÆÁ");
+				common.infoLog("æ­£åœ¨æµ‹è¯•neverä¼‘çœ æ—¶é—´é¡¹");
 				if (common.device.isScreenOn())
 				{
 					common.passcase();
@@ -90,7 +90,7 @@ public class Sleeptime_setting extends Base {
 	
 	
 	/*
-	 * 15sÏ¢ÆÁ
+	 * 15s
 	 */
 	public void test15Seconds() throws Exception {
 		String sleep=one.hardware.Page.SettingPage.string_sleep_time[0];
@@ -99,7 +99,7 @@ public class Sleeptime_setting extends Base {
 	}
 	
 	/*
-	 * 60sÏ¢ÆÁ
+	 * 60s
 	 */
 	public void test60Seconds() throws Exception {
 		String sleep=one.hardware.Page.SettingPage.string_sleep_time[1];
@@ -108,7 +108,7 @@ public class Sleeptime_setting extends Base {
 	}
 	
 	/*
-	 * 10·ÖÖÓÏ¢ÆÁ
+	 * 10åˆ†é’Ÿ
 	 */
 	public void test10minutes() throws Exception {
 		String sleep=one.hardware.Page.SettingPage.string_sleep_time[2];
@@ -117,7 +117,7 @@ public class Sleeptime_setting extends Base {
 	}
 	
 	/*
-	 * never³£ÁÁÆÁÄ»
+	 * never
 	 */
 	public void testNever() throws Exception {
 		String sleep=one.hardware.Page.SettingPage.string_sleep_time[3];
