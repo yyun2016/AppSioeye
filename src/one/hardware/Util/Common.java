@@ -731,6 +731,19 @@ public class Common {
 			throw new Exception("ScrollFindObject" + text);
 		}
 	}
+	public void ScrollViewByTextForFileManage(String text) throws Exception {
+		UiScrollable listScrollable = new UiScrollable(new UiSelector().resourceId("com.mediatek.filemanager:id/list_view"));
+		listScrollable.setMaxSearchSwipes(10);
+		try {
+			if (listScrollable.scrollTextIntoView(text)) {
+				infoLog( FindScrollFindObject+ text);
+			}
+		} catch (UiObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			infoLog( NotFindScrollFindObject+ text);
+			throw new Exception("ScrollFindObject" + text);
+		}
+	}
 	/**
 	 * 强查找可翻滚控件，存在返回控件对象，不存在抛异常，当前测试停止
 	 * @throws Exception 

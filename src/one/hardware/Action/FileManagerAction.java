@@ -16,10 +16,10 @@ public class FileManagerAction extends Base {
 		}else{
 		common.findViewByText("Rapid Storage").clickAndWaitForNewWindow();
 		}
-		common.ScrollViewByText("Video");
+		common.ScrollViewByTextForFileManage("Video");
 		common.clickViewByText("Video");
-		
-		common.ScrollViewByText(videoName);
+		common.waitTime(1);
+		common.findViewByText(videoName);
 		common.clickViewByText(videoName);
 		common.clickViewByText("Gallery");
 		if (common.findViewByText2("Just once").exists()){
