@@ -74,7 +74,7 @@ public class PhotoCase extends Base{
 			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			for(int i=0;i<10;i++){
 				common.cameraKey();
-				common.waitTime(1);
+				common.waitTime(2);
 			}
 			sleep(3000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
@@ -117,7 +117,7 @@ public class PhotoCase extends Base{
 			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			for(int i=0;i<10;i++){
 				common.cameraKey();
-				common.waitTime(1);
+				common.waitTime(2);
 			}
 			sleep(3000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
@@ -206,6 +206,6 @@ public class PhotoCase extends Base{
 
 	public static void main(String args[]){
 
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.PhotoCase", "testPhotoAndAuto18M43ByManyTimes", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.PhotoCase", "testPhotoAndAntiShake18M43ByManyTimes", "2");
 	}
 }
