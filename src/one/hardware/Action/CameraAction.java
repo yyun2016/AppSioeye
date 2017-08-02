@@ -15,6 +15,7 @@ import com.ckt.demo.UiAutomatorHelper;
 
 import android.R.string;
 import one.hardware.Util.Base;
+import one.hardware.Util.Common;
 
 public class CameraAction extends Base {
 	/**
@@ -130,7 +131,13 @@ public class CameraAction extends Base {
 		int lapse1secs = DateInseconds(lapse1);
 		int lapse2secs = DateInseconds(lapse2);
 		common.infoLog(lapse1secs+"-"+lapse2secs);
-		if (lapse1secs/lapse2secs==lap) {
+		int a=lapse1secs%lap;
+		common.infoLog("lapse1secs取余数："+a);
+		int b=(lapse1secs+1)%lap;
+		common.infoLog("b："+b);
+		int tensDigit=(lapse1secs-a)/lap;
+		common.infoLog("tensDigit:"+tensDigit);
+		if (tensDigit==lapse2secs||(b==0&&(tensDigit+1)==lapse2secs)) {
 			common.infoLog("Time Lapse验证结果-PASS  "+lapse1secs +"-"+lapse2secs);
 			return true;
 		}else {
