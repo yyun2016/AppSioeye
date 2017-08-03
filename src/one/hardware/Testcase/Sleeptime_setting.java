@@ -13,22 +13,16 @@ import one.hardware.Util.Base;
 /**
  * ˯测试休眠时间：15s 60s 10min Never
  * */
-
-
-
 public class Sleeptime_setting extends Base {
 	
 	/*
 	 * 打开settings->device->sleep time->设置不同的休眠时间
 	 * ruixiang.xu 20170724
-	 * 
 	 * 	string_sleep_time 选择不同的休眠时间，字符型数组  "15 seconds","60 seconds","10 minutes","Never"
 	 *  int_sleep_time  设置不同的休眠时间后，等待响应的时间，int型数组，单位是ms。
 	 * 
 	 */
 	private void navToSleepTime(String sleep,int time)throws Exception{
-		
-		
 		try {
 			
 			initUIAutomator(this.getName());
@@ -45,50 +39,27 @@ public class Sleeptime_setting extends Base {
 			common.clickViewByText("Display");
 			common.ScrollViewByText2("Sleep");
 			common.clickViewByText("Sleep");
-			
 			common.findViewByText(sleep).click();
 			common.infoLog("正在测试"+sleep);
-
 			sleep(time+4000); // 等待响应的休眠时间
-			
-			
-			if(time!=700) {
-				
-				if (!common.device.isScreenOn())
-				{
-					common.passcase();
-				}else {
-					common.failcase(runcase);
-				}
-				
-				
-				
-			}else {
+			if(time==612000){
 				common.infoLog("正在测试never休眠时间项");
-				if (common.device.isScreenOn())
-				{
+				}else{
+					if (!common.device.isScreenOn()){
 					common.passcase();
-				}
-				else {
-					common.failcase(runcase);
-				}
-				
-			}
-			
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-			common.handleException(e.getMessage());
-			
-		}finally {
-			device.wakeUp();
-			common.findViewByText("Never").click();
-			common.startLog( "*****End to run " + runcase + " *****");
+					}else {
+						common.failcase(runcase);
+						}
+					}
+			}catch (Exception e) {
+				// TODO: handle exception
+				common.handleException(e.getMessage());
+				}finally {
+					device.wakeUp();
+					common.findViewByText("Never").click();
+					common.startLog( "*****End to run " + runcase + " *****");
+					}
 		}
-		
-	}
-	
-	
 	/*
 	 * 15s
 	 */

@@ -37,7 +37,7 @@ public class SettingPage extends Base{
     		15000,
     		60000,
     		600000,
-    		700000,		
+    		612000,		
     };
 	
 	
