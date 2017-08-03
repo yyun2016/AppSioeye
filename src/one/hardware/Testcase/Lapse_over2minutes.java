@@ -18,7 +18,6 @@ public class Lapse_over2minutes extends Base{
 			common.initDevice();          			
 			common.startCamera();		  
 			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);
-			sleep(5000);
 			String videoPath=null;
 			if (common.isExistSDCard()) {//判断是否存在SD卡
 				videoPath="/storage/sdcard1/Video";
@@ -29,7 +28,7 @@ public class Lapse_over2minutes extends Base{
 			HashSet<String> beforeTakeVideoList = common.FileList(videoPath);   	
 			common.cameraKey();
 			common.infoLog("录像2分钟，等待2分钟");
-			sleep(128000);			
+			common.waitTime(125);			
 			common.cameraKey();
 			sleep(2000);
 			HashSet<String> afterTakeVideoList = common.FileList(videoPath);   				 

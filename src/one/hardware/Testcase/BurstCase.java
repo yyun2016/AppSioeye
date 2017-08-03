@@ -35,7 +35,7 @@ public class BurstCase extends Base{
 			}
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(12000);;
+			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
@@ -83,7 +83,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(15000);
+			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -134,7 +134,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(20000);
+			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -185,7 +185,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(12000);
+			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -236,7 +236,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(16000);
+			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -287,7 +287,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(20000);
+			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -336,7 +336,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(12000);
+			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -385,7 +385,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(16000);
+			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 
@@ -434,7 +434,7 @@ public class BurstCase extends Base{
 
 			HashSet<String> beforeTakeVideoList = common.FileList(burstPath);
 			common.cameraKey();
-			sleep(20000);
+			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 

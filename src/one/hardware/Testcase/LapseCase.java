@@ -45,11 +45,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
@@ -59,7 +59,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -136,11 +136,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
@@ -150,7 +150,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -228,11 +228,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 8; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
@@ -242,7 +242,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -320,21 +320,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 6; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(5000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -412,11 +412,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
@@ -426,7 +426,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -504,11 +504,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
@@ -518,7 +518,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -596,11 +596,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
@@ -610,7 +610,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -688,21 +688,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 6; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -780,11 +780,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
@@ -794,7 +794,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -872,11 +872,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
@@ -886,7 +886,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -964,21 +964,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(6000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1056,21 +1056,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(5000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1148,21 +1148,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1240,21 +1240,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1332,21 +1332,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1428,17 +1428,17 @@ public class LapseCase extends Base{
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1516,21 +1516,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1608,21 +1608,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(5000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1700,21 +1700,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1792,21 +1792,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(15000);
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1886,21 +1886,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(8000);
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1979,21 +1979,21 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(9000);
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -2072,11 +2072,11 @@ public class LapseCase extends Base{
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(10000);
+				sleep(7000);
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
 						lapstatus=false;
 					}else {
@@ -2086,7 +2086,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -2169,17 +2169,17 @@ public class LapseCase extends Base{
 				CameraAction.cameraRecordTime();
 				sleep(11000);
 				boolean lapstatus = true;
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 5; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
 						lapstatus=false;
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(3000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(3000);
+				sleep(2000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);

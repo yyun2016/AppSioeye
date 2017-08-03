@@ -6,11 +6,12 @@ import one.hardware.Util.Base;
 import java.util.HashSet;
 import com.ckt.demo.UiAutomatorHelper;
 import one.hardware.Action.CameraAction;
+import one.hardware.Action.VideoNode;
 public class Video_Slo_Mo_20m extends Base{
 	/**
 	 * 20min慢速录制自动停止
 	 * */
-	public void testSloMo20min()throws Exception{
+	public void testSloMo20m()throws Exception{
 		try {
 			String navm = one.hardware.Page.Camera.nav_menu[4];
 			initUIAutomator(this.getName());
@@ -25,7 +26,7 @@ public class Video_Slo_Mo_20m extends Base{
 			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			boolean lx1= common.findViewById2("com.hicam:id/recording_time2").exists();
-			if (lx1||resultHashSet.size()!=1)
+			if (lx1||(resultHashSet.size()!=1&&resultHashSet.size()!=2))
 			{
 				if (lx1) {
 					common.infoLog("recordingTimeExisting");
@@ -37,7 +38,12 @@ public class Video_Slo_Mo_20m extends Base{
 				common.failcase(runcase);
 			}
 			else {
-				common.passcase();
+				String videopath = resultHashSet.iterator().next();
+				VideoNode activeNode = common.VideoInfo(videopath);
+				if (common.checkVideoInfo(1080, activeNode)) {
+					common.infoLog("video info check success-"+videopath);
+				    common.passcase();
+				}
 			}
 			common.startLog( "*****End to run " + runcase + " *****");
 		} catch (Exception e) {

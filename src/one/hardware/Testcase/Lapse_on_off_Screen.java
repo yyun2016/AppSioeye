@@ -42,7 +42,7 @@ public class Lapse_on_off_Screen extends Base {
 				common.waitTime(3);
 			}					
 			common.cameraKey();
-			sleep(20000);
+			sleep(2000);
 			HashSet<String> afterTakeVideoList = common.FileList(lapsePath);   				 
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList); 
 			
