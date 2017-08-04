@@ -37,21 +37,21 @@ public class SlomoCase extends Base{
 			
 			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.cameraKey();
-			sleep(10000);
+			sleep(6000);
 			CameraAction.cameraRecordTime();
 			sleep(5000);
 			boolean mostatus = true;
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 3; i++) {
 				if (!CameraAction.checkmovalue(4)) {
 					mostatus=false;
 				}else {
 					mostatus=true;
 				}
-				sleep(2000);
+				sleep(3000);
 			}
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(3000);
+			sleep(1000);
 
 			
 			 Boolean result=true;

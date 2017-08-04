@@ -21,7 +21,6 @@ public class LiveNotSaveCase extends Base {
 		common.initDevice();
 		common.pmclear();
 		common.startCamera();
-		common.waitTime(2);
         
         //验证设置的显示,当前处于直播模式，左顶部显示直播图标
 		CameraAction.cameraSetting();
@@ -37,17 +36,17 @@ public class LiveNotSaveCase extends Base {
 			logger.info(" 账号登陆失败");
 			common.failcase(runcase);
 		}
-		common.waitTime(2);
+		common.waitTime(1);
 		CameraAction.configLiveQuality(quality);
         CameraAction.configLiveAngle(angle);
         String video_path = CameraAction.getVideoPath();
         HashSet<String> beforeTakeVideoList = common.FileList(video_path);
         common.cameraKey();
         CameraAction.cameraRecordTime();
-        common.waitTime(20);
+        common.waitTime(15);
         CameraAction.cameraRecordTime();
         common.cameraKey();
-        common.waitTime(5);
+        common.waitTime(1);
         HashSet<String> afterTakeVideoList = common.FileList(video_path);
         HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
         if (resultHashSet.size() == 0) {

@@ -37,14 +37,14 @@ public class SettingCase extends Base{
 			UiObject addNewNetWork = common.findViewByText2("Add new network...");
 			if (addNewNetWork.exists()) {
 			    common.clickViewById("com.mediatek:id/imageswitch");
-				addNewNetWork.waitUntilGone(10000);
+				addNewNetWork.waitUntilGone(5000);
 			}
 			common.ScrollViewByText("CKT");
 			common.clickViewByText("CKT");
 			
 			if(common.findViewByText2("Forget").exists()){
 				common.clickViewByText("Forget");
-				common.waitTime(10);
+				common.waitTime(8);
 				common.ScrollViewByText2("CKT");
 				common.clickViewByText("CKT");
 			}
@@ -54,7 +54,7 @@ public class SettingCase extends Base{
 					common.clickViewByText("Connect");
 			    }else if (common.findViewByText2("Connect").exists()) {
 						common.clickViewByText("Connect");
-						common.waitTime(10);			
+						common.waitTime(5);			
 					}
 			//验证wifi是否连接成功
 				common.ScrollViewByText2("CKT");

@@ -50,10 +50,10 @@ public class VideoCase extends Base{
 			HashSet<String> beforeTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			common.cameraKey();
 			CameraAction.cameraRecordTime();
-			sleep(10000);
+			sleep(5000);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(5000);
+			sleep(1000);
 			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			

@@ -28,7 +28,7 @@ public class Lapse_over2minutes extends Base{
 			HashSet<String> beforeTakeVideoList = common.FileList(videoPath);   	
 			common.cameraKey();
 			common.infoLog("录像2分钟，等待2分钟");
-			common.waitTime(125);			
+			common.waitTime(121);			
 			common.cameraKey();
 			sleep(2000);
 			HashSet<String> afterTakeVideoList = common.FileList(videoPath);   				 

@@ -63,10 +63,10 @@ public class LiveCase extends Base{
 			common.cameraKey();
 			
 			CameraAction.cameraRecordTime();
-			sleep(20000);
+			sleep(15000);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(5000);
+			sleep(1000);
 			
 			HashSet<String> afterTakeVideoList = common.FileList(video_path);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);

@@ -27,7 +27,7 @@ public class PhotoCase extends Base{
 			String photo_path = CameraAction.getPhotoPath();
 			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			common.cameraKey();
-			sleep(3000);
+			sleep(2000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
@@ -76,7 +76,7 @@ public class PhotoCase extends Base{
 				common.cameraKey();
 				common.waitTime(2);
 			}
-			sleep(3000);
+			sleep(2000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			
@@ -119,7 +119,7 @@ public class PhotoCase extends Base{
 				common.cameraKey();
 				common.waitTime(2);
 			}
-			sleep(3000);
+			sleep(2000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
 			HashSet<String> resultHashSet = common.result(afterTakePhotoList, beforeTakePhotoList);
 			

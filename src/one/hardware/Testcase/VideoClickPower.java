@@ -16,7 +16,7 @@ import one.hardware.Util.Base;
 import one.hardware.Util.Common;
 
 public class VideoClickPower extends Base{
-	public static int WaitTime = 10;
+	public static int WaitTime = 4;
 	public void testVideoClickPower() throws Exception{
 		try {
 			initUIAutomator(this.getName());
@@ -51,7 +51,7 @@ public class VideoClickPower extends Base{
 			common.cameraKey();
 			
 			common.infoLog("总共录制"+3*WaitTime+"秒");			
-			sleep(3000);			
+			sleep(1000);			
 			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			

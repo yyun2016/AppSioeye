@@ -273,7 +273,7 @@ public class Common {
 		try {
 			Runtime.getRuntime().exec(
 					"am force-stop com.hicam");
-			waitTime(5);
+			waitTime(3);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			infoLog("关闭Camera-Success");
@@ -304,7 +304,7 @@ public class Common {
 		int n = 1;
 		while (n < 11) {
 			Runtime.getRuntime().exec("am start -n com.hicam/.application.HiCam");
-			waitTime(5);
+			waitTime(3);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			if (name.equalsIgnoreCase("com.hicam")) {
@@ -331,7 +331,7 @@ public class Common {
 			throw new Exception("启动失败");
 		}
 		int i = 1;
-		while (i < 10) {
+		while (i < 3) {
 			if (findViewByText2("OK").exists()) {
 				clickViewByText("OK");
 				waitTime(1);
@@ -404,7 +404,7 @@ public class Common {
 		int n = 1;
 		while (n < 11) {
 			Runtime.getRuntime().exec("am start -n com.mediatek.filemanager/.FileManagerOperationActivity");
-			waitTime(5);
+			waitTime(3);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			if (name.equalsIgnoreCase("com.mediatek.filemanager")) {
@@ -422,7 +422,7 @@ public class Common {
 			throw new Exception("启动失败");
 		}
 		int i = 1;
-		while (i < 10) {
+		while (i < 3) {
 			if (findViewByText2("OK").exists()) {
 				clickViewByText("OK");
 				waitTime(1);

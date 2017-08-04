@@ -26,7 +26,7 @@ public class FileManagerAction extends Base {
 		common.clickViewByText("Just once");
 		}
 		CameraAction.playVideoBtn().clickAndWaitForNewWindow();
-		common.waitTime(3);
+		common.waitTime(2);
 		//Can't play this video.
 		//android:id/message
 		//android:id/button1
