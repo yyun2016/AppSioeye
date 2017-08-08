@@ -909,7 +909,7 @@ public class Common {
 		String s = null;
 		boolean ipcStatus =true;
 		//boolean ipcStatus = checkIPCConnect();
-		waitTime(3);
+		//waitTime(3);
 		takeScreen(currentTime);
 		infoLog("截图存储在 /sdcard/CktTest/screen/" + currentTime + ".png");
 		infoLog("<img src=\"screen/"+currentTime+".png\" width=\"320\" height=\"240\">");
