@@ -876,15 +876,12 @@ public class Common {
 		infoLog("开始抓取崩溃日志");
 		try {
 			// Executes the command.
-			String logname = "/sdcard/CktTest/" + "screen" + "/Crash_"
-					+ crashType + "_" + currentTime + ".txt";
+			String logname = "/sdcard/CktTest/" + "screen" + "/Crash_"+ crashType + "_" + currentTime + ".txt";
 			File file = new File(logname);
 			file.createNewFile();
 			FileOutputStream out = new FileOutputStream(file, true);
-			Process process = Runtime.getRuntime()
-					.exec("/system/bin/bugreport");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					process.getInputStream()));
+			Process process = Runtime.getRuntime().exec("/system/bin/bugreport");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			int read;
 			char[] buffer = new char[4096];
 			while ((read = reader.read(buffer)) > 0) {
@@ -912,7 +909,7 @@ public class Common {
 		String s = null;
 		boolean ipcStatus =true;
 		//boolean ipcStatus = checkIPCConnect();
-		waitTime(5);
+		waitTime(3);
 		takeScreen(currentTime);
 		infoLog("截图存储在 /sdcard/CktTest/screen/" + currentTime + ".png");
 		infoLog("<img src=\"screen/"+currentTime+".png\" width=\"320\" height=\"240\">");
@@ -945,13 +942,13 @@ public class Common {
 			takeBugReport("Exception", currentTime);
 			s = eMessage;
 		}
-		waitTime(5);
-		UiObject AppCrashBtn = findViewByText2("OK");
-		for (int i = 0; i < 5; i++) {
-			if (AppCrashBtn.exists()) {
+		//waitTime(5);
+		//UiObject AppCrashBtn = findViewByText2("OK");
+		for (int i = 0; i < 2; i++) {
+			if (findViewByText2("OK").exists()) {
 				try {
-					AppCrashBtn.clickAndWaitForNewWindow();
-					waitTime(5);
+					findViewByText2("OK").clickAndWaitForNewWindow();
+					waitTime(2);
 				} catch (UiObjectNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -1213,7 +1210,7 @@ public class Common {
 		String str = formatter.format(curDate);
 		createFolder();
 		String s = checkFailReason(str, errorlog);
-		waitTime(2);
+		waitTime(1);
 		errorLog(""+s);
 		failcase(runcase);
 		UiAutomatorTestCase.fail("Case Failed==> " + s);
