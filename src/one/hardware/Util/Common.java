@@ -938,8 +938,8 @@ public class Common {
 			takeBugReport("CONNECTION_FAIL", currentTime);
 		}
 		else {
-			infoLog("发生异常，正在捕获异常");
-			takeBugReport("Exception", currentTime);
+			//infoLog("发生异常，正在捕获异常");
+			//takeBugReport("Exception", currentTime);
 			s = eMessage;
 		}
 		//waitTime(5);
