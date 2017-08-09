@@ -32,9 +32,10 @@ public class LiveCase extends Base{
 			common.initDevice();
 			common.pmclear();
 			common.startCamera();
+			
 			CameraAction.configLiveQuality(quality);
 			CameraAction.configLiveAngle(angle);
-			CameraAction.cameraLive();
+			//CameraAction.cameraLive();
 			
 			String video_path = CameraAction.getVideoPath();
 			HashSet<String> beforeTakeVideoList = common.FileList(video_path);
@@ -42,11 +43,10 @@ public class LiveCase extends Base{
 			CameraAction.cameraSetting();
 			common.ScrollViewByText("Live&Save");
 			CameraAction.openCompoundButton("Live&Save");
-			common.waitTime(2);
+			common.waitTime(1);
 	        if (common.findViewByText2("OK").exists()) {
 	            common.clickViewByText("OK");
 	        }
-	        common.waitTime(1);
 			common.ScrollViewByText("Account");
 			common.clickViewByText("Account");
 			String userName=AccountAction.getUserName();
@@ -54,10 +54,10 @@ public class LiveCase extends Base{
 			AccountAction.loginAccount(userName, passWord);
 			boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
 			if (login) {
-				logger.info(" 账号登陆成功");
-				common.passcase();
+				common.infoLog(" 账号登陆成功");
+				//common.passcase();
 			}else {
-				logger.info(" 账号登陆失败");
+				common.infoLog(" 账号登陆失败");
 				common.failcase(runcase);
 			}
 			common.cameraKey();
@@ -66,7 +66,7 @@ public class LiveCase extends Base{
 			sleep(15000);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(1000);
+			sleep(500);
 			
 			HashSet<String> afterTakeVideoList = common.FileList(video_path);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);

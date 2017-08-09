@@ -15,6 +15,7 @@ import com.ckt.demo.UiAutomatorHelper;
 
 import android.R.string;
 import android.bluetooth.BluetoothClass.Device;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 import one.hardware.Util.Common;
 
@@ -410,10 +411,6 @@ public class CameraAction extends Base {
 		common.ScrollViewByText(text);
 		common.clickViewByText(text);
 	}
-	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", " one.hardware.Action.CameraAction", "one.hardware.Testcase", "2");
-		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "3");
-	}
 	
 	public static void stopSettings() throws Exception{
 		try {
@@ -455,5 +452,46 @@ public class CameraAction extends Base {
 			photoFilePath="/storage/sdcard0/Photo";
 			return photoFilePath;
 		}
+	}
+	/**
+	 * Name:judgeAccountState
+	 * Description:判断是否登录，已登录返回true；没登录返回false
+	 * author yun.yang
+	 * date 2017年8月9日下午10:36:55
+	 */
+	public static boolean judgeAccountState() throws Exception{
+		boolean state=false;
+		CameraAction.navconfig(Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		if (common.findViewById2("").exists()) {
+			state=true;
+			common.device.pressBack();
+		}
+		common.device.pressBack();
+		return state;
+	}
+	public static void login() throws Exception {
+		common.device.pressBack();
+		common.device.pressBack();
+		common.pmclear();
+		common.startCamera();
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		String userName=AccountAction.getUserName();
+		String passWord=AccountAction.getPassword();
+		AccountAction.loginAccount(userName, passWord);
+		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
+		if (login) {
+			common.infoLog(" 账号登陆成功");
+		}else {
+			common.infoLog(" 账号登陆失败");
+		}
+	}
+	public static void main(String args[]){
+		new UiAutomatorHelper("AppSioeye", " one.hardware.Action.CameraAction", "one.hardware.Testcase", "2");
+		//new UiAutomatorHelper("AppSioeye", " one.test.ImageTestCase", "", "3");
 	}
 }

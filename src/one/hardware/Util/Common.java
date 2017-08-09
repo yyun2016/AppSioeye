@@ -319,11 +319,6 @@ public class Common {
 				findViewById2("android:id/content").swipeLeft(60);
 				findViewById2("android:id/content").swipeLeft(60);
 				break;
-			} else {
-				infoLog("启动失败" + n + "次");
-				if (findViewById2("android:id/button1").exists()) {
-					findViewById2("android:id/button1").clickAndWaitForNewWindow();
-				}
 			}
 			n = n + 1;
 		}
@@ -346,26 +341,21 @@ public class Common {
 	 * 启动Settings
 	 */
 	public void startSettings() throws Exception {
-//		// /Test Info
-//		int n = 1;
-//		while (n < 11) {
+		// /Test Info
+		int n = 1;
+		while (n < 11) {
 			Runtime.getRuntime().exec("am start -n com.android.settings/.CustomSettings");
-			waitTime(5);
+			waitTime(3);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			if (name.equalsIgnoreCase("com.android.settings")) {
 				infoLog("已经进入设置");
-			} else {
-				infoLog("启动失败");
-				if (findViewById2("android:id/button1").exists()) {
-					findViewById2("android:id/button1").clickAndWaitForNewWindow();
 				}
 			}
-//			n = n + 1;
-//		}
-//		if (n == 11) {
-//			throw new Exception("启动失败");
-//		}
+			n = n + 1;
+		if (n == 11) {
+			throw new Exception("启动失败");
+		}
 //		int i = 1;
 //		while (i < 10) {
 //			if (findViewByText2("OK").exists()) {

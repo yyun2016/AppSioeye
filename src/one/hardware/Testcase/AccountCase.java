@@ -20,7 +20,7 @@ public class AccountCase extends Base{
 			CameraAction.cameraSetting();
 			common.ScrollViewByText("Live&Save");
 			CameraAction.openCompoundButton("Live&Save");
-			common.waitTime(2);
+			common.waitTime(1);
 	        if (common.findViewByText2("OK").exists()) {
 	            common.clickViewByText("OK");
 	        }
