@@ -711,7 +711,7 @@ public class Common {
 	 */
 	public void ScrollViewByText(String text) throws Exception {
 		UiScrollable listScrollable = new UiScrollable(new UiSelector().scrollable(true));
-		listScrollable.scrollToEnd(30);//setMaxSearchSwipes(6);
+		listScrollable.setMaxSearchSwipes(30);//scrollToEnd(30);
 		try {
 			if (listScrollable.scrollTextIntoView(text)) {
 				infoLog( FindScrollFindObject+ text);
@@ -940,6 +940,7 @@ public class Common {
 		else {
 			//infoLog("发生异常，正在捕获异常");
 			//takeBugReport("Exception", currentTime);
+			infoLog("无明显异常，不抓起log");
 			s = eMessage;
 		}
 		//waitTime(5);

@@ -13,8 +13,19 @@ import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "", "2");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse2s48030AllAngle", "2");
+		
 	}
+//	public void testForconfig() throws Exception{
+//		initUIAutomator(this.getName());
+//		common.startLog("*****Start to run " + runcase + " *****");
+//		common.startCamera();
+//		for(int t=0;t<3;t++){
+//			for(int i=0;i<5;i++){
+//				CameraAction.configLapseTimeAndVideoQualityAndAngle(Camera.lapse_time[0], Camera.lapse_quality[i], t);
+//			}
+//		}
+//	}
 	/**
 	 * Name:testLapse2s48030AllAngle
 	 * Description:延时录像延时为2秒，480P30、全部视场角录像，验证录像
@@ -32,22 +43,22 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			//common.initDevice();//deleteVideo();deletePhoto();
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[0], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configCurrentModeAndAngle(t);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
@@ -55,11 +66,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -123,22 +134,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[0], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configCurrentModeAndAngle(t);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(7000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
@@ -146,11 +156,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -214,23 +224,22 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[0], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(7000);
 				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
@@ -238,11 +247,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -306,23 +315,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[0], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
+				CameraAction.configCurrentModeAndAngle(t);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
@@ -330,11 +337,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -398,23 +405,23 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[0], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
+				CameraAction.configCurrentModeAndAngle(t);
+
 				
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(2)) {
@@ -490,23 +497,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[1], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
@@ -514,11 +519,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -582,23 +587,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[1];
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[1], quality);
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
@@ -606,11 +609,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -674,23 +677,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[1], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
@@ -698,11 +699,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -766,23 +767,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[1], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
@@ -790,11 +789,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -858,23 +857,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[1], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(3)) {
@@ -882,11 +879,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(2000);
+					sleep(1000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(2000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -950,23 +947,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[2], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(4000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
@@ -974,11 +969,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(3000);
+					sleep(2000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1042,23 +1037,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[2], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
@@ -1066,11 +1059,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(3000);
+					sleep(2000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1134,23 +1127,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[2], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
@@ -1158,11 +1149,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(3000);
+					sleep(2000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1226,23 +1217,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[2], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
+				CameraAction.configCurrentModeAndAngle(t);
 				
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
@@ -1250,11 +1239,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(3000);
+					sleep(2000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1318,23 +1307,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[2], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(5000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(5)) {
@@ -1342,11 +1329,11 @@ public class LapseCase extends Base{
 					}else {
 						lapstatus=true;
 					}
-					sleep(3000);
+					sleep(2000);
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(2000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1410,23 +1397,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[0];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[3], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
@@ -1438,7 +1423,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1502,23 +1487,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[1];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[3], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
@@ -1530,7 +1513,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1594,23 +1577,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[2];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[3], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
@@ -1622,7 +1603,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1686,23 +1667,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[3];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[3], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
+				sleep(6000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
@@ -1714,7 +1693,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1778,23 +1757,21 @@ public class LapseCase extends Base{
 				videoFilePath="/storage/sdcard0/Video";
 			}
 			boolean result = true;
+			common.startCamera();
 			String quality = one.hardware.Page.Camera.lapse_quality[4];
 			int anglesize = one.hardware.Page.Camera.video_Angle.length;
+			CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[3], quality);
 			for (int t = 0; t <anglesize; t++) {
+				device.pressHome();
+				common.stopFileManager();
+				common.deleteVideo();
 				String angle =one.hardware.Page.Camera.video_Angle[t];
 				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(5,quality);
-				CameraAction.configVideoModeAndAngle(5, t);
-				
-				
+				CameraAction.configCurrentModeAndAngle(t);
+
 				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
 				common.cameraKey();
 				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
 				boolean lapstatus = true;
 				for (int i = 0; i < 3; i++) {
 					if (!CameraAction.checklapsevalue(10)) {
@@ -1806,7 +1783,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(1000);
+				sleep(500);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
@@ -1817,379 +1794,6 @@ public class LapseCase extends Base{
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
 						if (common.checkVideoInfo(4000, activeNode)) {
-							common.infoLog("video info check success-"+videopath);
-							FileManagerAction.playVideoByFileManager(videoName);
-							if (common.findViewByText2("^Can't play this video.*").exists()) {
-								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-								common.failcase(runcase);
-								throw new Exception("FindObject" + "Can't play this video");
-							}else {
-								common.infoLog(videoName+" 播放成功");
-								result= true;
-							}
-						}else {
-							common.infoLog("video info check failed"+videopath);
-							result= false;
-							break;
-						}
-					}else {
-						result= false;
-						break;
-					}
-				}else {
-					result= false;
-					break;
-				}
-			}
-			if (result) {
-				common.passcase();
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	
-	/**
-	 * Name:testVideo48025AndLapse2sAllAngle
-	 * Description:录像模式为48025切换到Lapse进行录像
-	 * author yun.yang
-	 * date 2017年7月25日下午10:23:44
-	 */
-	public void testVideo48025AndLapse2sAllAngle() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			String videoFilePath=null;
-			if (common.isExistSDCard()) {//判断是否存在SD卡
-				videoFilePath="/storage/sdcard1/Video";
-			}else {
-				videoFilePath="/storage/sdcard0/Video";
-			}
-			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[0];
-			int anglesize = one.hardware.Page.Camera.video_Angle.length;
-			for (int t = 0; t <anglesize; t++) {
-				String angle =one.hardware.Page.Camera.video_Angle[t];
-				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[0]);
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configVideoQuality(5,Camera.lapse_quality[4]);
-				
-				
-				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
-				common.cameraKey();
-				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(4000);
-				boolean lapstatus = true;
-				for (int i = 0; i < 3; i++) {
-					if (!CameraAction.checklapsevalue(2)) {
-						lapstatus=false;
-					}else {
-						lapstatus=true;
-					}
-					sleep(3000);
-				}
-				CameraAction.cameraRecordTime();
-				common.cameraKey();
-				sleep(1000);
-				
-				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
-					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-					if (resultHashSet.size()==1) {
-						String videopath = resultHashSet.iterator().next();
-						common.infoLog("new file:"+videopath);
-						String videoName = new File(videopath).getName();
-						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(4000, activeNode)) {
-							common.infoLog("video info check success-"+videopath);
-							FileManagerAction.playVideoByFileManager(videoName);
-							if (common.findViewByText2("^Can't play this video.*").exists()) {
-								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-								common.failcase(runcase);
-								throw new Exception("FindObject" + "Can't play this video");
-							}else {
-								common.infoLog(videoName+" 播放成功");
-								result= true;
-							}
-						}else {
-							common.infoLog("video info check failed"+videopath);
-							result= false;
-							break;
-						}
-					}else {
-						result= false;
-						break;
-					}
-				}else {
-					result= false;
-					break;
-				}
-			}
-			if (result) {
-				common.passcase();
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	/**
-	 * Name:testVideo72060AndLapse10sAllAngle
-	 * Description:录像模式为72060切换到Lapse进行录像
-	 * author yun.yang
-	 * date 2017年7月25日下午10:34:28
-	 */
-	public void testVideo72060AndLapse3sAllAngle() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			String videoFilePath=null;
-			if (common.isExistSDCard()) {//判断是否存在SD卡
-				videoFilePath="/storage/sdcard1/Video";
-			}else {
-				videoFilePath="/storage/sdcard0/Video";
-			}
-			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[4];
-			int anglesize = one.hardware.Page.Camera.video_Angle.length;
-			for (int t = 0; t <anglesize; t++) {
-				String angle =one.hardware.Page.Camera.video_Angle[t];
-				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[1]);
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configVideoQuality(5,Camera.lapse_quality[3]);
-				
-				
-				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
-				common.cameraKey();
-				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(4000);
-				boolean lapstatus = true;
-				for (int i = 0; i < 3; i++) {
-					if (!CameraAction.checklapsevalue(3)) {
-						lapstatus=false;
-					}else {
-						lapstatus=true;
-					}
-					sleep(3000);
-				}
-				CameraAction.cameraRecordTime();
-				common.cameraKey();
-				sleep(1000);
-				
-				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
-					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-					if (resultHashSet.size()==1) {
-						String videopath = resultHashSet.iterator().next();
-						common.infoLog("new file:"+videopath);
-						String videoName = new File(videopath).getName();
-						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(2000, activeNode)) {
-							common.infoLog("video info check success-"+videopath);
-							FileManagerAction.playVideoByFileManager(videoName);
-							if (common.findViewByText2("^Can't play this video.*").exists()) {
-								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-								common.failcase(runcase);
-								throw new Exception("FindObject" + "Can't play this video");
-							}else {
-								common.infoLog(videoName+" 播放成功");
-								result= true;
-							}
-						}else {
-							common.infoLog("video info check failed"+videopath);
-							result= false;
-							break;
-						}
-					}else {
-						result= false;
-						break;
-					}
-				}else {
-					result= false;
-					break;
-				}
-			}
-			if (result) {
-				common.passcase();
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	/**
-	 * Name:testVideo108025AndLapse10sAllAngle
-	 * Description:录像模式为108025切换到Lapse进行录像
-	 * author yun.yang
-	 * date 2017年7月25日下午10:35:29
-	 */
-	public void testVideo108025AndLapse5sAllAngle() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			String videoFilePath=null;
-			if (common.isExistSDCard()) {//判断是否存在SD卡
-				videoFilePath="/storage/sdcard1/Video";
-			}else {
-				videoFilePath="/storage/sdcard0/Video";
-			}
-			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[6];
-			int anglesize = one.hardware.Page.Camera.video_Angle.length;
-			for (int t = 0; t <anglesize; t++) {
-				String angle =one.hardware.Page.Camera.video_Angle[t];
-				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[2]);
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configVideoQuality(5,Camera.lapse_quality[2]);
-				
-				
-				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
-				common.cameraKey();
-				sleep(7000);
-				CameraAction.cameraRecordTime();
-				sleep(3000);
-				boolean lapstatus = true;
-				for (int i = 0; i < 3; i++) {
-					if (!CameraAction.checklapsevalue(5)) {
-						lapstatus=false;
-					}else {
-						lapstatus=true;
-					}
-					sleep(2000);
-				}
-				CameraAction.cameraRecordTime();
-				common.cameraKey();
-				sleep(1000);
-				
-				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
-					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-					if (resultHashSet.size()==1) {
-						String videopath = resultHashSet.iterator().next();
-						common.infoLog("new file:"+videopath);
-						String videoName = new File(videopath).getName();
-						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(1080, activeNode)) {
-							common.infoLog("video info check success-"+videopath);
-							FileManagerAction.playVideoByFileManager(videoName);
-							if (common.findViewByText2("^Can't play this video.*").exists()) {
-								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-								common.failcase(runcase);
-								throw new Exception("FindObject" + "Can't play this video");
-							}else {
-								common.infoLog(videoName+" 播放成功");
-								result= true;
-							}
-						}else {
-							common.infoLog("video info check failed"+videopath);
-							result= false;
-							break;
-						}
-					}else {
-						result= false;
-						break;
-					}
-				}else {
-					result= false;
-					break;
-				}
-			}
-			if (result) {
-				common.passcase();
-			}else {
-				common.failcase(runcase);
-			}
-			common.startLog( "*****End to run " + runcase + " *****");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			common.handleException(e.getMessage());
-		}
-	}
-	/**
-	 * Name:testVideo1080120Lapse10sAllAngle
-	 * Description:录像模式为1080120切换到Lapse进行录像
-	 * author yun.yang
-	 * date 2017年7月25日下午10:37:53
-	 */
-	public void testVideo1080120Lapse10sAllAngle() throws Exception{
-		try {
-			initUIAutomator(this.getName());
-			common.startLog("*****Start to run " + runcase + " *****");
-			String videoFilePath=null;
-			if (common.isExistSDCard()) {//判断是否存在SD卡
-				videoFilePath="/storage/sdcard1/Video";
-			}else {
-				videoFilePath="/storage/sdcard0/Video";
-			}
-			boolean result = true;
-			String quality = one.hardware.Page.Camera.video_quality[8];
-			int anglesize = one.hardware.Page.Camera.video_Angle.length;
-			for (int t = 0; t <anglesize; t++) {
-				String angle =one.hardware.Page.Camera.video_Angle[t];
-				common.infoLog("start to test angle-"+angle);
-				common.initDevice();
-				common.startCamera();
-				CameraAction.configTimeLapse(one.hardware.Page.Camera.lapse_time[3]);
-				CameraAction.configVideoQuality(quality);
-				CameraAction.configVideoAngle(angle);
-				CameraAction.configVideoQuality(5,Camera.lapse_quality[1]);
-				
-				
-				HashSet<String> beforeTakeVideoList = common.FileList(videoFilePath);
-				common.cameraKey();
-				sleep(6000);
-				CameraAction.cameraRecordTime();
-				sleep(5000);
-				boolean lapstatus = true;
-				for (int i = 0; i < 3; i++) {
-					if (!CameraAction.checklapsevalue(10)) {
-						lapstatus=false;
-					}else {
-						lapstatus=true;
-					}
-					sleep(4000);
-				}
-				CameraAction.cameraRecordTime();
-				common.cameraKey();
-				sleep(1000);
-				
-				if (lapstatus) {
-					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
-					HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-					if (resultHashSet.size()==1) {
-						String videopath = resultHashSet.iterator().next();
-						common.infoLog("new file:"+videopath);
-						String videoName = new File(videopath).getName();
-						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(720, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {

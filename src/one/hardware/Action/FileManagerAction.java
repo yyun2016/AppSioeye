@@ -18,13 +18,15 @@ public class FileManagerAction extends Base {
 		}
 		common.ScrollViewByTextForFileManage("Video");
 		common.clickViewByText("Video");
-		common.waitTime(1);
 		common.findViewByText(videoName);
 		common.clickViewByText(videoName);
-		common.clickViewByText("Gallery");
-		if (common.findViewByText2("Just once").exists()){
-		common.clickViewByText("Just once");
+		if (common.findViewByText2("Gallery").exists()) {
+			common.clickViewByText("Gallery");
+			if (common.findViewByText2("Always").exists()){
+				common.clickViewByText("Always");
+			}
 		}
+		
 		CameraAction.playVideoBtn().clickAndWaitForNewWindow();
 		common.waitTime(2);
 		//Can't play this video.
