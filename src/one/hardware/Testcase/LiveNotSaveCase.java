@@ -12,7 +12,7 @@ import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 public class LiveNotSaveCase extends Base {
-	private static Logger logger=Logger.getLogger(LiveNotSaveCase.class.getName());
+	public static int liveNotSaveCaseRunTime=1;
 	private void LiveNotSave(String quality, String angle) throws Exception {
 	try{
 		initUIAutomator(this.getName());
@@ -21,36 +21,28 @@ public class LiveNotSaveCase extends Base {
 		common.initDevice();
 		common.pmclear();
 		common.startCamera();
-        
-        //验证设置的显示,当前处于直播模式，左顶部显示直播图标
-		CameraAction.cameraSetting();
-        common.ScrollViewByText("Account");
-		common.clickViewByText("Account");
-		String userName=AccountAction.getUserName();
-		String passWord=AccountAction.getPassword();
-		AccountAction.loginAccount(userName, passWord);
-		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
-		if (login) {
-			logger.info(" 账号登陆成功");
-		}else {
-			logger.info(" 账号登陆失败");
-			common.failcase(runcase);
-		}
-		common.waitTime(1);
-		CameraAction.configLiveQuality(quality);
-        CameraAction.configLiveAngle(angle);
+		if (liveNotSaveCaseRunTime==1) {
+			CameraAction.login();
+			common.infoLog("liveCaseRunTime:"+liveNotSaveCaseRunTime);
+			}
+		liveNotSaveCaseRunTime=liveNotSaveCaseRunTime+1;
+
+		CameraAction.configLiveQualityAndAngle(quality, angle);
         String video_path = CameraAction.getVideoPath();
         HashSet<String> beforeTakeVideoList = common.FileList(video_path);
-        common.cameraKey();
-        CameraAction.cameraRecordTime();
-        common.waitTime(15);
-        CameraAction.cameraRecordTime();
-        common.cameraKey();
-        common.waitTime(1);
+        
+        CameraAction.makeLive();
+		sleep(10000);
+		if (CameraAction.stopLive()) {
+			common.passcase();
+			}else {
+				common.failcase(runcase);
+				}
+		sleep(500);
         HashSet<String> afterTakeVideoList = common.FileList(video_path);
         HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
         if (resultHashSet.size() == 0) {
-        	logger.info("LiveNotSave:true--------"+quality+"&"+angle+"直播:无保存视频");
+        	common.passcase();
         	} else {
            common.failcase(runcase);
         	}

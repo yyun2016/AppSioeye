@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import javax.security.sasl.SaslException;
+
 import com.android.uiautomator.core.UiCollection;
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
@@ -15,7 +17,9 @@ import com.ckt.demo.UiAutomatorHelper;
 
 import android.R.string;
 import android.bluetooth.BluetoothClass.Device;
+import one.hardware.Page.Account;
 import one.hardware.Page.Camera;
+import one.hardware.Testcase.Sleeptime_setting;
 import one.hardware.Util.Base;
 import one.hardware.Util.Common;
 
@@ -199,7 +203,7 @@ public class CameraAction extends Base {
 		common.clickViewByText("Video Quality");
 		common.ScrollViewByText(quality);
 		common.clickViewByText(quality);
-		common.infoLog("Video Quality设置为 :"+common.findViewByText(quality).getText());
+		common.infoLog("Video Quality设置为 :"+quality);
 		common.device.pressBack();
 	}
 	public static void configVideoQuality(String quality) throws Exception{
@@ -208,7 +212,7 @@ public class CameraAction extends Base {
 		common.clickViewByText("Video Quality");
 		common.ScrollViewByText(quality);
 		common.clickViewByText(quality);
-		common.infoLog("Video Quality设置为 :"+common.findViewByText2(quality).getText());
+		common.infoLog("Video Quality设置为 :"+quality);
 		common.device.pressBack();
 	}
 	public static boolean isExistVideoQuality(String quality) throws Exception{
@@ -230,7 +234,7 @@ public class CameraAction extends Base {
 		common.clickViewByText("Video Quality");
 		common.ScrollViewByText(quality);
 		common.clickViewByText(quality);
-		common.infoLog("Video Quality设置为 :"+common.findViewByText2(quality).getText());
+		common.infoLog("Video Quality设置为 :"+quality);
 		common.device.pressBack();
 	}
 	public static void configLapseTimeAndVideoQuality(String timelapse,String quality) throws Exception{
@@ -239,13 +243,27 @@ public class CameraAction extends Base {
 		common.clickViewByText("Time Lapse");
 		common.ScrollViewByText(timelapse);
 		common.clickViewByText(timelapse);
-		common.infoLog("Time Lapse设置为 :"+common.findViewByText2(timelapse).getText());
+		common.infoLog("Time Lapse设置为 :"+timelapse);
 		common.device.pressBack();
 		CameraAction.cameraSetting();
 		common.clickViewByText("Video Quality");
 		common.ScrollViewByText(quality);
 		common.clickViewByText(quality);
-		common.infoLog("Video Quality设置为 :"+common.findViewByText2(quality).getText());
+		common.infoLog("Video Quality设置为 :"+quality);
+		common.device.pressBack();
+	}
+	public static void configLiveQualityAndAngle(String quality,String angle) throws Exception{
+		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Video Quality");
+		common.clickViewByText("Video Quality");
+		common.ScrollViewByText(quality);
+		common.clickViewByText(quality);
+		common.infoLog("Video Quality设置为 :"+quality);
+		common.ScrollViewByText("Video Angle");
+		common.clickViewByText("Video Angle");
+		common.clickViewByText(angle);
+		common.infoLog("Video Angle设置为 :"+angle);
 		common.device.pressBack();
 	}
 	/**
@@ -465,7 +483,7 @@ public class CameraAction extends Base {
 		CameraAction.cameraSetting();
 		common.ScrollViewByText("Account");
 		common.clickViewByText("Account");
-		if (common.findViewById2("").exists()) {
+		if (common.findViewById2(Account.logout_btn).exists()) {
 			state=true;
 			common.device.pressBack();
 		}
@@ -473,8 +491,6 @@ public class CameraAction extends Base {
 		return state;
 	}
 	public static void login() throws Exception {
-		common.device.pressBack();
-		common.device.pressBack();
 		common.pmclear();
 		common.startCamera();
 		CameraAction.cameraSetting();
@@ -488,6 +504,40 @@ public class CameraAction extends Base {
 			common.infoLog(" 账号登陆成功");
 		}else {
 			common.infoLog(" 账号登陆失败");
+		}
+		common.device.pressBack();
+	}
+	public static void openLiveAndSave() throws Exception {
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Live&Save");
+		CameraAction.openCompoundButton("Live&Save");
+		common.waitTime(1);
+        if (common.findViewByText2("OK").exists()) {
+            common.clickViewByText("OK");
+            }else {
+				openCompoundButton("Live&Save");
+			}
+        common.device.pressBack();
+	}
+	public static void makeLive(){
+		common.cameraKey();
+		UiObject initiazlingLiveStream= common.findViewByText2("^Initializing Live Stream*");
+		if (initiazlingLiveStream.waitUntilGone(48000)) {
+			UiObject connecFail = common.findViewByText2("^Connection fail, please try again*");
+			UiObject connecTooSlow = common.findViewByText2("^connection too slow*");
+			if (connecFail.exists()||connecTooSlow.exists()) {
+				common.infoLog("Connection fail, please try again");
+			}
+		}
+	}
+	public static boolean stopLive() throws Exception{
+		UiObject recordTime = common.findViewById2(one.hardware.Page.Camera.recording_time_id);
+		if (recordTime.exists()) {
+			common.cameraKey();
+			return true;
+		}else {
+			common.infoLog("直播已异常结束");
+			return false;
 		}
 	}
 	public static void main(String args[]){

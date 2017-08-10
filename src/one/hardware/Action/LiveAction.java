@@ -22,8 +22,7 @@ public class LiveAction extends Base {
             return true;
         }
 	}
-	public static void checkLiveAndSaveVideo(HashSet<String> resultHashSet) throws Exception{
-		
+	public static boolean checkLiveAndSaveVideo(HashSet<String> resultHashSet) throws Exception{
 		if (resultHashSet.size()==1) {
 			String videopath = resultHashSet.iterator().next();
 			common.infoLog("new file:"+videopath);
@@ -34,15 +33,14 @@ public class LiveAction extends Base {
 			if (common.findViewByText2("^Can't play this video.*").exists()) {
 				common.infoLog(videoName+" 播放失败" + "-Can't play this video");
 				common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
-				common.failcase("Failed");
-				throw new Exception("FindObject" + "Can't play this video");
+				common.infoLog("Can't play this video");
+				return false;
 			}else {
 				common.infoLog(videoName+" 播放成功");
-				common.passcase();
+				return true;
 			}
 		}else {
-			common.failcase("Failed");
+			return false;
 		}
-		common.startLog( "*****End to run "+ "*****");
 	} 
 }
