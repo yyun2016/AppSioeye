@@ -5,23 +5,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Logger;
-
-import javax.security.sasl.SaslException;
-
 import com.android.uiautomator.core.UiCollection;
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiSelector;
 import com.ckt.demo.UiAutomatorHelper;
 
-import android.R.string;
-import android.bluetooth.BluetoothClass.Device;
 import one.hardware.Page.Account;
 import one.hardware.Page.Camera;
-import one.hardware.Testcase.Sleeptime_setting;
 import one.hardware.Util.Base;
-import one.hardware.Util.Common;
 
 public class CameraAction extends Base {
 	/**
@@ -175,7 +167,7 @@ public class CameraAction extends Base {
 		common.clickViewByText("Time Lapse");
 		common.ScrollViewByText(timelapse);
 		common.clickViewByText(timelapse);
-		common.infoLog("Time Lapse设置为 :"+common.findViewByText2(timelapse).getText());
+		common.infoLog("Time Lapse设置为 :"+timelapse);
 		common.device.pressBack();
 	}
 	public static void configTimeLapse(int index,String timelapse) throws Exception{
@@ -184,7 +176,7 @@ public class CameraAction extends Base {
 		common.clickViewByText("Time Lapse");
 		common.ScrollViewByText(timelapse);
 		common.clickViewByText(timelapse);
-		common.infoLog("Time Lapse设置为 :"+common.findViewByText2(timelapse).getText());
+		common.infoLog("Time Lapse设置为 :"+timelapse);
 		common.device.pressBack();
 	}
 	/**
