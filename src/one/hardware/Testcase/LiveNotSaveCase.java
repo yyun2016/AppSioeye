@@ -1,13 +1,9 @@
 package one.hardware.Testcase;
 
 import java.util.HashSet;
-import java.util.logging.Logger;
-
 import com.ckt.demo.UiAutomatorHelper;
 
-import one.hardware.Action.AccountAction;
 import one.hardware.Action.CameraAction;
-import one.hardware.Action.SettingAction;
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
@@ -56,84 +52,84 @@ public class LiveNotSaveCase extends Base {
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025SDMedium() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[2]);
+		LiveNotSave(Camera.video_quality[11],Camera.video_Angle[2]);
 	}
 	/**
 	 * 默认设置480@25(SD)宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025SDWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[1]);
+		LiveNotSave(Camera.video_quality[11],Camera.video_Angle[1]);
 	}
 	/**
 	 * 默认设置480@25(SD)超宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025SDSuperWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[11],one.hardware.Page.Camera.video_Angle[0]);
+		LiveNotSave(Camera.video_quality[11],Camera.video_Angle[0]);
 	}
 	/**
 	 * 默认设置480@25(HD)普通视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025HDMedium() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[2]);
+		LiveNotSave(Camera.video_quality[12],Camera.video_Angle[2]);
 	}
 	/**
 	 * 默认设置480@25(HD)宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025HDWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[1]);
+		LiveNotSave(Camera.video_quality[12],Camera.video_Angle[1]);
 	}
 	/**
 	 * 默认设置480@25(HD)超宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave48025HDSuperWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[12],one.hardware.Page.Camera.video_Angle[0]);
+		LiveNotSave(Camera.video_quality[12],Camera.video_Angle[0]);
 	}
 	/**
 	 * 默认设置720@25(HD)普通视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave72025HDMedium() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[2]);
+		LiveNotSave(Camera.video_quality[13],Camera.video_Angle[2]);
 	}
 	/**
 	 * 默认设置720@25(HD)宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave72025HDWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[1]);
+		LiveNotSave(Camera.video_quality[13],Camera.video_Angle[1]);
 	}
 	/**
 	 * 默认设置720@25(HD)超宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave72025HDSuperWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[13],one.hardware.Page.Camera.video_Angle[0]);
+		LiveNotSave(Camera.video_quality[13],Camera.video_Angle[0]);
 	}
 	/**
 	 * 默认设置1080@25(HD)普通视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave1080HDMedium() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[2]);
+		LiveNotSave(Camera.video_quality[14],Camera.video_Angle[2]);
 	}
 	/**
 	 * 默认设置1080@25(HD)宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave1080HDWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[1]);
+		LiveNotSave(Camera.video_quality[14],Camera.video_Angle[1]);
 	}
 	/**
 	 * 默认设置1080@25(HD)超宽视角直播不保存
 	 * @throws Exception
 	 */
 	public void testLiveNotSave1080HDSuperWide() throws Exception{
-		LiveNotSave(one.hardware.Page.Camera.video_quality[14],one.hardware.Page.Camera.video_Angle[0]);
+		LiveNotSave(Camera.video_quality[14],Camera.video_Angle[0]);
 	}
 	public static void main(String args[]){
 		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveNotSaveCase", "", "2");

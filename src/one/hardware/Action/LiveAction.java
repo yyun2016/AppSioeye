@@ -1,11 +1,7 @@
 package one.hardware.Action;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashSet;
-
-import com.android.uiautomator.core.UiObject;
-
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
