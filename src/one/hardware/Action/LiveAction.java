@@ -24,8 +24,8 @@ public class LiveAction extends Base {
 			common.infoLog("new file:"+videopath);
 			String videoName = new File(videopath).getName();
 			common.VideoInfo(videopath);
+			if (common.checkVideoInfo(1080, common.VideoInfo(videopath))) {
 			FileManagerAction.playVideoByFileManager(videoName);
-			
 			if (common.findViewByText2("^Can't play this video.*").exists()) {
 				common.infoLog(videoName+" 播放失败" + "-Can't play this video");
 				common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
@@ -34,6 +34,9 @@ public class LiveAction extends Base {
 			}else {
 				common.infoLog(videoName+" 播放成功");
 				return true;
+				}
+			}else {
+				return false;
 			}
 		}else {
 			return false;
