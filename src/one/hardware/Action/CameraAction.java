@@ -529,6 +529,7 @@ public class CameraAction extends Base {
 			return true;
 		}else {
 			common.infoLog("直播已异常结束");
+			common.findViewByText2("OK").click();
 			return false;
 		}
 	}
