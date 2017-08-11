@@ -36,8 +36,6 @@ public class LiveCase extends Base{
 			
 			HashSet<String> afterTakeVideoList = common.FileList(video_path);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
-			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			if (LiveAction.checkLiveAndSaveVideo(resultHashSet)) {
 				common.passcase();
 				}else {
