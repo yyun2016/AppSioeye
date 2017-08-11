@@ -302,7 +302,7 @@ public class Common {
 	public void startCamera() throws Exception {
 		// /Test Info
 		int n = 1;
-		while (n < 11) {
+		while (n < 3) {
 			Runtime.getRuntime().exec("am start -n com.hicam/.application.HiCam");
 			waitTime(3);
 			String name = device.getCurrentPackageName();
@@ -322,7 +322,7 @@ public class Common {
 			}
 			n = n + 1;
 		}
-		if (n == 11) {
+		if (n == 3) {
 			throw new Exception("启动失败");
 		}
 		int i = 1;
@@ -343,17 +343,18 @@ public class Common {
 	public void startSettings() throws Exception {
 		// /Test Info
 		int n = 1;
-		while (n < 11) {
+		while (n < 3) {
 			Runtime.getRuntime().exec("am start -n com.android.settings/.CustomSettings");
 			waitTime(3);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			if (name.equalsIgnoreCase("com.android.settings")) {
 				infoLog("已经进入设置");
+				break;
 				}
-			}
 			n = n + 1;
-		if (n == 11) {
+			}
+		if (n == 3) {
 			throw new Exception("启动失败");
 		}
 //		int i = 1;
@@ -392,7 +393,7 @@ public class Common {
 	public void startFileManager() throws Exception {
 		// /Test Info
 		int n = 1;
-		while (n < 11) {
+		while (n < 3) {
 			Runtime.getRuntime().exec("am start -n com.mediatek.filemanager/.FileManagerOperationActivity");
 			waitTime(3);
 			String name = device.getCurrentPackageName();
@@ -408,7 +409,7 @@ public class Common {
 			}
 			n = n + 1;
 		}
-		if (n == 11) {
+		if (n == 3) {
 			throw new Exception("启动失败");
 		}
 		int i = 1;
@@ -906,12 +907,13 @@ public class Common {
 		UiObject AppCrash = findViewByText2("无响应");
 		UiObject ANR = findViewByText2("很抱歉");
 		UiObject APPSTOP = findViewByText2("^Unfortunately, Camera has stopped.*");
+		UiObject anr=findViewByText2("Camera isn't responding.Do you want to close it?");
 		UiObject CONNECTION_FAIL = findViewByText2("^Connection fail, please try again*");
 		if (AppCrash.exists()) {
 			s = "App Crash happened";
 			infoLog("发生App Crash，正在捕获异常");
 			takeBugReport("CRASH", currentTime);
-		} else if (ANR.exists()) {
+		} else if (ANR.exists()||anr.exists()) {
 			s = "ANR happened";
 			infoLog("发生ANR，正在捕获异常");
 			takeBugReport("ANR", currentTime);
