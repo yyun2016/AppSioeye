@@ -8,6 +8,7 @@ public class Camera {
 	public static String camera_setting_shortcut_id = "com.hicam:id/camera_setting_shortcut";
 	
 	public static String recording_time_id = "com.hicam:id/recording_time";
+	public static String recording_time_id2 = "com.hicam:id/recording_time2";
 	public static String gallery_live_tip="com.hicam.gallery:id/live_tips_text";
 	
 	public static String currentvideoquliaty = "com.hicam:id/info";
@@ -16,6 +17,11 @@ public class Camera {
 	public static String playvideobtn = "com.hicam.gallery:id/gallery_bottom_play_im";
 	public static String lapsetime1 = "com.hicam:id/recording_time";
 	public static String lapsetime2 = "com.hicam:id/recording_time2";
+	public static String scrollView ="android.widget.ScrollView";
+	public static String relativeLayout ="android.widget.RelativeLayout";
+	public static String TextView ="android.widget.TextView";
+	public static String compoundButton ="android.widget.CompoundButton";
+	public static String listView ="android.widget.ListView";
 	
 	//Can't play this video.
 	//android:id/message

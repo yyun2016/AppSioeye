@@ -17,14 +17,14 @@ public class LapseRandomSettingCase extends Base {
 	
 	public String getRightValue(String text) throws UiObjectNotFoundException{
 		String value="";
-		UiCollection videos = new UiCollection(new UiSelector().className("android.widget.ScrollView"));
-		int count = videos.getChildCount(new UiSelector().className("android.widget.RelativeLayout"));
+		UiCollection videos = new UiCollection(new UiSelector().className(Camera.scrollView));
+		int count = videos.getChildCount(new UiSelector().className(Camera.relativeLayout));
 		for (int instance = 0; instance < count; instance++) {
-			UiObject uiObject = videos.getChildByInstance(new UiSelector().className("android.widget.RelativeLayout"),instance);
-			UiObject sObject = uiObject.getChild(new UiSelector().className("android.widget.TextView"));
+			UiObject uiObject = videos.getChildByInstance(new UiSelector().className(Camera.relativeLayout),instance);
+			UiObject sObject = uiObject.getChild(new UiSelector().className(Camera.TextView));
 			if (uiObject.exists() && uiObject.isEnabled() == true&& sObject.exists()) {
 				if (sObject.getText().equals(text)) {
-					UiObject dataObj = uiObject.getChild(new UiSelector().className("android.widget.TextView").index(1));
+					UiObject dataObj = uiObject.getChild(new UiSelector().className(Camera.TextView).index(1));
 					value=dataObj.getText();
 				}
 			}

@@ -21,18 +21,18 @@ public class CameraAction extends Base {
 	 */
 	public static void openCompoundButton(String cbtnNname) throws UiObjectNotFoundException{
 		UiCollection videos = new UiCollection(
-				new UiSelector().className("android.widget.ScrollView"));
+				new UiSelector().className(Camera.scrollView));
 		int count = videos.getChildCount(new UiSelector()
-				.className("android.widget.RelativeLayout"));
+				.className(Camera.relativeLayout));
 		for (int instance = 0; instance < count; instance++) {
 			UiObject uiObject = videos.getChildByInstance(
-					new UiSelector().className("android.widget.RelativeLayout"),
+					new UiSelector().className(Camera.relativeLayout),
 					instance);
 			UiObject sObject = uiObject.getChild(new UiSelector()
-					.className("android.widget.TextView"));
+					.className(Camera.TextView));
 			if (uiObject.exists() && uiObject.isEnabled() && sObject.exists()) {
 				if (sObject.getText().equals(cbtnNname)) {
-					UiObject switchbtn = uiObject.getChild(new UiSelector().className("android.widget.CompoundButton"));
+					UiObject switchbtn = uiObject.getChild(new UiSelector().className(Camera.compoundButton));
 					switchbtn.click();
 				}
 			}
@@ -325,7 +325,7 @@ public class CameraAction extends Base {
 		  int ang=3;
 		  if (angle=="Wide"||angle=="wide") {
 		   ang=1;
-		   UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(ang));
+		   UiObject tObject = new UiObject(new UiSelector().className(Camera.relativeLayout).index(ang));
 		   tObject.click();
 		   }
 		  common.infoLog("ang:"+ang);
@@ -344,7 +344,7 @@ public class CameraAction extends Base {
 		   common.clickViewByText("Medium");
 		  }
 		  if (angle==1) {
-		   UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(angle));
+		   UiObject tObject = new UiObject(new UiSelector().className(Camera.relativeLayout).index(angle));
 		   tObject.click();
 		   }
 		  common.infoLog("Video Angle设置为 :"+angle);
@@ -361,7 +361,7 @@ public class CameraAction extends Base {
 		   common.clickViewByText("Medium");
 		  }
 		  if (angle==1) {
-		   UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(angle));
+		   UiObject tObject = new UiObject(new UiSelector().className(Camera.relativeLayout).index(angle));
 		   tObject.click();
 		   }
 		  common.infoLog("Video Angle设置为 :"+angle);
@@ -373,7 +373,7 @@ public class CameraAction extends Base {
 		common.ScrollViewByText("Video Angle");
 		common.clickViewByText("Video Angle");
 		//common.clickViewByText(angle);
-		UiObject tObject = new UiObject(new UiSelector().className("android.widget.RelativeLayout").index(angle));
+		UiObject tObject = new UiObject(new UiSelector().className(Camera.relativeLayout).index(angle));
 		tObject.click();
 		common.infoLog("Video Angle设置为 :"+angle);
 		common.device.pressBack();
@@ -398,7 +398,7 @@ public class CameraAction extends Base {
 		CameraAction.cameraSetting();
 		common.clickViewByText("Image Size");
 		if (size=="8M(4:3)") {
-			UiObject tObject = new UiObject(new UiSelector().className("android.widget.ListView").childSelector(new UiSelector().className("android.widget.RelativeLayout").index(2)));
+			UiObject tObject = new UiObject(new UiSelector().className(Camera.listView).childSelector(new UiSelector().className(Camera.relativeLayout).index(2)));
 			tObject.click();
 		}else {
 			common.ScrollViewByText(size);

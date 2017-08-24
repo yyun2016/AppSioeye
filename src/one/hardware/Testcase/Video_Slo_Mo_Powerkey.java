@@ -6,6 +6,7 @@ package one.hardware.Testcase;
 import com.ckt.demo.UiAutomatorHelper;
 import android.view.KeyEvent;
 import one.hardware.Action.CameraAction;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 
@@ -19,12 +20,12 @@ public class Video_Slo_Mo_Powerkey  extends Base{
 			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);
 			common.cameraKey();
 			device.pressKeyCode(KeyEvent.KEYCODE_POWER);
-			if (device.isScreenOn() == false && common.findViewById("com.hicam:id/recording_time2").exists() == true)
+			if (device.isScreenOn() == false && common.findViewById(Camera.recording_time_id2).exists() == true)
 			{
 				common.infoLog("灭屏成功");
 				device.pressKeyCode(KeyEvent.KEYCODE_POWER);
 				common.waitTime(3);
-				if(device.isScreenOn() == true && common.findViewById("com.hicam:id/recording_time2").exists() == true)
+				if(device.isScreenOn() == true && common.findViewById(Camera.recording_time_id2).exists() == true)
 				{
 					System.out.println("灭屏成功");
 					common.cameraKey();

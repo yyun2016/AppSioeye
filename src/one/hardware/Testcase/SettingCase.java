@@ -8,6 +8,7 @@ import com.ckt.demo.UiAutomatorHelper;
 
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
+import one.hardware.Page.SettingPage;
 import one.hardware.Util.Base;
 
 public class SettingCase extends Base{
@@ -36,7 +37,7 @@ public class SettingCase extends Base{
 			sleep(3000);
 			UiObject addNewNetWork = common.findViewByText2("Add new network...");
 			if (addNewNetWork.exists()) {
-			    common.clickViewById("com.mediatek:id/imageswitch");
+			    common.clickViewById(SettingPage.wifi_boottom);
 				addNewNetWork.waitUntilGone(5000);
 			}
 			common.ScrollViewByText("CKT");
@@ -48,7 +49,7 @@ public class SettingCase extends Base{
 				common.ScrollViewByText2("CKT");
 				common.clickViewByText("CKT");
 			}
-				UiObject passwd = common.findViewById2("com.android.settings:id/password");
+				UiObject passwd = common.findViewById2(SettingPage.wifi_password);
 			if (passwd!=null&&passwd.exists()) {
 					passwd.setText("ck88888!");
 					common.clickViewByText("Connect");
@@ -70,7 +71,7 @@ public class SettingCase extends Base{
 			device.pressBack();
 			device.pressBack();
 			common.clickViewByText("Wi-Fi");
-			common.clickViewById("com.mediatek:id/imageswitch");//最终关闭wifi		
+			common.clickViewById(SettingPage.wifi_boottom);//最终关闭wifi		
 			common.startLog( "*****End to run " + runcase + " *****");			
 			
 		} catch (Exception e) {

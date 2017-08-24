@@ -9,6 +9,7 @@ import one.hardware.Action.CameraAction;
 import one.hardware.Action.FileManagerAction;
 import one.hardware.Action.VideoNode;
 import one.hardware.Page.Camera;
+import one.hardware.Page.Picture;
 import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
@@ -85,7 +86,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -175,7 +176,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -266,7 +267,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -356,7 +357,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -448,7 +449,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -538,7 +539,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -628,7 +629,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -718,7 +719,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -808,7 +809,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -898,7 +899,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -988,7 +989,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1078,7 +1079,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1168,7 +1169,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1258,7 +1259,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1348,7 +1349,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1438,7 +1439,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1528,7 +1529,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1618,7 +1619,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1708,7 +1709,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {
@@ -1798,7 +1799,7 @@ public class LapseCase extends Base{
 							FileManagerAction.playVideoByFileManager(videoName);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
 								common.infoLog(videoName+" 播放失败" + "-Can't play this video");
-								common.findViewById2("android:id/button1").clickAndWaitForNewWindow();
+								common.findViewById2(Picture.button1_id).clickAndWaitForNewWindow();
 								common.failcase(runcase);
 								throw new Exception("FindObject" + "Can't play this video");
 							}else {

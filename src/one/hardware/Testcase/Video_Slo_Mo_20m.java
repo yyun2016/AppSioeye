@@ -7,6 +7,7 @@ import java.util.HashSet;
 import com.ckt.demo.UiAutomatorHelper;
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.VideoNode;
+import one.hardware.Page.Camera;
 public class Video_Slo_Mo_20m extends Base{
 	/**
 	 * 20min慢速录制自动停止
@@ -25,7 +26,7 @@ public class Video_Slo_Mo_20m extends Base{
 			common.waitTime(1210);
 			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-			boolean lx1= common.findViewById2("com.hicam:id/recording_time2").exists();
+			boolean lx1= common.findViewById2(Camera.recording_time_id2).exists();
 			if (lx1||(resultHashSet.size()!=1&&resultHashSet.size()!=2))
 			{
 				if (lx1) {

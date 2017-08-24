@@ -44,6 +44,9 @@ public class Common {
 	public String GetText = "[GetText]: ";
 	public String Exception_Crash = "[App Crash]: ";
 	public String Exception_ANR = "[App ANR]: ";
+	public String fileListView="com.mediatek.filemanager:id/list_view";
+	public String listView="android.widget.ListView";
+	public String gridView="android.widget.GridView";
 
 	public boolean islong = false;
 
@@ -727,7 +730,7 @@ public class Common {
 		}
 	}
 	public void ScrollViewByTextForFileManage(String text) throws Exception {
-		UiScrollable listScrollable = new UiScrollable(new UiSelector().resourceId("com.mediatek.filemanager:id/list_view"));
+		UiScrollable listScrollable = new UiScrollable(new UiSelector().resourceId(fileListView));
 		listScrollable.setMaxSearchSwipes(10);
 		try {
 			if (listScrollable.scrollTextIntoView(text)) {
@@ -1016,9 +1019,9 @@ public class Common {
 	public void scrollDown(int scrollTime) throws UiObjectNotFoundException {
 		UiScrollable object = null;
 		UiScrollable object1 = new UiScrollable(
-				new UiSelector().className("android.widget.ListView"));
+				new UiSelector().className(listView));
 		UiScrollable object2 = new UiScrollable(
-				new UiSelector().className("android.widget.GridView"));
+				new UiSelector().className(gridView));
 		if (object1.exists()) {
 			object = object1;
 		}
@@ -1047,9 +1050,9 @@ public class Common {
 	public void scrollUp(int scrollTime) throws UiObjectNotFoundException {
 		UiScrollable object = null;
 		UiScrollable object1 = new UiScrollable(
-				new UiSelector().className("android.widget.ListView"));
+				new UiSelector().className(listView));
 		UiScrollable object2 = new UiScrollable(
-				new UiSelector().className("android.widget.GridView"));
+				new UiSelector().className(gridView));
 		if (object1.exists()) {
 			object = object1;
 		}
@@ -1079,7 +1082,7 @@ public class Common {
 	public boolean scrollDownToObject(int scrollTime, String resourceid)
 			throws Exception {
 		UiScrollable object = new UiScrollable(
-				new UiSelector().className("android.widget.ListView"));
+				new UiSelector().className(listView));
 		boolean findlist = false;
 		boolean findObject = false;
 		if (object.exists()) {
@@ -1113,7 +1116,7 @@ public class Common {
 	public boolean scrollUpToObject(int scrollTime, String resourceid)
 			throws Exception {
 		UiScrollable object = new UiScrollable(
-				new UiSelector().className("android.widget.ListView"));
+				new UiSelector().className(listView));
 		boolean findlist = false;
 		boolean findObject = false;
 		if (object.exists()) {

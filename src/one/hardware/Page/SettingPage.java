@@ -10,6 +10,7 @@ public class SettingPage extends Base{
     public static String wifi_switch_state="com.android.settings:id/switchState";
     public static String category_content="com.android.settings:id/category_content";
     public static String wifi_boottom="com.mediatek:id/imageswitch";
+    public static String wifi_password="com.android.settings:id/password";
 
     //galleryPage
     public static String video_timeText="com.hicam.gallery:id/timeText";
