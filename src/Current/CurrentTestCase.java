@@ -480,9 +480,11 @@ public class CurrentTestCase extends Base {
         		videoQuality1080P120="1080@120FPS",
         		videoQuality1080P60="1080@60FPS",
         		videoQuality1080P25="1080@25FPS",
+        		videoQuality720P120="720@120FPS",
                 videoQuality720P60="720@60FPS",
                 videoQuality720P25="720@25FPS",
                 videoQuality480P120="480@120FPS",
+                videoQuality480P60="480@60FPS",
                 videoQuality480P25="480@25FPS";
         String switchName[]={
                 "Altimeter",//高度计0
@@ -519,55 +521,119 @@ public class CurrentTestCase extends Base {
             closeWifi();
             //开启相机
             launchCamera();
+            CameraAction.cameraVideo();//Video Modem
+            common.waitTime(2);
+            //四种分辨率灭屏录像2分钟
+            makeToasts("start",5);
+            configVideoQuality(videoQuality4KP25);//4K亮
+            p2pScreenOn();
+            p2pScreenOff();//4K灭
+            configVideoQuality(videoQuality2KP25);//2K灭
+            p2pScreenOff();
+            configVideoQuality(videoQuality1080P120);//1080P120FPS
+            p2pScreenOff();
+            configVideoQuality(videoQuality1080P60);//1080P60FPS
+            p2pScreenOff();
+            configVideoQuality(videoQuality1080P25);//1080P25FPS
+            p2pScreenOn();
+            p2pScreenOff();
+            configVideoQuality(videoQuality720P120);//720P120FPS
+            p2pScreenOn();
+            p2pScreenOff();
+            configVideoQuality(videoQuality720P60);//720P60FPS
+            p2pScreenOff();
+            configVideoQuality(videoQuality720P25);//720P25FPS
+            p2pScreenOn();
+            p2pScreenOff();
+          //相册直播
+            common.stopCamera();
+            common.waitTime(2);
+            common.startGallery();
+            galleryLiveScreenOn();//4G相册亮屏直播720P
+            galleryLiveScreenOff();//4G相册灭屏直播720P
+            common.stopGallery();
+            openWifi();
+            common.startGallery();
+            galleryLiveScreenOff();//WIFI相册灭屏直播720P
+            common.stopGallery();
+            closeWifi();
+            launchCamera();
+            CameraAction.cameraVideo();//Video Modem
+            common.waitTime(2);
+            configVideoQuality(videoQuality480P120);//480P120FPS
+            p2pScreenOff();
+            configVideoQuality(videoQuality480P60);//480P25FPS
+            p2pScreenOff();
+            configVideoQuality(videoQuality480P25);//480P25FPS
+            p2pScreenOff();
+            //相册直播&录播
+            common.stopCamera();
+            common.waitTime(2);
+            common.startGallery();
+            galleryLiveScreenOff();//4G相册灭屏直播480P
+            common.stopGallery();
+            openWifi();
+            common.startGallery();
+            galleryLiveScreenOff();//WIFI相册灭屏直播480P
+            common.stopGallery();
+            closeWifi();
+            launchCamera();
+            CameraAction.cameraVideo();//Video Modem
+            common.waitTime(2);
+            clickSwitch(switchName[2]);//开启录播
+            p2pScreenOn();
+            p2pScreenOff();
+            clickSwitch(switchName[2]);//关闭录播
+            CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);//"Slo_Mo" Modem
+            common.waitTime(2);
+            p2pScreenOff();
+            CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);//"Lapse" Modem
+            common.waitTime(2);
+            p2pScreenOff();
+            CameraAction.cameraVideo();//Video Modem
+            common.waitTime(2);
+            configVideoQuality(videoQuality1080P25);//1080P30FPS
+            common.waitTime(2);
+            common.waitTime(testTime);
+            //主屏幕亮屏待机
+            UiDevice.getInstance().pressBack();
+            UiDevice.getInstance().pressBack();
+            UiDevice.getInstance().pressBack();
+            common.waitTime(testTime*3);
+            storageFormat();
+            //直播
+            launchCamera();
             CameraAction.cameraLive();;//Live Modem
             makeToasts("start"+i,5);
             common.waitTime(2);
             configVideoQuality(liveQuality480SD);
-            //4G亮屏直播不保存480SD
             live2ScreenOn();
-            //4G灭屏直播不保存480SD
             live2ScreenOff();
-            //4G亮屏直播不保存480HD
             configVideoQuality(liveQuality480HD);
             live2ScreenOn();
-            //4G灭屏直播不保存480HD
             live2ScreenOff();
-            //4G亮屏直播不保存720HD
             configVideoQuality(liveQuality720HD);
             live2ScreenOn();
-            //4G灭屏直播不保存720HD
             live2ScreenOff();
             clickLiveAndSave();//开启直播保存
             common.waitTime(2);
             configVideoQuality(liveQuality480SD);
-            //4G亮屏直播保存480SD
-            logger.info("case：4G亮屏直播保存480SD");
             live2ScreenOn();
-            //4G灭屏直播保存480SD
             live2ScreenOff();
-
-            //4G亮屏直播保存480HD
-            logger.info("case:4G灭屏直播保存480HD");
             configVideoQuality(liveQuality480HD);
             live2ScreenOn();
-            //4G灭屏直播保存480HD
             live2ScreenOff();
-            //4G亮屏直播保存720HD
             configVideoQuality(liveQuality720HD);
             live2ScreenOn();
-            //4G灭屏直播保存720HD
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
-            //高度4G灭屏直播480SD
             common.waitTime(1);
+            configVideoQuality(liveQuality480SD);
             clickSwitch(switchName[0]);//开启高度计
             live2ScreenOff();
-            //速度计4G灭屏直播480SD
-            configVideoQuality(liveQuality480SD);
             clickSwitch(switchName[0]);//关闭高度计
             common.waitTime(2);
             clickSwitch(switchName[1]);//开启速度计
-            logger.info("case:开启速度计4G灭屏直播保存720HD");
             live2ScreenOff();
             clickSwitch(switchName[1]);//关闭速度计
             common.waitTime(2);
@@ -583,39 +649,31 @@ public class CurrentTestCase extends Base {
             clickSwitch(switchName[5]);//开启为倒置Auto
             live2ScreenOff();
             clickSwitch(switchName[5]);//关闭为倒置Auto
-            configVideoAngle(videoAngle[0]);//视场角为普通
+            configVideoAngle(videoAngle[2]);//视场角为超宽
             live2ScreenOff();
             configVideoAngle(videoAngle[1]);//视场角为宽
             live2ScreenOff();
-            configVideoAngle(videoAngle[2]);//视场角为超级
+            configVideoAngle(videoAngle[0]);//视场角为普通
             live2ScreenOff();
             configVideoAngle(videoAngle[0]);//视场角为普通(默认)
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
+            UiDevice.getInstance().pressBack();
             //切换网络模式为3G
             switchTo3G();
-            Runtime.getRuntime().exec("dumpsys battery set level 100");//设置电流为100%
             common.waitTime(1);
             launchCamera();
-            //3G亮屏直播不保存480SD
-            logger.info("case:3G灭屏直播不保存480SD");
             CameraAction.cameraLive();//Live Modem
             common.waitTime(2);
             configVideoQuality(liveQuality480SD);
             live2ScreenOn();
-            //3G灭屏直播不保存480SD
-            logger.info("case:3G亮屏直播不保存480SD");
             live2ScreenOff();
-            //3G亮屏直播保存480SD
             clickLiveAndSave();//开启直播保存
-            logger.info("3G灭屏直播保存480SD");
             live2ScreenOn();
-            //3G灭屏直播保存480SD
-            logger.info("3G亮屏直播保存480SD");
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
             common.waitTime(2);
-            //连接wifi相机预览界面亮屏
+            UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             openWifi();
@@ -624,142 +682,37 @@ public class CurrentTestCase extends Base {
             common.waitTime(2);
             clickLiveAndSave();//开启直播保存
             configVideoQuality(liveQuality480SD);
-            //WIFI亮屏直播保存480SD
             live2ScreenOn();
-            //WIFI灭屏直播保存480SD
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
             common.waitTime(1);
-            //WIFI亮屏直播不保存480SD
             live2ScreenOn();
-            //WIFI灭屏直播不保存480SD
             live2ScreenOff();
             configVideoQuality(liveQuality480HD);
-            //wifi 480HD 亮屏
             live2ScreenOn();
-            //wifi 480HD 灭屏
             live2ScreenOff();
             configVideoQuality(liveQuality720HD);
-            //wifi 720HD 亮屏
             live2ScreenOn();
-            //wifi 720HD 灭屏
             live2ScreenOff();
-            UiDevice.getInstance().pressHome();
-            UiDevice.getInstance().pressHome();
-            switchTo4G();
-            closeWifi();
-            storageFormat();
-            Runtime.getRuntime().exec("dumpsys battery set level 100");//设置电流为100%
-            //开启相机
-            launchCamera();
-            CameraAction.cameraVideo();//Video Modem
-            common.waitTime(2);
-            //四种分辨率灭屏录像2分钟
-            configVideoQuality(videoQuality4KP25);//4K亮
-            logger.info("case:4KPVideoScreenOn");
-            p2pScreenOn();
-            logger.info("case:4KPVideoScreenOn");//4K灭
-            p2pScreenOff();
-            configVideoQuality(videoQuality2KP25);//2K灭
-            logger.info("case:2KPVideoScreenOff");
-            p2pScreenOff();
-            configVideoQuality(videoQuality1080P120);//1080P120FPS
-            logger.info("case:1080P120FpsVideoScreenOff");
-            p2pScreenOff();
-            configVideoQuality(videoQuality1080P60);//1080P60FPS
-            logger.info("case:1080P60FpsVideoScreenOff");
-            p2pScreenOff();
-            configVideoQuality(videoQuality1080P25);//1080P30FPS
-            logger.info("case:1080P25VideoScreenOn");
-            p2pScreenOn();
-            logger.info("case:1080P25VideoScreenOff");
-            p2pScreenOff();
-            configVideoQuality(videoQuality720P60);//720P60FPS
-            p2pScreenOff();
-            configVideoQuality(videoQuality720P25);//720P30FPS
-            logger.info("case:720P30FPSVideoScreenOn");
-            p2pScreenOn();
-            logger.info("case:720P30FPSVideoScreenOff");
-            p2pScreenOff();
-          //相册直播V3暂时无该功能
-//            common.stopCamera();
-//            common.waitTime(2);
-//            common.startGallery();
-//            galleryLiveScreenOn();//4G相册亮屏直播720P
-//            galleryLiveScreenOff();//4G相册灭屏直播720P
-//            common.stopGallery();
-//            openWifi();
-//            common.startGallery();
-//            galleryLiveScreenOn();//WIFI相册亮屏直播720P
-//            galleryLiveScreenOff();//WIFI相册灭屏直播720P
-//            common.stopGallery();
-//            closeWifi();
-//            launchCamera();
-//            CameraAction.cameraVideo();//Video Modem
-//            common.waitTime(2);
-            configVideoQuality(videoQuality480P120);//480P120FPS
-            p2pScreenOff();
-            //亮屏录播
-            configVideoQuality(videoQuality480P25);//480P25FPS
-            p2pScreenOff();
-            //相册直播&录播V3暂时无该功能
-//            common.stopCamera();
-//            common.waitTime(2);
-//            common.startGallery();
-//            galleryLiveScreenOff();//4G相册灭屏直播480P
-//            openWifi();
-//            common.startGallery();
-//            galleryLiveScreenOff();//WIFI相册灭屏直播480P
-//            closeWifi();
-//            launchCamera();
-//            CameraAction.cameraVideo();//Video Modem
-//            common.waitTime(2);
-//            clickSwitch(switchName[2]);//开启录播
-//            p2pScreenOn();
-//            //灭屏录播
-//            p2pScreenOff();
-//            clickSwitch(switchName[2]);//关闭录播
-            //灭屏慢速录像2min
-            CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);//"Slo_Mo" Modem
-            common.waitTime(2);
-            p2pScreenOff();//case9
-            //灭屏延时录像2min
-            CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);//"Lapse" Modem
-            common.waitTime(2);
-            logger.info("case：灭屏延时录像");
-            p2pScreenOff();//case10
-            //相机预览界面亮屏
-            logger.info("case:相机预览界面亮屏待机");
-            CameraAction.cameraVideo();//Video Modem
-            common.waitTime(2);
-            configVideoQuality(videoQuality1080P25);//1080P30FPS
-            common.waitTime(2);
-            common.waitTime(testTime);
-            UiDevice.getInstance().pressBack();
-            UiDevice.getInstance().pressBack();
-            UiDevice.getInstance().pressBack();
-            logger.info("主屏幕亮屏待机");
-            common.waitTime(testTime);
-            makeToasts("start"+i,5);
+
         }
         makeToasts("10秒后关机......",5);
-        logger.info("10秒后关机....");
         common.waitTime(10);
         Runtime.getRuntime().exec("reboot -p ");
     }
-    public static void main(String[] args){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.CurrentTestCase", "testDebugging", "2");
-	}
-   
-    public void testDebugging() throws Exception {
+//    public static void main(String[] args){
+//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.CurrentTestCase", "testDebugging", "2");
+//	}
+//   
+//    public void testDebugging() throws Exception {
 //    	initUIAutomator(this.getName());
 //    	common.startLog("*****Start to run " + runcase + " *****");
-    	UiDevice.getInstance().pressBack();
-        UiDevice.getInstance().pressBack();
-        System.out.println("wait 3s");
-        common.waitTime(3);
-        switchTo3G();
-    }
+//    	UiDevice.getInstance().pressBack();
+//        UiDevice.getInstance().pressBack();
+//        System.out.println("wait 3s");
+//        common.waitTime(3);
+//        switchTo3G();
+//    }
 }
 
 
