@@ -263,17 +263,16 @@ public class CurrentTestCase extends Base {
      * @throws Exception
      */
     private void checkGalleryToLiveStatusAndTryAgain(int a) throws Exception {
-    	common.findViewById2(one.hardware.Page.Camera.gallery_live_tip).waitForExists(15000);
-    	common.wait(3);
-    	UiObject galleryLiveTip=common.findViewById2(one.hardware.Page.Camera.gallery_live_tip);
+    	common.findViewByText2("broadcasting").waitForExists(15000);
+    	common.waitTime(3);;
+    	UiObject galleryLiveTip=common.findViewByText2("broadcasting");
         if (!galleryLiveTip.exists()){
-            common.findViewById2(SettingPage.gallery_live_retry).waitForExists(3000);
-            common.clickViewById(SettingPage.gallery_live_retry);
-           
+            common.findViewByText2("Retry").waitForExists(3000);
+            common.clickViewByText("Retry");
+            common.findViewByText2("broadcasting").waitForExists(10000);
             if (!common.findViewByText2("broadcasting").exists()){
-                logger.info("galleryLiveFailed");
-                common.findViewById2(SettingPage.gallery_live_retry).waitForExists(3000);
-                common.clickViewById(SettingPage.gallery_live_cancel);
+            	common.findViewByText2("Retry").waitForExists(3000);
+            	common.clickViewByText("No");
                 common.stopGallery();
                 common.waitTime(1);
                 UiDevice.getInstance().pressBack();
@@ -296,12 +295,12 @@ public class CurrentTestCase extends Base {
             }else {
                 logger.info("retryLiveSuccess");
                 if (a==0){makeScreenOff();}//判断用例该亮灭屏
-                common.waitTime(testTime-2);
+                common.waitTime(testTime-5);
             }
         }else {
             logger.info("LiveSuccess");
             if (a==0){makeScreenOff();}
-            common.waitTime(testTime-2);
+            common.waitTime(testTime-5);
         }
     }
     /**
@@ -309,17 +308,16 @@ public class CurrentTestCase extends Base {
      * 如果发现已经异常中断，会产生一个3段锯齿波
      */
     private void stopGalleryLive()throws Exception{
-    	UiObject galleryLiveCancel=common.findViewById2(SettingPage.gallery_live_cancel);
+    	UiObject galleryLiveCancel=common.findViewByText2("Retry");
         if (common.findViewByText2("broadcasting").exists()) {
             UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
             common.waitTime(1);
             common.clickViewByText("Yes");
             common.waitTime(2);
-            logger.info("galleryLiveHasStop");
         }
         if (galleryLiveCancel.exists()) {
             logger.info("galleryLiveBreakOff");
-            common.clickViewById(SettingPage.gallery_live_cancel);
+            common.clickViewByText("No");
             common.waitTime(2);
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
@@ -460,7 +458,7 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
-        common.ScrollViewByText(switchName);
+        common.ScrollViewByTextFotCurrenttest(switchName);
         CameraAction.openCompoundButton(switchName);
         logger.info("已点击" + switchName);
         common.waitTime(2);
@@ -514,8 +512,8 @@ public class CurrentTestCase extends Base {
 		UiDevice.getInstance().pressBack();
 		UiDevice.getInstance().pressBack();
         for (int i = 1;i<=1;i++){
-            makeScreenOn();
-            changeSleepTime("Never");
+//            makeScreenOn();
+//            changeSleepTime("Never");
             switchTo4G();
             storageFormat();//格式化储存空间
             closeWifi();
@@ -580,10 +578,10 @@ public class CurrentTestCase extends Base {
             launchCamera();
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
-            clickSwitch(switchName[2]);//开启录播
-            p2pScreenOn();
-            p2pScreenOff();
-            clickSwitch(switchName[2]);//关闭录播
+//            clickSwitch(switchName[2]);//开启录播
+//            p2pScreenOn();
+//            p2pScreenOff();
+//            clickSwitch(switchName[2]);//关闭录播
             CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);//"Slo_Mo" Modem
             common.waitTime(2);
             p2pScreenOff();
@@ -700,49 +698,138 @@ public class CurrentTestCase extends Base {
         common.waitTime(10);
         Runtime.getRuntime().exec("reboot -p ");
     }
-//    public static void main(String[] args){
-//		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.CurrentTestCase", "testDebugging", "2");
-//	}
+    public void testOther() throws Exception {
+    	initUIAutomator(this.getName());
+    	UiDevice.getInstance().pressHome();
+    	common.startLog("*****Start to run " + runcase + " *****");
+        String liveQuality480SD="480@25FPS(SD)",
+                liveQuality480HD="480@25FPS(HD)",
+                liveQuality720HD="720@25FPS(HD)";
+        String videoQuality4KP25="4K@25FPS",
+        		videoQuality2KP25="2K@25FPS",
+        		videoQuality1080P120="1080@120FPS",
+        		videoQuality1080P60="1080@60FPS",
+        		videoQuality1080P25="1080@25FPS",
+        		videoQuality720P120="720@120FPS",
+                videoQuality720P60="720@60FPS",
+                videoQuality720P25="720@25FPS",
+                videoQuality480P120="480@120FPS",
+                videoQuality480P60="480@60FPS",
+                videoQuality480P25="480@25FPS";
+        String switchName[]={
+                "Altimeter",//高度计0
+                "Speedometer",//速度计1
+                "Video&Live(beta)",//录播2
+                "Anti-shake",//防抖3
+                "Voice interaction",//语音交互4
+                "Auto",//自动--V3
+        };
+        String videoAngle[]={
+                "Medium",
+                "Wide",
+                "Super Wide"
+        };
+        common.waitTime(2);
+        common.initDevice();
+        common.pmclear();
+        Runtime.getRuntime().exec("dumpsys battery set level 100");//设置电流为100%
+        common.startCamera();
+        CameraAction.cameraSetting();
+        common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		AccountAction.loginAccount("sioeye", "y123456");
+		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
+		UiDevice.getInstance().pressBack();
+		common.waitTime(1);
+		UiDevice.getInstance().pressBack();
+		UiDevice.getInstance().pressBack();
+    	launchCamera();
+    	clickSwitch(switchName[0]);//开启高度计
+        live2ScreenOff();
+        clickSwitch(switchName[0]);//关闭高度计
+        common.waitTime(2);
+        clickSwitch(switchName[1]);//开启速度计
+        live2ScreenOff();
+        clickSwitch(switchName[1]);//关闭速度计
+        common.waitTime(2);
+        clickLiveMute();  //开启静音开关
+        live2ScreenOff();
+        clickLiveMute();//关闭静音开关
+        clickSwitch(switchName[3]); //开启防抖开关
+        live2ScreenOff();
+        clickSwitch(switchName[3]);//关闭防抖开关
+        clickSwitch(switchName[4]);//开启语音交互
+        live2ScreenOff();
+        clickSwitch(switchName[4]);//关闭语音交互
+        clickSwitch(switchName[5]);//开启为倒置Auto
+        live2ScreenOff();
+        clickSwitch(switchName[5]);//关闭为倒置Auto
+        configVideoAngle(videoAngle[2]);//视场角为超宽
+        live2ScreenOff();
+        configVideoAngle(videoAngle[1]);//视场角为宽
+        live2ScreenOff();
+        configVideoAngle(videoAngle[0]);//视场角为普通
+        live2ScreenOff();
+        configVideoAngle(videoAngle[0]);//视场角为普通(默认)
+        UiDevice.getInstance().pressBack();
+        UiDevice.getInstance().pressBack();
+        UiDevice.getInstance().pressBack();
+        //切换网络模式为3G
+        switchTo3G();
+        common.waitTime(1);
+        launchCamera();
+        CameraAction.cameraLive();//Live Modem
+        common.waitTime(2);
+        configVideoQuality(liveQuality480SD);
+        live2ScreenOn();
+        live2ScreenOff();
+        clickLiveAndSave();//开启直播保存
+        live2ScreenOn();
+        live2ScreenOff();
+        clickLiveAndSave();//关闭直播保存
+        common.waitTime(2);
+        UiDevice.getInstance().pressBack();
+        UiDevice.getInstance().pressBack();
+        UiDevice.getInstance().pressBack();
+        openWifi();
+        launchCamera();
+        CameraAction.cameraLive();//Live Modem
+        common.waitTime(2);
+        clickLiveAndSave();//开启直播保存
+        configVideoQuality(liveQuality480SD);
+        live2ScreenOn();
+        live2ScreenOff();
+        clickLiveAndSave();//关闭直播保存
+        common.waitTime(1);
+        live2ScreenOn();
+        live2ScreenOff();
+        configVideoQuality(liveQuality480HD);
+        live2ScreenOn();
+        live2ScreenOff();
+        configVideoQuality(liveQuality720HD);
+        live2ScreenOn();
+        live2ScreenOff();
+    makeToasts("10秒后关机......",5);
+    common.waitTime(10);
+    Runtime.getRuntime().exec("reboot -p ");
+}
+
+    public static void main(String[] args){
+		new UiAutomatorHelper("AppSioeye", "Current.CurrentTestCase", "testOther", "2");
+	}
 //   
 //    public void testDebugging() throws Exception {
 //    	initUIAutomator(this.getName());
 //    	common.startLog("*****Start to run " + runcase + " *****");
-//    	UiDevice.getInstance().pressBack();
-//        UiDevice.getInstance().pressBack();
-//        System.out.println("wait 3s");
-//        common.waitTime(3);
-//        switchTo3G();
+//    	
+//    	common.stopCamera();
+//    	common.startGallery();
+//    	galleryLiveScreenOn();
+//        common.infoLog("success");
 //    }
 }
 
 
-//            //4G开启运程控制灭屏待机
-//            logger.info("case:4G开启运程控制灭屏待机");
-//            openRemoteControl();
-//            makeScreenOff();
-//            waitTime(testStandbyTime);
-//            gDevice.pressKeyCode(KeyEvent.KEYCODE_POWER);
-//            waitTime(1);
-//            makeScreenOn();
-//            closeRemoteControl();
-//            连接wifi相机预览界面灭屏待机
-//            makeScreenOff();
-//            logger.info("连接wifi相机预览界面灭屏待机");
-//            waitTime(testStandbyTime);
-//            //WIFI灭屏直播不保存480SD
-//            gDevice.pressKeyCode(KeyEvent.KEYCODE_POWER);
-//            configVideoQuality(liveQuality720HD);
-//            live2ScreenOn();
-//            live2ScreenOff();
-//            //WIFI开启运程控制灭屏待机
-//            openRemoteControl();
-//            makeScreenOff();
-//            logger.info("WIFI开启运程控制灭屏待机");
-//            waitTime(testStandbyTime);
-//            gDevice.pressKeyCode(KeyEvent.KEYCODE_POWER);
-//            waitTime(2);
-//            makeScreenOn();
-//            closeRemoteControl();
 
 //    public boolean sendKey(int keyCode, int metaState) {
 //        if(DEBUG) {
@@ -759,42 +846,4 @@ public class CurrentTestCase extends Base {
 //        }
 //        return false;
 //    }
-//private void openRemoteControl() throws Exception {
-//    makeScreenOn();
-//    CameraAction.cameraSetting();
-//    waitTime(1);
-//    Iris4GAction.ScrollViewByText("Remote control");
-//    CameraAction.openCompoundButton("Remote control");
-//    waitUntilFindText("OK", 5000);
-//    if (text_exists("OK")) {
-//        clickByText("OK");
-//    }
-//    Spoon.screenshot("RemoteControl", "RemoteControl");
-//    waitTime(1);
-//    waitUntilFindText("You are in remote control:",5000);
-//    if (text_exists("You are in remote control:")){
-//        logger.info("远程控制已连接服务器");
-//        waitTime(2);
-//    }else {
-//        waitTime(20);
-//    }
-//}
-//    private void closeRemoteControl() throws RemoteException {
-//        makeScreenOn();
-//        clickById(Iris4GPage.btn_manual);
-//        waitTime(2);
-//    }
-//private void clickAirModem() throws Exception {
-//    Iris4GAction.startSettings();
-//    clickByText("Advance");
-//    waitTime(1);
-//    clickByText("Developer options");
-//    Iris4GAction.scrollTextIntoView("Airplane mode");
-//    clickByText("Airplane mode");
-//    waitTime(1);
-//    gDevice.pressBack();
-//    waitTime(1);
-//    gDevice.pressBack();
-//    waitTime(1);
-//    gDevice.pressBack();
-//}
+

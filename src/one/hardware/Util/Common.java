@@ -716,6 +716,19 @@ public class Common {
 			throw new Exception("ScrollFindObject" + text);
 		}
 	}
+	public void ScrollViewByTextFotCurrenttest(String text) throws Exception {
+		UiScrollable listScrollable = new UiScrollable(new UiSelector().scrollable(true));
+		listScrollable.scrollToEnd(30);
+		try {
+			if (listScrollable.scrollTextIntoView(text)) {
+				infoLog( FindScrollFindObject+ text);
+			}
+		} catch (UiObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+			infoLog( NotFindScrollFindObject+ text);
+			throw new Exception("ScrollFindObject" + text);
+		}
+	}
 	public void ScrollViewByText2(String text) throws Exception {
 		UiScrollable listScrollable = new UiScrollable(new UiSelector().resourceId("android:id/list"));
 		listScrollable.setMaxSearchSwipes(10);
@@ -762,8 +775,7 @@ public class Common {
 	 * 强查找控件通过控件ID,之后点击
 	 */
 	public void clickViewById(String resourceid) throws Exception {
-		UiObject object = findViewById(resourceid);
-		object.clickAndWaitForNewWindow();
+		findViewById(resourceid).clickAndWaitForNewWindow();
 	}
 
 	/**
