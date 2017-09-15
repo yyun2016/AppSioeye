@@ -32,7 +32,7 @@ public class LiveCase extends Base{
 				}else {
 					common.failcase(runcase);
 					}
-			sleep(500);
+			sleep(600);
 			
 			HashSet<String> afterTakeVideoList = common.FileList(video_path);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
@@ -133,6 +133,6 @@ public class LiveCase extends Base{
 	
 	
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "testLiveAndSave72025HDSuperWide  ", "1");
 	}
 }
