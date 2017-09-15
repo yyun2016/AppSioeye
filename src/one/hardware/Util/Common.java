@@ -142,7 +142,7 @@ public class Common {
 				}
 		}
 		if (height==480) {
-			if (vd.getHeight()==480&&vd.getWidth()==640) {
+			if (vd.getHeight()==480&&vd.getWidth()==864) {
 					result =true;
 				}
 		}
