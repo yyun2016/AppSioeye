@@ -359,6 +359,9 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
+        common.ScrollViewByText("More settings");
+        common.clickViewByText("More settings");
+        common.waitTime(2);
         common.ScrollViewByText("Video Angle");
         common.clickViewByText("Video Angle");
         common.waitTime(2);
@@ -372,6 +375,9 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
+        common.ScrollViewByText("More settings");
+        common.clickViewByText("More settings");
+        common.waitTime(2);
         common.ScrollViewByText("Live Mute");
         CameraAction.openCompoundButton("Live Mute");
         common.waitTime(2);
@@ -386,6 +392,9 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
+        common.ScrollViewByText("More settings");
+        common.clickViewByText("More settings");
+        common.waitTime(2);
         common.ScrollViewByText("Live&Save");
         CameraAction.openCompoundButton("Live&Save");
         common.waitTime(2);
@@ -400,6 +409,9 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
+        common.ScrollViewByText("More settings");
+        common.clickViewByText("More settings");
+        common.waitTime(2);
         common.ScrollViewByText("Up/Down");
         common.clickViewByText("Up/Down");
         common.waitTime(3);
@@ -458,6 +470,9 @@ public class CurrentTestCase extends Base {
         makeScreenOn();
         CameraAction.cameraSetting();
         common.waitTime(1);
+        common.ScrollViewByText("More settings");
+        common.clickViewByText("More settings");
+        common.waitTime(2);
         common.ScrollViewByTextFotCurrenttest(switchName);
         CameraAction.openCompoundButton(switchName);
         logger.info("已点击" + switchName);
@@ -470,9 +485,9 @@ public class CurrentTestCase extends Base {
     	initUIAutomator(this.getName());
     	UiDevice.getInstance().pressHome();
     	common.startLog("*****Start to run " + runcase + " *****");
-        String liveQuality480SD="480@25FPS(SD)",
-                liveQuality480HD="480@25FPS(HD)",
-                liveQuality720HD="720@25FPS(HD)";
+        String liveQuality480SD="480@25FPS(Bitrate0.3-4 Mbps)",
+                liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
+                liveQuality1080HD="1080@25FPS(Bitrate1.5-10 Mbps)";
         String videoQuality4KP25="4K@25FPS",
         		videoQuality2KP25="2K@25FPS",
         		videoQuality1080P120="1080@120FPS",
@@ -487,7 +502,7 @@ public class CurrentTestCase extends Base {
         String switchName[]={
                 "Altimeter",//高度计0
                 "Speedometer",//速度计1
-                "Video&Live(beta)",//录播2
+                "Video&Live(beta)",//录播2  V3暂时无该功能；有的
                 "Anti-shake",//防抖3
                 "Voice interaction",//语音交互4
                 "Auto",//自动--V3
@@ -578,7 +593,7 @@ public class CurrentTestCase extends Base {
             launchCamera();
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
-//            clickSwitch(switchName[2]);//开启录播
+//            clickSwitch(switchName[2]);//开启录播        v3暂无该功能；添加需要修改方法
 //            p2pScreenOn();
 //            p2pScreenOff();
 //            clickSwitch(switchName[2]);//关闭录播
@@ -602,15 +617,15 @@ public class CurrentTestCase extends Base {
             //直播
             launchCamera();
             CameraAction.cameraLive();;//Live Modem
-            makeToasts("start"+i,5);
-            common.waitTime(2);
+//            makeToasts("start"+i,5);
+//            common.waitTime(2);
             configVideoQuality(liveQuality480SD);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality480HD);
+            configVideoQuality(liveQuality720HD);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality720HD);
+            configVideoQuality(liveQuality1080HD);
             live2ScreenOn();
             live2ScreenOff();
             clickLiveAndSave();//开启直播保存
@@ -618,10 +633,10 @@ public class CurrentTestCase extends Base {
             configVideoQuality(liveQuality480SD);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality480HD);
+            configVideoQuality(liveQuality720HD);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality720HD);
+            configVideoQuality(liveQuality1080HD);
             live2ScreenOn();
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
@@ -686,10 +701,10 @@ public class CurrentTestCase extends Base {
             common.waitTime(1);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality480HD);
+            configVideoQuality(liveQuality720HD);
             live2ScreenOn();
             live2ScreenOff();
-            configVideoQuality(liveQuality720HD);
+            configVideoQuality(liveQuality1080HD);
             live2ScreenOn();
             live2ScreenOff();
 
