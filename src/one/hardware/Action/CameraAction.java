@@ -252,6 +252,9 @@ public class CameraAction extends Base {
 		common.ScrollViewByText(quality);
 		common.clickViewByText(quality);
 		common.infoLog("Video Quality设置为 :"+quality);
+		common.ScrollViewByText("More settings");
+		common.clickViewByText("More settings");
+		common.waitTime(1);
 		common.ScrollViewByText("Video Angle");
 		common.clickViewByText("Video Angle");
 		common.clickViewByText(angle);
@@ -279,6 +282,9 @@ public class CameraAction extends Base {
 	public static void configLiveAngle(String angle) throws Exception{
 		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[0]);
 		CameraAction.cameraSetting();
+		common.ScrollViewByText("More settings");
+		common.clickViewByText("More settings");
+		common.waitTime(1);
 		common.ScrollViewByText("Video Angle");
 		common.clickViewByText("Video Angle");
 		common.clickViewByText(angle);
@@ -501,6 +507,9 @@ public class CameraAction extends Base {
 	}
 	public static void openLiveAndSave() throws Exception {
 		CameraAction.cameraSetting();
+		common.ScrollViewByText("More settings");
+		common.clickViewByText("More settings");
+		common.waitTime(1);
 		common.ScrollViewByText("Live&Save");
 		CameraAction.openCompoundButton("Live&Save");
 		common.waitTime(1);
