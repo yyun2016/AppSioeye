@@ -38,6 +38,7 @@ public class BurstCase extends Base{
 			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=10) {
@@ -86,7 +87,7 @@ public class BurstCase extends Base{
 			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=20) {
@@ -137,7 +138,7 @@ public class BurstCase extends Base{
 			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=30) {
@@ -188,7 +189,7 @@ public class BurstCase extends Base{
 			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=10) {
@@ -239,7 +240,7 @@ public class BurstCase extends Base{
 			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=20) {
@@ -290,7 +291,7 @@ public class BurstCase extends Base{
 			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=30) {
@@ -339,7 +340,7 @@ public class BurstCase extends Base{
 			sleep(7000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=10) {
@@ -388,7 +389,7 @@ public class BurstCase extends Base{
 			sleep(10000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=20) {
@@ -437,7 +438,7 @@ public class BurstCase extends Base{
 			sleep(15000);
 			HashSet<String> afterTakeVideoList = common.FileList(burstPath);
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
-
+			sleep(600);
 			common.findViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 			int piccnt = resultHashSet.size();
 			if (piccnt!=30) {
