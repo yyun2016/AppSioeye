@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 
 import com.android.uiautomator.core.UiDevice;
 import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.ckt.demo.UiAutomatorHelper;
 
 import java.io.IOException;
@@ -188,6 +189,14 @@ public class CurrentTestCase extends Base {
         checkLiveStatusAndTry2s(0);
         common.waitTime(1);
     }
+    private void liveForMaxZoom(int screen) throws Exception {
+        makeScreenOn();
+        UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
+        logger.info("LaunchCameraKeyForStart");
+        common.waitTime(2);
+        makeLiveOfMaxZoom(screen);
+        common.waitTime(1);
+    }
     /**
      *检查发起直播是否成功，并会重试一次
      * 两次失败会产生一个两分钟的电流锯齿波
@@ -229,6 +238,52 @@ public class CurrentTestCase extends Base {
             makeLiveStop();
         }
     }
+    private void makeLiveOfMaxZoom(int screen) throws Exception {
+    	common.findViewById2(one.hardware.Page.Camera.recording_time_id).waitForExists(50000);
+        common.waitTime(3);
+        UiObject recordingTimeId = common.findViewById2(one.hardware.Page.Camera.recording_time_id);
+        if (!recordingTimeId.exists()) {
+        	UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);//消除对话框
+            common.waitTime(2);
+            UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
+            logger.info("Try again");
+            common.findViewById2(one.hardware.Page.Camera.recording_time_id).waitForExists(50000);
+            common.waitTime(3);
+            UiObject recordingTimeIdAgain = common.findViewById2(one.hardware.Page.Camera.recording_time_id);
+            if (!recordingTimeIdAgain.exists()) {
+            	UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);//消除对话框
+                logger.info("Live Failed");
+                logger.info("SawtoothWaveNoteMakeLiveFailed");
+                for (int i=0;i<4;i++) {
+                	common.waitTime(15);
+                    UiDevice.getInstance().pressBack();
+                    UiDevice.getInstance().pressBack();
+                    common.waitTime(15);
+                    common.startCamera();
+                }
+                CameraAction.cameraLive();//Live Modem
+            }else {
+                logger.info("Live succeed");
+                changZoom();
+                if (screen==0){makeScreenOff();}
+                common.waitTime(1);
+                makeLiveStop();
+            }
+        } else {
+            logger.info("Live succeed");
+            changZoom();
+            if (screen==0){makeScreenOff();}
+            common.waitTime(1);
+            makeLiveStop();
+        }
+    }
+    private void changZoom() throws Exception {
+    	device.click(60, 60);
+    	device.click(60, 60);
+    	common.findViewById2("com.hicam:id/preview").swipeRight(60);
+    	common.findViewById2("com.hicam:id/preview").swipeRight(60);
+    	
+	}
 
     /**
      * 相册亮屏直播，相册第一个视频可以直播
@@ -485,7 +540,7 @@ public class CurrentTestCase extends Base {
     	initUIAutomator(this.getName());
     	UiDevice.getInstance().pressHome();
     	common.startLog("*****Start to run " + runcase + " *****");
-        String liveQuality480SD="480@25FPS(Bitrate0.3-4 Mbps)",
+        String liveQuality480="480@25FPS(Bitrate0.3-4 Mbps)",
                 liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
                 liveQuality1080HD="1080@25FPS(Bitrate1.5-10 Mbps)";
         String videoQuality4KP25="4K@25FPS",
@@ -536,8 +591,9 @@ public class CurrentTestCase extends Base {
             launchCamera();
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
-            //四种分辨率灭屏录像2分钟
+            //各种分辨率灭屏录像2分钟
             makeToasts("start",5);
+            common.waitTime(testTime*3);
             configVideoQuality(videoQuality4KP25);//4K亮
             p2pScreenOn();
             p2pScreenOff();//4K灭
@@ -619,7 +675,7 @@ public class CurrentTestCase extends Base {
             CameraAction.cameraLive();;//Live Modem
 //            makeToasts("start"+i,5);
 //            common.waitTime(2);
-            configVideoQuality(liveQuality480SD);
+            configVideoQuality(liveQuality480);
             live2ScreenOn();
             live2ScreenOff();
             configVideoQuality(liveQuality720HD);
@@ -630,7 +686,7 @@ public class CurrentTestCase extends Base {
             live2ScreenOff();
             clickLiveAndSave();//开启直播保存
             common.waitTime(2);
-            configVideoQuality(liveQuality480SD);
+            configVideoQuality(liveQuality480);
             live2ScreenOn();
             live2ScreenOff();
             configVideoQuality(liveQuality720HD);
@@ -641,7 +697,7 @@ public class CurrentTestCase extends Base {
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
             common.waitTime(1);
-            configVideoQuality(liveQuality480SD);
+            configVideoQuality(liveQuality480);
             clickSwitch(switchName[0]);//开启高度计
             live2ScreenOff();
             clickSwitch(switchName[0]);//关闭高度计
@@ -668,17 +724,18 @@ public class CurrentTestCase extends Base {
             live2ScreenOff();
             configVideoAngle(videoAngle[0]);//视场角为普通
             live2ScreenOff();
-            configVideoAngle(videoAngle[0]);//视场角为普通(默认)
+            liveForMaxZoom(0);//最大焦距直播
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
+            common.waitTime(testTime*3);
             //切换网络模式为3G
             switchTo3G();
             common.waitTime(1);
             launchCamera();
             CameraAction.cameraLive();//Live Modem
             common.waitTime(2);
-            configVideoQuality(liveQuality480SD);
+            configVideoQuality(liveQuality480);
             live2ScreenOn();
             live2ScreenOff();
             clickLiveAndSave();//开启直播保存
@@ -694,7 +751,7 @@ public class CurrentTestCase extends Base {
             CameraAction.cameraLive();//Live Modem
             common.waitTime(2);
             clickLiveAndSave();//开启直播保存
-            configVideoQuality(liveQuality480SD);
+            configVideoQuality(liveQuality480);
             live2ScreenOn();
             live2ScreenOff();
             clickLiveAndSave();//关闭直播保存
@@ -707,158 +764,47 @@ public class CurrentTestCase extends Base {
             configVideoQuality(liveQuality1080HD);
             live2ScreenOn();
             live2ScreenOff();
-
         }
         makeToasts("10秒后关机......",5);
         common.waitTime(10);
         Runtime.getRuntime().exec("reboot -p ");
     }
-    public void testOther() throws Exception {
-    	initUIAutomator(this.getName());
-    	UiDevice.getInstance().pressHome();
-    	common.startLog("*****Start to run " + runcase + " *****");
-        String liveQuality480SD="480@25FPS(SD)",
-                liveQuality480HD="480@25FPS(HD)",
-                liveQuality720HD="720@25FPS(HD)";
-        String videoQuality4KP25="4K@25FPS",
-        		videoQuality2KP25="2K@25FPS",
-        		videoQuality1080P120="1080@120FPS",
-        		videoQuality1080P60="1080@60FPS",
-        		videoQuality1080P25="1080@25FPS",
-        		videoQuality720P120="720@120FPS",
-                videoQuality720P60="720@60FPS",
-                videoQuality720P25="720@25FPS",
-                videoQuality480P120="480@120FPS",
-                videoQuality480P60="480@60FPS",
-                videoQuality480P25="480@25FPS";
-        String switchName[]={
-                "Altimeter",//高度计0
-                "Speedometer",//速度计1
-                "Video&Live(beta)",//录播2
-                "Anti-shake",//防抖3
-                "Voice interaction",//语音交互4
-                "Auto",//自动--V3
-        };
-        String videoAngle[]={
-                "Medium",
-                "Wide",
-                "Super Wide"
-        };
-        common.waitTime(2);
-        common.initDevice();
-        common.pmclear();
-        Runtime.getRuntime().exec("dumpsys battery set level 100");//设置电流为100%
-        common.startCamera();
-        CameraAction.cameraSetting();
-        common.ScrollViewByText("Account");
-		common.clickViewByText("Account");
-		AccountAction.loginAccount("sioeye", "y123456");
-		boolean login = one.hardware.Action.AccountAction.isLoginSuccess();
-		UiDevice.getInstance().pressBack();
-		common.waitTime(1);
-		UiDevice.getInstance().pressBack();
-		UiDevice.getInstance().pressBack();
-    	launchCamera();
-    	clickSwitch(switchName[0]);//开启高度计
-        live2ScreenOff();
-        clickSwitch(switchName[0]);//关闭高度计
-        common.waitTime(2);
-        clickSwitch(switchName[1]);//开启速度计
-        live2ScreenOff();
-        clickSwitch(switchName[1]);//关闭速度计
-        common.waitTime(2);
-        clickLiveMute();  //开启静音开关
-        live2ScreenOff();
-        clickLiveMute();//关闭静音开关
-        clickSwitch(switchName[3]); //开启防抖开关
-        live2ScreenOff();
-        clickSwitch(switchName[3]);//关闭防抖开关
-        clickSwitch(switchName[4]);//开启语音交互
-        live2ScreenOff();
-        clickSwitch(switchName[4]);//关闭语音交互
-        clickSwitch(switchName[5]);//开启为倒置Auto
-        live2ScreenOff();
-        clickSwitch(switchName[5]);//关闭为倒置Auto
-        configVideoAngle(videoAngle[2]);//视场角为超宽
-        live2ScreenOff();
-        configVideoAngle(videoAngle[1]);//视场角为宽
-        live2ScreenOff();
-        configVideoAngle(videoAngle[0]);//视场角为普通
-        live2ScreenOff();
-        configVideoAngle(videoAngle[0]);//视场角为普通(默认)
-        UiDevice.getInstance().pressBack();
-        UiDevice.getInstance().pressBack();
-        UiDevice.getInstance().pressBack();
-        //切换网络模式为3G
-        switchTo3G();
-        common.waitTime(1);
-        launchCamera();
-        CameraAction.cameraLive();//Live Modem
-        common.waitTime(2);
-        configVideoQuality(liveQuality480SD);
-        live2ScreenOn();
-        live2ScreenOff();
-        clickLiveAndSave();//开启直播保存
-        live2ScreenOn();
-        live2ScreenOff();
-        clickLiveAndSave();//关闭直播保存
-        common.waitTime(2);
-        UiDevice.getInstance().pressBack();
-        UiDevice.getInstance().pressBack();
-        UiDevice.getInstance().pressBack();
-        openWifi();
-        launchCamera();
-        CameraAction.cameraLive();//Live Modem
-        common.waitTime(2);
-        clickLiveAndSave();//开启直播保存
-        configVideoQuality(liveQuality480SD);
-        live2ScreenOn();
-        live2ScreenOff();
-        clickLiveAndSave();//关闭直播保存
-        common.waitTime(1);
-        live2ScreenOn();
-        live2ScreenOff();
-        configVideoQuality(liveQuality480HD);
-        live2ScreenOn();
-        live2ScreenOff();
-        configVideoQuality(liveQuality720HD);
-        live2ScreenOn();
-        live2ScreenOff();
-    makeToasts("10秒后关机......",5);
-    common.waitTime(10);
-    Runtime.getRuntime().exec("reboot -p ");
-}
-
     public static void main(String[] args){
-		new UiAutomatorHelper("AppSioeye", "Current.CurrentTestCase", "testOther", "2");
+		new UiAutomatorHelper("AppSioeye", "Current.CurrentTestCase", "testForCurrent", "2");
 	}
-//   
-//    public void testDebugging() throws Exception {
+    
+//    public void testOther() throws Exception {
 //    	initUIAutomator(this.getName());
+//    	UiDevice.getInstance().pressHome();
 //    	common.startLog("*****Start to run " + runcase + " *****");
-//    	
-//    	common.stopCamera();
-//    	common.startGallery();
-//    	galleryLiveScreenOn();
-//        common.infoLog("success");
+//        String liveQuality480="480@25FPS(Bitrate0.3-4 Mbps)",
+//                liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
+//                liveQuality1080HD="1080@25FPS(Bitrate1.5-10 Mbps)";
+//        String videoQuality4KP25="4K@25FPS",
+//        		videoQuality2KP25="2K@25FPS",
+//        		videoQuality1080P120="1080@120FPS",
+//        		videoQuality1080P60="1080@60FPS",
+//        		videoQuality1080P25="1080@25FPS",
+//        		videoQuality720P120="720@120FPS",
+//                videoQuality720P60="720@60FPS",
+//                videoQuality720P25="720@25FPS",
+//                videoQuality480P120="480@120FPS",
+//                videoQuality480P60="480@60FPS",
+//                videoQuality480P25="480@25FPS";
+//        String switchName[]={
+//                "Altimeter",//高度计0
+//                "Speedometer",//速度计1
+//                "Video&Live(beta)",//录播2  V3暂时无该功能；有的
+//                "Anti-shake",//防抖3
+//                "Voice interaction",//语音交互4
+//                "Auto",//自动--V3
+//        };
+//        launchCamera();
+//        for(int i=0;i<2;i++){
+//        	liveForChangeZoom(1);
+//        }
 //    }
+//    
+//    
+    
 }
-
-
-
-//    public boolean sendKey(int keyCode, int metaState) {
-//        if(DEBUG) {
-//            Log.d(LOG_TAG, "sendKey (" + keyCode + ", " + metaState + ")");
-//        }
-//
-//        long eventTime = SystemClock.uptimeMillis();
-//        KeyEvent downEvent = new KeyEvent(eventTime, eventTime, 0, keyCode, 0, metaState, -1, 0, 0, 257);
-//        if(this.injectEventSync(downEvent)) {
-//            KeyEvent upEvent = new KeyEvent(eventTime, eventTime, 1, keyCode, 0, metaState, -1, 0, 0, 257);
-//            if(this.injectEventSync(upEvent)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
