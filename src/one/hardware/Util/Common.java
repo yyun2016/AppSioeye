@@ -224,6 +224,16 @@ public class Common {
 		        return true;  
 		    }  
 		 }
+	public String videoFilePath() {
+		File path=new File ("/storage/sdcard1");
+		 StatFs statfs=new StatFs(path.getPath());
+		 Long availaBlock=statfs.getAvailableBlocksLong();
+		    if (availaBlock==0){
+		        return "/storage/sdcard0/Video";  
+		    }else{
+		        return "/storage/sdcard1/Video";  
+		    }  
+	}
 
 	/**
 	 * 返回文件差集
@@ -398,7 +408,7 @@ public class Common {
 		int n = 1;
 		while (n < 3) {
 			Runtime.getRuntime().exec("am start -n com.mediatek.filemanager/.FileManagerOperationActivity");
-			waitTime(3);
+			waitTime(1);
 			String name = device.getCurrentPackageName();
 			infoLog("当前package:" + name);
 			if (name.equalsIgnoreCase("com.mediatek.filemanager")) {

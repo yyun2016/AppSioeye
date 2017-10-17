@@ -66,6 +66,7 @@ public class Camera {
 	public static String[] video_Angle ={"Super Wide","Wide","Medium"};
 	
 	public static String[] lapse_time ={"2s","3s","5s","10s"};
+	public static int[] lapse_times ={2,3,5,10};
 	public static String[] lapse_quality ={
 			"480@30FPS",
 			"720@30FPS",
