@@ -14,11 +14,20 @@ import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse2s48030AllAngle", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse3s4k30AllAngle", "1");
 		
 	}
 	
-	public void lapseAllAngle(int lapse_quality,int lapse_time) throws Exception{
+	/**
+	 * 
+	 * @param lapse_quality   480@30、720@30、1080@30，2K@30，4K@30
+	 * @param lapse_time   2s,3s,5s,10s
+	 * @param height   这个是分辨率的高度，4000对应4K，2000对应2k，1080对应1080P，720对应720P，480对应480P
+	 * @throws Exception
+	 * @author ruixiang.xu   
+	 * @date 2017年10月21日 上午10:02:53
+	 */
+	private void lapseAllAngle(int lapse_quality,int lapse_time,int height) throws Exception{
 		try {
 			initUIAutomator(this.getName());
 			common.startLog("*****Start to run " + runcase + " *****");
@@ -66,7 +75,7 @@ public class LapseCase extends Base{
 						common.infoLog("new file:"+videopath);
 						String videoName = new File(videopath).getName();
 						VideoNode activeNode = common.VideoInfo(videopath);
-						if (common.checkVideoInfo(480, activeNode)) {
+						if (common.checkVideoInfo(height, activeNode)) {
 							common.infoLog("video info check success-"+videopath);
 							FileManagerAction.playVideoByFileManager(videoName,isExistSDCard);
 							if (common.findViewByText2("^Can't play this video.*").exists()) {
@@ -77,6 +86,8 @@ public class LapseCase extends Base{
 							}else {
 								common.infoLog(videoName+" 播放成功");
 								result= true;
+								common.startCamera();
+								CameraAction.configLapseTimeAndVideoQuality(Camera.lapse_time[lapse_time], quality);
 							}
 						}else {
 							common.infoLog("video info check failed"+videopath);
@@ -110,82 +121,82 @@ public class LapseCase extends Base{
 	 * date 2017年7月25日下午10:39:16
 	 */
 	public void testLapse2s48030AllAngle() throws Exception{
-		lapseAllAngle(0, 0);
+		lapseAllAngle(0, 0,480);
 	}
 	
 	public void testLapse2s72030AllAngle() throws Exception{
-		lapseAllAngle(1, 0);
+		lapseAllAngle(1, 0,720);
 	}
 	
 	public void testLapse2s108030AllAngle() throws Exception{
-		lapseAllAngle(2, 0);
+		lapseAllAngle(2, 0,1080);
 	}
 	
 	public void testLapse2s2K30AllAngle() throws Exception{
-		lapseAllAngle(3, 0);
+		lapseAllAngle(3, 0,2000);
 	}
 	
 	public void testLapse2s4k30AllAngle() throws Exception{
-		lapseAllAngle(4, 0);
+		lapseAllAngle(4, 0,4000);
 	}
 	
 	public void testLapse3s48030AllAngle() throws Exception{
-		lapseAllAngle(0, 1);
+		lapseAllAngle(0, 1,480);
 	}
 	
 	public void testLapse3s72030AllAngle() throws Exception{
-		lapseAllAngle(1, 1);
+		lapseAllAngle(1, 1,720);
 	}
 	
 	public void testLapse3s108030AllAngle() throws Exception{
-		lapseAllAngle(2, 1);
+		lapseAllAngle(2, 1,1080);
 	}
 	
 	public void testLapse3s2k30AllAngle() throws Exception{
-		lapseAllAngle(3, 1);
+		lapseAllAngle(3, 1,2000);
 	}
 	
 	public void testLapse3s4k30AllAngle() throws Exception{
-		lapseAllAngle(4, 1);
+		lapseAllAngle(4, 1,4000);
 	}
 	
 	public void testLapse5s48030AllAngle() throws Exception{
-		lapseAllAngle(0, 2);
+		lapseAllAngle(0, 2,480);
 	}
 	
 	public void testLapse5s72030AllAngle() throws Exception{
-		lapseAllAngle(1, 2);
+		lapseAllAngle(1, 2,720);
 	}
 	
 	public void testLapse5s108030AllAngle() throws Exception{
-		lapseAllAngle(2, 2);
+		lapseAllAngle(2, 2,1080);
 	}
 	
 	public void testLapse5s2k30AllAngle() throws Exception{
-		lapseAllAngle(3, 2);
+		lapseAllAngle(3, 2,2000);
 	}
 	
 	public void testLapse5s4k30AllAngle() throws Exception{
-		lapseAllAngle(4, 2);
+		lapseAllAngle(4, 2,4000);
 	}
 	
 	public void testLapse10s48030AllAngle() throws Exception{
-		lapseAllAngle(0, 3);
+		lapseAllAngle(0, 3,480);
 	}
 	
 	public void testLapse10s72030AllAngle() throws Exception{
-		lapseAllAngle(1, 3);
+		lapseAllAngle(1, 3,720);
 	}
 	
 	public void testLapse10s108030AllAngle() throws Exception{
-		lapseAllAngle(2, 3);
+		lapseAllAngle(2, 3,1080);
 	}
 	
 	public void testLapse10s2k30AllAngle() throws Exception{
-		lapseAllAngle(3, 3);
+		lapseAllAngle(3, 3,2000);
 	}
 	
 	public void testLapse10s4k30AllAngle() throws Exception{
-		lapseAllAngle(4, 3);
+		lapseAllAngle(4, 3,4000);
 	}
 }
