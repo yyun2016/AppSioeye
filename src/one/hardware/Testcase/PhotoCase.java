@@ -74,7 +74,7 @@ public class PhotoCase extends Base{
 			HashSet<String> beforeTakePhotoList = common.FileList(photo_path);
 			for(int i=0;i<10;i++){
 				common.cameraKey();
-				common.waitTime(2);
+				common.waitTime(3);
 			}
 			sleep(2000);
 			HashSet<String> afterTakePhotoList = common.FileList(photo_path);
@@ -147,7 +147,7 @@ public class PhotoCase extends Base{
 	 *  18M(4:3)
 	 */
 	public void testPhoto18M43() throws Exception{
-		PhotoConfig("18M(4:3)",16,9);
+		PhotoConfig("18M(4:3)",4,3);
 		
 	}
 	/*
@@ -168,7 +168,7 @@ public class PhotoCase extends Base{
 	 */
 	public void testPhotoAndAntiShake18M43ByManyTimes() throws Exception{
 
-		photosAndAntiShakeConfig("18M(4:3)",16,9);
+		photosAndAntiShakeConfig("18M(4:3)",4,3);
 	}
 	/*
 	 * 防抖+连续拍照13M(16:9)
@@ -188,7 +188,7 @@ public class PhotoCase extends Base{
 	 * 自动翻转+连续拍照18M(4:3)
 	 */
 	public void testPhotoAndAuto18M43ByManyTimes() throws Exception{
-		photosAndAutoConfig("18M(4:3)",16,9);
+		photosAndAutoConfig("18M(4:3)",4,3);
 	}
 	/*
 	 * 自动翻转+连续拍照13M(16:9)
