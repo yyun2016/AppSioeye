@@ -542,7 +542,7 @@ public class CurrentTestCase extends Base {
     	common.startLog("*****Start to run " + runcase + " *****");
         String liveQuality480="480@25FPS(Bitrate0.3-4 Mbps)",
                 liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
-                liveQuality1080HD="1080@25FPS(Bitrate1.5-10 Mbps)";
+                liveQuality1080HD="1080@25FPS(Bitrate10 Mbps)";
         String videoQuality4KP25="4K@25FPS",
         		videoQuality2KP25="2K@25FPS",
         		videoQuality1080P120="1080@120FPS",
@@ -673,8 +673,6 @@ public class CurrentTestCase extends Base {
             //直播
             launchCamera();
             CameraAction.cameraLive();;//Live Modem
-//            makeToasts("start"+i,5);
-//            common.waitTime(2);
             configVideoQuality(liveQuality480);
             live2ScreenOn();
             live2ScreenOff();
@@ -779,7 +777,7 @@ public class CurrentTestCase extends Base {
 //    	common.startLog("*****Start to run " + runcase + " *****");
 //        String liveQuality480="480@25FPS(Bitrate0.3-4 Mbps)",
 //                liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
-//                liveQuality1080HD="1080@25FPS(Bitrate1.5-10 Mbps)";
+//                liveQuality1080HD="1080@25FPS(Bitrate10 Mbps)";
 //        String videoQuality4KP25="4K@25FPS",
 //        		videoQuality2KP25="2K@25FPS",
 //        		videoQuality1080P120="1080@120FPS",
@@ -799,12 +797,101 @@ public class CurrentTestCase extends Base {
 //                "Voice interaction",//语音交互4
 //                "Auto",//自动--V3
 //        };
+//        String videoAngle[]={
+//                "Medium",
+//                "Wide",
+//                "Super Wide"
+//        };
 //        launchCamera();
-//        for(int i=0;i<2;i++){
-//        	liveForChangeZoom(1);
-//        }
-//    }
-//    
-//    
+//        for(int i=0;i<1;i++){
+//        	CameraAction.cameraLive();//Live Modem
+//        	configVideoQuality(liveQuality1080HD);
+//        	live2ScreenOn();
+//        	live2ScreenOff();
+//        	clickLiveAndSave();//开启直播保存
+//        	common.waitTime(2);
+//        	configVideoQuality(liveQuality480);
+//        	live2ScreenOn();
+//    live2ScreenOff();
+//    configVideoQuality(liveQuality720HD);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    configVideoQuality(liveQuality1080HD);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    clickLiveAndSave();//关闭直播保存
+//    common.waitTime(1);
+//    configVideoQuality(liveQuality480);
+//    clickSwitch(switchName[0]);//开启高度计
+//    live2ScreenOff();
+//    clickSwitch(switchName[0]);//关闭高度计
+//    common.waitTime(2);
+//    clickSwitch(switchName[1]);//开启速度计
+//    live2ScreenOff();
+//    clickSwitch(switchName[1]);//关闭速度计
+//    common.waitTime(2);
+//    clickLiveMute();  //开启静音开关
+//    live2ScreenOff();
+//    clickLiveMute();//关闭静音开关
+//    clickSwitch(switchName[3]); //开启防抖开关
+//    live2ScreenOff();
+//    clickSwitch(switchName[3]);//关闭防抖开关
+//    clickSwitch(switchName[4]);//开启语音交互
+//    live2ScreenOff();
+//    clickSwitch(switchName[4]);//关闭语音交互
+//    clickSwitch(switchName[5]);//开启为倒置Auto
+//    live2ScreenOff();
+//    clickSwitch(switchName[5]);//关闭为倒置Auto
+//    configVideoAngle(videoAngle[2]);//视场角为超宽
+//    live2ScreenOff();
+//    configVideoAngle(videoAngle[1]);//视场角为宽
+//    live2ScreenOff();
+//    configVideoAngle(videoAngle[0]);//视场角为普通
+//    live2ScreenOff();
+//    liveForMaxZoom(0);//最大焦距直播
+//    UiDevice.getInstance().pressBack();
+//    UiDevice.getInstance().pressBack();
+//    UiDevice.getInstance().pressBack();
+//    common.waitTime(testTime*3);
+//    //切换网络模式为3G
+//    switchTo3G();
+//    common.waitTime(1);
+//    launchCamera();
+//    CameraAction.cameraLive();//Live Modem
+//    common.waitTime(2);
+//    configVideoQuality(liveQuality480);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    clickLiveAndSave();//开启直播保存
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    clickLiveAndSave();//关闭直播保存
+//    common.waitTime(2);
+//    UiDevice.getInstance().pressBack();
+//    UiDevice.getInstance().pressBack();
+//    UiDevice.getInstance().pressBack();
+//    openWifi();
+//    launchCamera();
+//    CameraAction.cameraLive();//Live Modem
+//    common.waitTime(2);
+//    clickLiveAndSave();//开启直播保存
+//    configVideoQuality(liveQuality480);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    clickLiveAndSave();//关闭直播保存
+//    common.waitTime(1);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    configVideoQuality(liveQuality720HD);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//    configVideoQuality(liveQuality1080HD);
+//    live2ScreenOn();
+//    live2ScreenOff();
+//}
+//makeToasts("10秒后关机......",5);
+//common.waitTime(10);
+//Runtime.getRuntime().exec("reboot -p ");
+//}  
     
 }
