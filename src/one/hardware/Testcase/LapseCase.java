@@ -14,7 +14,7 @@ import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse3s4k30AllAngle", "1");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "", "1");
 		
 	}
 	

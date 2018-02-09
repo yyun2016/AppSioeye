@@ -78,6 +78,7 @@ public class CameraAction extends Base {
 	 * Click camera_setting_shortcut_id按钮
 	 */
 	public static  void cameraSetting() throws Exception {
+		common.waitTime(1);
 		common.clickViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 	}
 	/**
@@ -236,6 +237,8 @@ public class CameraAction extends Base {
 		common.ScrollViewByText(timelapse);
 		common.clickViewByText(timelapse);
 		common.infoLog("Time Lapse设置为 :"+timelapse);
+		common.infoLog("will click setting");
+		common.device.pressBack();
 		common.device.pressBack();
 		CameraAction.cameraSetting();
 		common.clickViewByText("Video Quality");
