@@ -41,6 +41,7 @@ public class Lapse_over2minutes extends Base{
 				if(videoNode.getDuration()<120){                    
 					fail("max duration is 120 seconds");
 				}
+				common.passcase();
 			}else {
 				common.failcase(runcase);
 			}
@@ -52,6 +53,6 @@ public class Lapse_over2minutes extends Base{
 				}
 	}
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Lapse_over2minutes", "testLapse_Delay_Recording2Minutes", "7");		
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.Lapse_over2minutes", "testLapse_Delay_Recording2Minutes", "1");		
 	}
 }

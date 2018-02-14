@@ -29,7 +29,7 @@ public class LiveCase extends Base{
 			CameraAction.makeLive();
 			sleep(10000);
 			if (CameraAction.stopLive()) {
-				sleep(600+(quality)*300);
+				sleep(1500+(quality)*300);
 				HashSet<String> afterTakeVideoList = common.FileList(video_path);
 				HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 				if (LiveAction.checkLiveAndSaveVideo(resultHashSet)) {
@@ -133,6 +133,11 @@ public class LiveCase extends Base{
 	
 	
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "testLiveAndSave48025SDMedium", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveCase", "testLiveAndSave48025HDMedium", "1");
 	}
+	
+
+	
+	
+	
 }

@@ -54,7 +54,7 @@ public class VideoCase extends Base{
 			sleep(5000);
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(1000);
+			sleep(1500);
 			HashSet<String> afterTakeVideoList = common.FileList(CameraAction.getVideoPath());
 			HashSet<String> resultHashSet = common.result(afterTakeVideoList, beforeTakeVideoList);
 			
@@ -328,7 +328,7 @@ public class VideoCase extends Base{
 
 
 	public static void main(String[] args){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.VideoCase", "testV4K25fpsMedium", "1");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.VideoCase", "", "1");
 	}
 
 

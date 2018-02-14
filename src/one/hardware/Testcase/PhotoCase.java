@@ -206,6 +206,6 @@ public class PhotoCase extends Base{
 
 	public static void main(String args[]){
 
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.PhotoCase", "testPhotoAndAntiShake18M43ByManyTimes", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.PhotoCase", "", "1");
 	}
 }

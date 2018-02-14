@@ -78,7 +78,7 @@ public class CameraAction extends Base {
 	 * Click camera_setting_shortcut_id按钮
 	 */
 	public static  void cameraSetting() throws Exception {
-		common.waitTime(1);
+//		common.waitTime(1);
 		common.clickViewById(one.hardware.Page.Camera.camera_setting_shortcut_id);
 	}
 	/**
@@ -495,6 +495,7 @@ public class CameraAction extends Base {
 	public static void login() throws Exception {
 		common.pmclear();
 		common.startCamera();
+		CameraAction.navconfig(Camera.nav_menu[0]);
 		CameraAction.cameraSetting();
 		common.ScrollViewByText("Account");
 		common.clickViewByText("Account");

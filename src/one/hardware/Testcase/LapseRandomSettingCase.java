@@ -121,10 +121,13 @@ public class LapseRandomSettingCase extends Base {
 //		common.startLog("*****Start to run " + runcase + " *****");
 //		common.initDevice();
 //		common.startCamera();
-//		CameraAction.configVideoAngle(5,"Wide");
+//		CameraAction.configVideoModeAndAngle(5,"medium");
 //	}
+//	
+//	
+	
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseRandomSettingCase", "testRandomChangeLapseSetting", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseRandomSettingCase", "", "1");
 	}
 
 }

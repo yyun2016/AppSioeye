@@ -8,8 +8,7 @@ import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 public class LiveNotSaveCase extends Base {
-	public static int liveNotSaveCaseRunTime=1;
-	private void LiveNotSave(String quality, String angle) throws Exception {
+  private void LiveNotSave(String quality, String angle) throws Exception {
 	try{
 		initUIAutomator(this.getName());
 		
@@ -17,6 +16,7 @@ public class LiveNotSaveCase extends Base {
 		common.initDevice();
 		common.pmclear();
 		common.startCamera();
+		 int liveNotSaveCaseRunTime=1;
 		if (liveNotSaveCaseRunTime==1) {
 			CameraAction.login();
 			common.infoLog("liveCaseRunTime:"+liveNotSaveCaseRunTime);
@@ -131,6 +131,6 @@ public class LiveNotSaveCase extends Base {
 		LiveNotSave(Camera.live_quality[2],Camera.video_Angle[0]);
 	}
 	public static void main(String args[]){
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveNotSaveCase", "testLiveNotSave1080HDSuperWide", "2");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LiveNotSaveCase", "", "1");
 	}
 }

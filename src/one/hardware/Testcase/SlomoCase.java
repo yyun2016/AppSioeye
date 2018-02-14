@@ -51,7 +51,7 @@ public class SlomoCase extends Base{
 			}
 			CameraAction.cameraRecordTime();
 			common.cameraKey();
-			sleep(1000);
+			sleep(1500);
 
 			
 			 Boolean result=true;
