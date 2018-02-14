@@ -333,8 +333,9 @@ public class CameraAction extends Base {
 		  }
 		  int ang=3;
 		  if (angle=="Wide"||angle=="wide") {
-		   ang=1;
-		   UiObject tObject = new UiObject(new UiSelector().className(Camera.relativeLayout).index(ang));
+			  UiCollection  angles=new UiCollection(new UiSelector().className(Camera.listView) );
+			  UiObject  tObject=angles.getChildByInstance(new UiSelector().className(Camera.relativeLayout),1);
+			  ang=1;
 		   tObject.click();
 		   }
 		  common.infoLog("ang:"+ang);
