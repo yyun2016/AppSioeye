@@ -57,8 +57,8 @@ public class VideoSettings extends Base{
 			//切换到延时录像再切换到普通录像
 			CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);  //切换到延时录像
 			common.infoLog("切换到延时录像");
-			if(common.findViewByText2("3s").exists()){
-				//通过检查当前页面是否有3s存在，若存在，则正确，并记录flag1=1即true
+			if(common.findViewByText2("10s").exists()){
+				//通过检查当前页面是否有10s存在，若存在，则正确，并记录flag1=1即true
 				flag1 = 1;
 			}else{
 				flag1 = 0;

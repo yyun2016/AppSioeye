@@ -14,7 +14,7 @@ import one.hardware.Util.Base;
 
 public class LapseCase extends Base{
 	public static void main(String[] args) {
-		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "", "1");
+		new UiAutomatorHelper("AppSioeye", "one.hardware.Testcase.LapseCase", "testLapse10s4k30AllAngle", "1");
 		
 	}
 	
@@ -65,7 +65,7 @@ public class LapseCase extends Base{
 				}
 				CameraAction.cameraRecordTime();
 				common.cameraKey();
-				sleep(920);
+				sleep(1000);
 				
 				if (lapstatus) {
 					HashSet<String> afterTakeVideoList = common.FileList(videoFilePath);
