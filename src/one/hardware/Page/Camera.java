@@ -31,7 +31,7 @@ public class Camera {
 		  "20P",
 		  "30P"};
 	public static String[] live_quality ={
-		"480@25FPS(Bitrate0.3-4 Mbps)",
+		"480@25FPS(Bitrate0.3-2 Mbps)",
 		"720@25FPS(Bitrate1.3-6 Mbps)",
 		"1080@25FPS(Bitrate10 Mbps)"
 	};
