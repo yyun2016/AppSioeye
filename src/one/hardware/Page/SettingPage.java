@@ -18,6 +18,7 @@ public class SettingPage extends Base{
     public static String gallery_live="com.hicam.gallery:id/gallery_live";
     public static String gallery_live_retry="android:id/button1";
     public static String gallery_live_cancel="android:id/button2";
+    public static String gallery_live_bitrate_skip="com.hicam.gallery:id/live_bitrate_skip";
 
     //settingsPage    
     public static String settings_class_name="android.widget.FrameLayout";

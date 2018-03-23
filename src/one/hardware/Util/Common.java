@@ -330,7 +330,6 @@ public class Common {
 				}
 				findViewById2("android:id/content").swipeLeft(60);
 				findViewById2("android:id/content").swipeLeft(60);
-				findViewById2("android:id/content").swipeLeft(60);
 				break;
 			}
 			n = n + 1;
@@ -1274,3 +1273,4 @@ public class Common {
 		confg.setWaitForSelectorTimeout(timeout+time);
 	}
 }
+
