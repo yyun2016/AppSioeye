@@ -23,6 +23,12 @@ public class Camera {
 	public static String compoundButton ="android.widget.CompoundButton";
 	public static String listView ="android.widget.ListView";
 	
+	public static String user_defined_btn="com.hicam:id/settingImageView";
+	public static String user_defined_resolution_options="com.hicam:id/live_quality_resolution_options";
+	public static String user_defined_frame_rate="com.hicam:id/frame_rate";
+	public static String user_defined_min_bitrate="com.hicam:id/live_quality_min_bitrate";
+	public static String user_defined_max_bitrate="com.hicam:id/live_quality_max_bitrate";
+	
 	//Can't play this video.
 	//android:id/message
 	//android:id/button1

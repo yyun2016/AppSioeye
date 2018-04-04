@@ -78,6 +78,13 @@ public class Common {
 		deleteVideo();
 		deletePhoto();
 	}  
+	public void initDeviceWihtoutDeleteVideo(){
+		device.pressHome();
+		stopFileManager();
+		stopCamera();
+		stopGallery();
+		deletePhoto();
+	}  
 	/**
 	 * 获取图片的 height-wide
 	 */

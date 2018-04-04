@@ -17,6 +17,7 @@ import one.hardware.Action.AccountAction;
 import one.hardware.Action.CameraAction;
 import one.hardware.Action.SettingAction;
 import one.hardware.Page.Camera;
+import one.hardware.Page.GalleryPage;
 import one.hardware.Page.SettingPage;
 
 import one.hardware.Util.Base;
@@ -35,6 +36,7 @@ import one.hardware.Util.Base;
 public class CurrentTestCase extends Base {
     Logger logger = Logger.getLogger(CurrentTestCase.class.getName());
     private int testTime=122;
+    private int coolingTime=85;
     /**
      * 格式化存储空间
      */
@@ -124,9 +126,9 @@ public class CurrentTestCase extends Base {
     private void makeLiveStop() throws Exception {
     	common.waitTime(1);
         makeScreenOn();
-        if (common.findViewById2("OK").exists()) {
-            logger.info("Bad network, livestream has ended");
+        if (!common.findViewById2(Camera.recording_time_id).exists()) {
             common.clickViewByText("OK");
+            common.waitTime(1);
             for (int i=0;i<4;i++){
             	UiDevice.getInstance().pressBack();
             	UiDevice.getInstance().pressBack();
@@ -134,14 +136,12 @@ public class CurrentTestCase extends Base {
                 launchCamera();
                 common.waitTime(15);
             }
-            
         }else {
             UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
             common.waitTime(3);
-            //每次直播后冷却机器80秒
             UiDevice.getInstance().pressBack();
         	UiDevice.getInstance().pressBack();
-        	common.waitTime(100);
+        	common.waitTime(coolingTime);
         	launchCamera();
         }
         common.waitTime(2);
@@ -164,7 +164,7 @@ public class CurrentTestCase extends Base {
         //录像后冷却相机
         UiDevice.getInstance().pressBack();
     	UiDevice.getInstance().pressBack();
-    	common.waitTime(80);
+    	common.waitTime(coolingTime);
     	launchCamera();
     	CameraAction.cameraVideo();
         common.waitTime(3);
@@ -175,26 +175,15 @@ public class CurrentTestCase extends Base {
     private void makeLive(String ScreenStatus) throws Exception {
         makeScreenOn();
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
-        common.waitTime(2);
-        logger.info("LaunchCameraKeyForStart");
-        checkLiveStatusAndTry2s(ScreenStatus);//0---灭屏；1---亮屏
+        common.waitTime(1);
+        checkLiveStatusAndTry2s(ScreenStatus);
         common.waitTime(1);
     }
     
-//    private void live2ScreenOff() throws Exception {
-//        makeScreenOn();
-//        UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
-//        logger.info("LaunchCameraKeyForStart");
-//        checkLiveStatusAndTry2s(0);
-//        common.waitTime(1);
-//    }
-    private void liveForMaxZoom(int screen) throws Exception {
+    private void liveForMaxZoom(String ScreenStatus) throws Exception {
         makeScreenOn();
-        UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
-        logger.info("LaunchCameraKeyForStart");
-        common.waitTime(2);
-        makeLiveOfMaxZoom(screen);
-        common.waitTime(1);
+        changZoom();
+        makeLive(ScreenStatus);
     }
     /**
      *检查发起直播是否成功，并会重试一次
@@ -286,7 +275,14 @@ public class CurrentTestCase extends Base {
      * 相册亮屏直播，相册第一个视频可以直播
      */
     private void galleryLive(String screenStatus) throws Exception {
-        common.clickViewById(SettingPage.video_timeText);//点击屏幕
+        device.click(60, 60);//点击屏幕
+        common.waitTime(1);
+        if (!common.findViewById2(GalleryPage.gallery_delete_bottom).exists()) {
+        	common.findViewById2("android:id/content").swipeRight(60);
+        	common.findViewById2("android:id/content").swipeRight(60);
+        	common.findViewById2("android:id/content").swipeRight(60);
+        	common.waitTime(5);
+		}
         common.clickViewById(SettingPage.gallery_live_bottom);//点击live
         common.waitTime(1);
         common.clickViewById(SettingPage.gallery_live);
@@ -296,20 +292,7 @@ public class CurrentTestCase extends Base {
         stopGalleryLive();
         common.waitTime(2);
     }
-//    /**
-//     * 相册灭屏直播，相册第一个视频可以直播
-//     */
-//    private void galleryLiveScreenOff() throws Exception {
-//        common.clickViewById(SettingPage.video_timeText);//点击屏幕
-//        common.clickViewById(SettingPage.gallery_live_bottom);//点击live
-//        common.waitTime(2);
-//        common.clickViewById(SettingPage.gallery_live);
-//        common.waitTime(1);
-//        common.clickViewById(SettingPage.gallery_live_bitrate_skip);
-//        checkGalleryToLiveStatusAndTryAgain(0);
-//        stopGalleryLive();
-//        common.waitTime(2);
-//    }
+
     /**
      * 检查相册直播是否发起成功，并会重试一次
      * 若两次均失败会产生一个两分钟的电流锯齿波
@@ -364,10 +347,8 @@ public class CurrentTestCase extends Base {
      */
     private void stopGalleryLive()throws Exception{
     	makeScreenOn();
-    	UiObject galleryLiveCancel=common.findViewByText2("Retry");
-        if (galleryLiveCancel.exists()) {
-            logger.info("galleryLiveBreakOff");
-            common.clickViewByText("No");
+        if (!common.findViewByText2("broadcasting").exists()) {
+        	UiDevice.getInstance().pressBack();//消除异常
             common.waitTime(2);
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
@@ -375,7 +356,7 @@ public class CurrentTestCase extends Base {
             logger.info("SawtoothWaveNoteGalleryLiveBreakOff");
             //出现锯齿状电流波形
             launchCamera();
-            for (int i=0;i<3;i++) {
+            for (int i=0;i<4;i++) {
                 common.waitTime(15);
                 UiDevice.getInstance().pressBack();
                 UiDevice.getInstance().pressBack();
@@ -387,11 +368,11 @@ public class CurrentTestCase extends Base {
             common.waitTime(2);
             common.startGallery();
         }
-        else if (common.findViewByText2("broadcasting").exists()) {
+        else{
             UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
             common.waitTime(1);
             common.clickViewByText("Yes");
-            common.waitTime(2);
+            common.waitTime(coolingTime);
         }
     }
     /**
@@ -409,6 +390,29 @@ public class CurrentTestCase extends Base {
         common.waitTime(2);
         UiDevice.getInstance().pressBack();
         logger.info(" -configLiveVideoQuality - "+videoQuality);
+        common.waitTime(2);
+    }
+    private void configUserDefinedLive(String resolution,String framerate,int bitrate) throws Exception {
+        makeScreenOn();
+        CameraAction.cameraSetting();
+        common.waitTime(1);
+        common.ScrollViewByText("Video Quality");
+        common.clickViewByText("Video Quality");
+        common.waitTime(2);
+        common.findScrollViewById(Camera.user_defined_btn);
+        common.clickViewById(Camera.user_defined_btn);
+        common.waitTime(2);
+        common.ScrollViewByText("Resolution");
+        common.clickViewById(Camera.user_defined_resolution_options);
+        common.waitTime(1);
+        common.clickViewByText(resolution);
+        common.waitTime(1);
+        common.ScrollViewByText("Frame Rate");
+        common.clickViewByText(framerate);
+        common.waitTime(1);
+        common.ScrollViewByText("Bitrate");
+        
+        UiDevice.getInstance().pressBack();
         common.waitTime(2);
     }
     private void configVideoAngle(String VideoAngle) throws Exception {
@@ -600,7 +604,6 @@ public class CurrentTestCase extends Base {
             common.waitTime(2);
             //各种分辨率灭屏录像2分钟
             makeToasts("start",5);
-            common.waitTime(testTime*3);
             configVideoQuality(videoQuality4KP25);//4K亮
             makeVideo("ON");
             makeVideo("OFF");//4K灭
@@ -621,18 +624,22 @@ public class CurrentTestCase extends Base {
             configVideoQuality(videoQuality720P25);//720P25FPS
             makeVideo("ON");
             makeVideo("OFF");
-          //相册直播
+            
+            //4G 720P相册直播
             common.stopCamera();
             common.waitTime(2);
             common.startGallery();
-            galleryLive("ON");//4G相册亮屏直播720P
-            galleryLive("OFF");//4G相册灭屏直播720P
+            galleryLive("ON");
+            galleryLive("OFF");
             common.stopGallery();
+            //WIFI 720P相册直播
             openWifi();
             common.startGallery();
             galleryLive("OFF");//WIFI相册灭屏直播720P
             common.stopGallery();
             closeWifi();
+            
+            //录像
             launchCamera();
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
@@ -642,42 +649,46 @@ public class CurrentTestCase extends Base {
             makeVideo("OFF");
             configVideoQuality(videoQuality480P25);//480P25FPS
             makeVideo("OFF");
-            //相册直播&录播
+            
+            //4G 480P相册直播
             common.stopCamera();
             common.waitTime(2);
             common.startGallery();
-            galleryLive("OFF");//4G相册灭屏直播480P
+            galleryLive("OFF");
             common.stopGallery();
+            
+            //WIFI 480P相册直播
             openWifi();
             common.startGallery();
-            galleryLive("OFF");//WIFI相册灭屏直播480P
+            galleryLive("OFF");
             common.stopGallery();
             closeWifi();
+            
+            //延时 慢速录像
             launchCamera();
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
-//            clickSwitch(switchName[2]);//开启录播        v3暂无该功能；添加需要修改方法
-//            p2pScreenOn();
-//            p2pScreenOff();
-//            clickSwitch(switchName[2]);//关闭录播
             CameraAction.navconfig(Camera.nav_menu[4]);//"Slo_Mo" Modem
             common.waitTime(2);
             makeVideo("OFF");
             CameraAction.navconfig(Camera.nav_menu[5]);//"Lapse" Modem
             common.waitTime(2);
             makeVideo("OFF");
+            
+            //预览亮屏
             CameraAction.cameraVideo();//Video Modem
             common.waitTime(2);
-            configVideoQuality(videoQuality1080P25);//1080P30FPS
+            configVideoQuality(videoQuality1080P25);
             common.waitTime(2);
-            common.waitTime(testTime);
+            common.waitTime(testTime*3);
             //主屏幕亮屏待机
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             common.waitTime(testTime*3);
             storageFormat();
-            //直播
+            
+            //4G直播
             launchCamera();
             CameraAction.cameraLive();;//Live Modem
             configVideoQuality(liveQuality480);
@@ -701,6 +712,11 @@ public class CurrentTestCase extends Base {
             makeLive("ON");
             makeLive("OFF");
             clickLiveAndSave();//关闭直播保存
+            
+            //自定义码率
+            
+            
+            //4G+其他设置
             common.waitTime(1);
             configVideoQuality(liveQuality480);
             clickSwitch(switchName[0]);//开启高度计
@@ -729,13 +745,14 @@ public class CurrentTestCase extends Base {
             makeLive("OFF");
             configVideoAngle(videoAngle[0]);//视场角为普通
             makeLive("OFF");
-            liveForMaxZoom(0);//最大焦距直播
+            liveForMaxZoom("OFF");//最大焦距直播
             
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             common.waitTime(testTime*3);
-            //切换网络模式为3G
+            
+            //3G直播
             switchTo3G();
             common.waitTime(1);
             launchCamera();
@@ -752,6 +769,8 @@ public class CurrentTestCase extends Base {
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
+            
+            //WIFI直播
             openWifi();
             launchCamera();
             CameraAction.cameraLive();//Live Modem
@@ -770,6 +789,8 @@ public class CurrentTestCase extends Base {
             configVideoQuality(liveQuality1080HD);
             makeLive("ON");
             makeLive("OFF");
+            
+            //4G 三方推流
         }
         makeToasts("10秒后关机......",5);
         common.waitTime(10);
@@ -784,122 +805,4 @@ public class CurrentTestCase extends Base {
 //    	UiDevice.getInstance().pressHome();
 //    	common.startLog("*****Start to run " + runcase + " *****");
 //        String liveQuality480="480@25FPS(Bitrate0.3-4 Mbps)",
-//                liveQuality720HD="720@25FPS(Bitrate1.3-6 Mbps)",
-//                liveQuality1080HD="1080@25FPS(Bitrate10 Mbps)";
-//        String videoQuality4KP25="4K@25FPS",
-//        		videoQuality2KP25="2K@25FPS",
-//        		videoQuality1080P120="1080@120FPS",
-//        		videoQuality1080P60="1080@60FPS",
-//        		videoQuality1080P25="1080@25FPS",
-//        		videoQuality720P120="720@120FPS",
-//                videoQuality720P60="720@60FPS",
-//                videoQuality720P25="720@25FPS",
-//                videoQuality480P120="480@120FPS",
-//                videoQuality480P60="480@60FPS",
-//                videoQuality480P25="480@25FPS";
-//        String switchName[]={
-//                "Altimeter",//高度计0
-//                "Speedometer",//速度计1
-//                "Video&Live(beta)",//录播2  V3暂时无该功能；有的
-//                "Anti-shake",//防抖3
-//                "Voice interaction",//语音交互4
-//                "Auto",//自动--V3
-//        };
-//        String videoAngle[]={
-//                "Medium",
-//                "Wide",
-//                "Super Wide"
-//        };
-//        launchCamera();
-//        for(int i=0;i<1;i++){
-//        	CameraAction.cameraLive();//Live Modem
-//        	configVideoQuality(liveQuality1080HD);
-//        	live2ScreenOn();
-//        	live2ScreenOff();
-//        	clickLiveAndSave();//开启直播保存
-//        	common.waitTime(2);
-//        	configVideoQuality(liveQuality480);
-//        	live2ScreenOn();
-//    live2ScreenOff();
-//    configVideoQuality(liveQuality720HD);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    configVideoQuality(liveQuality1080HD);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    clickLiveAndSave();//关闭直播保存
-//    common.waitTime(1);
-//    configVideoQuality(liveQuality480);
-//    clickSwitch(switchName[0]);//开启高度计
-//    live2ScreenOff();
-//    clickSwitch(switchName[0]);//关闭高度计
-//    common.waitTime(2);
-//    clickSwitch(switchName[1]);//开启速度计
-//    live2ScreenOff();
-//    clickSwitch(switchName[1]);//关闭速度计
-//    common.waitTime(2);
-//    clickLiveMute();  //开启静音开关
-//    live2ScreenOff();
-//    clickLiveMute();//关闭静音开关
-//    clickSwitch(switchName[3]); //开启防抖开关
-//    live2ScreenOff();
-//    clickSwitch(switchName[3]);//关闭防抖开关
-//    clickSwitch(switchName[4]);//开启语音交互
-//    live2ScreenOff();
-//    clickSwitch(switchName[4]);//关闭语音交互
-//    clickSwitch(switchName[5]);//开启为倒置Auto
-//    live2ScreenOff();
-//    clickSwitch(switchName[5]);//关闭为倒置Auto
-//    configVideoAngle(videoAngle[2]);//视场角为超宽
-//    live2ScreenOff();
-//    configVideoAngle(videoAngle[1]);//视场角为宽
-//    live2ScreenOff();
-//    configVideoAngle(videoAngle[0]);//视场角为普通
-//    live2ScreenOff();
-//    liveForMaxZoom(0);//最大焦距直播
-//    UiDevice.getInstance().pressBack();
-//    UiDevice.getInstance().pressBack();
-//    UiDevice.getInstance().pressBack();
-//    common.waitTime(testTime*3);
-//    //切换网络模式为3G
-//    switchTo3G();
-//    common.waitTime(1);
-//    launchCamera();
-//    CameraAction.cameraLive();//Live Modem
-//    common.waitTime(2);
-//    configVideoQuality(liveQuality480);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    clickLiveAndSave();//开启直播保存
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    clickLiveAndSave();//关闭直播保存
-//    common.waitTime(2);
-//    UiDevice.getInstance().pressBack();
-//    UiDevice.getInstance().pressBack();
-//    UiDevice.getInstance().pressBack();
-//    openWifi();
-//    launchCamera();
-//    CameraAction.cameraLive();//Live Modem
-//    common.waitTime(2);
-//    clickLiveAndSave();//开启直播保存
-//    configVideoQuality(liveQuality480);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    clickLiveAndSave();//关闭直播保存
-//    common.waitTime(1);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    configVideoQuality(liveQuality720HD);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//    configVideoQuality(liveQuality1080HD);
-//    live2ScreenOn();
-//    live2ScreenOff();
-//}
-//makeToasts("10秒后关机......",5);
-//common.waitTime(10);
-//Runtime.getRuntime().exec("reboot -p ");
-//}  
-    
 }

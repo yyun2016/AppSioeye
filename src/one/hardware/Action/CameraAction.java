@@ -20,16 +20,11 @@ public class CameraAction extends Base {
 	 * Click android.widget.CompoundButton按钮
 	 */
 	public static void openCompoundButton(String cbtnNname) throws UiObjectNotFoundException{
-		UiCollection videos = new UiCollection(
-				new UiSelector().className(Camera.scrollView));
-		int count = videos.getChildCount(new UiSelector()
-				.className(Camera.relativeLayout));
+		UiCollection videos = new UiCollection(new UiSelector().className(Camera.scrollView));
+		int count = videos.getChildCount(new UiSelector().className(Camera.relativeLayout));
 		for (int instance = 0; instance < count; instance++) {
-			UiObject uiObject = videos.getChildByInstance(
-					new UiSelector().className(Camera.relativeLayout),
-					instance);
-			UiObject sObject = uiObject.getChild(new UiSelector()
-					.className(Camera.TextView));
+			UiObject uiObject = videos.getChildByInstance(new UiSelector().className(Camera.relativeLayout),instance);
+			UiObject sObject = uiObject.getChild(new UiSelector().className(Camera.TextView));
 			if (uiObject.exists() && uiObject.isEnabled() && sObject.exists()) {
 				if (sObject.getText().equals(cbtnNname)) {
 					UiObject switchbtn = uiObject.getChild(new UiSelector().className(Camera.compoundButton));
@@ -200,7 +195,7 @@ public class CameraAction extends Base {
 		common.device.pressBack();
 	}
 	public static void configVideoQuality(String quality) throws Exception{
-		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[1]);
+		CameraAction.navconfig(Camera.nav_menu[1]);
 		CameraAction.cameraSetting();
 		common.clickViewByText("Video Quality");
 		common.ScrollViewByText(quality);
@@ -210,7 +205,7 @@ public class CameraAction extends Base {
 	}
 	public static boolean isExistVideoQuality(String quality) throws Exception{
 		boolean isexist = false;
-		CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[5]);
+		CameraAction.navconfig(Camera.nav_menu[5]);
 		CameraAction.cameraSetting();
 		common.ScrollViewByText("Video Quality");
 		common.clickViewByText("Video Quality");

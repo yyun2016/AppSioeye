@@ -12,7 +12,7 @@ public class SettingAction extends Base {
 	public static void navToStorage() throws Exception {
         Common.waitTime(2);
         common.clickViewByText("Device");
-        common.ScrollViewByText("Storage");
+        common.ScrollViewByText("Display");
         common.clickViewByText("Storage");
 	}
 	
@@ -33,7 +33,8 @@ public class SettingAction extends Base {
 	public static void navToSleepTime() throws Exception {
         common.startSettings();
         common.clickViewByText("Device");
-        common.ScrollViewByText("Display");
+        common.waitTime(2);
+        
         common.clickViewByText("Display");
         common.waitTime(2);
         common.ScrollViewByText2("Sleep");
