@@ -13,6 +13,7 @@ import com.android.uiautomator.core.UiDevice;
 import android.os.Environment;
 import android.util.Property;
 import one.hardware.Page.Account;
+import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
 public class AccountAction extends Base {
@@ -140,5 +141,30 @@ public class AccountAction extends Base {
             System.out.println("Already login");
             return true;
         }
+	}
+	public static void logout() throws Exception{
+		CameraAction.navconfig(Camera.nav_menu[0]);
+		CameraAction.cameraSetting();
+		common.ScrollViewByText("Account");
+		common.clickViewByText("Account");
+		if (common.findViewById2(Account.login_btn_login).exists()) {
+            System.out.println("not login");
+        } else {
+            System.out.println("Already login");
+            common.clickViewById(Account.logout_btn);
+        }
+	}
+	public static boolean loginSuccess(){
+		boolean isSuccess = false;
+		for (int i = 0; i < 20; i++) {
+			if (!common.findViewByText2("^Login").exists()) {
+				isSuccess= true;
+				break;
+			}else {
+				common.infoLog("Login wait 1 seconds");
+				common.waitTime(1);
+			}
+		}
+		return isSuccess;
 	}
 }

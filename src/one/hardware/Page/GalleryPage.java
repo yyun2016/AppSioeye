@@ -17,6 +17,7 @@ public class GalleryPage {
 	 	public static String video_timeText="com.hicam.gallery:id/timeText";
 	    public static String gallery_live_bottom="com.hicam.gallery:id/gallery_bottom_share_im";
 	    public static String gallery_live="com.hicam.gallery:id/gallery_live";
+	    public static String gallery_clip_and_live="com.hicam.gallery:id/gallery_clip_and_live";
 	    public static String gallery_skip="com.hicam.gallery:id/live_bitrate_skip";
 	    public static String gallery_ok="com.hicam.gallery:id/live_bitrate_live";
 	    public static String gallery_live_retry="android:id/button1";

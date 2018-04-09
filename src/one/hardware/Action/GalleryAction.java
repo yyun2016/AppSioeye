@@ -14,6 +14,7 @@ import com.android.uiautomator.core.UiSelector;
 
 import android.view.KeyEvent;
 import one.hardware.Page.GalleryPage;
+import one.hardware.Page.Account;
 import one.hardware.Page.Camera;
 import one.hardware.Util.Base;
 
@@ -65,7 +66,7 @@ public class GalleryAction extends Base{
             return true;
         }
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);//结束直播
-        common.waitTime(1);
+        common.findViewByText2("Yes").waitForExists(2000);
         common.clickViewByText("Yes");
         UiDevice.getInstance().pressBack();
         UiDevice.getInstance().pressBack();
@@ -94,14 +95,17 @@ public class GalleryAction extends Base{
     结束相册直播
      */
     public static void stopGalleryLive() throws Exception {
-    	common.waitTime(1);
+    	common.findViewByText2("broadcasting").waitForExists(2000);
         if (common.findViewByText2("broadcasting").exists()) {
         	UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
+        	common.findViewByText2("Yes").waitForExists(2000);
             common.clickViewByText("Yes");
             UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
         }
+        common.findViewByText2("Confirm to exit live?").waitForExists(2000);
         if (common.findViewByText2("Confirm to exit live?").exists()){
+        	common.findViewByText2("Yes").waitForExists(2000);
         	common.clickViewByText("Yes");
         	UiDevice.getInstance().pressBack();
             UiDevice.getInstance().pressBack();
@@ -116,75 +120,94 @@ public class GalleryAction extends Base{
     在相册直播中检查按键功能
      */
     public static Boolean checkKeyDuringGalleryLive() throws Exception {
+    	common.findViewByText2("broadcasting").waitForExists(15000);
         if (!common.findViewByText2("broadcasting").exists()) {
             GalleryAction.startGalleryLive();
         }
+        
         UiDevice.getInstance().pressBack();//返回键弹出结束提示
-        common.waitTime(2);
-        common.infoLog("00000000000000000000002222222");
-        if (!common.findViewByText2("Confirm to exit live?").exists()){
-        	common.infoLog("00000000000000000000002222222");
+        common.findViewById2("android:id/message").waitForExists(3000);
+        String message=common.getViewTextById("android:id/message");
+        if (!message.equals("Confirm to exit live?")){
+        	common.infoLog("第一次按返回键后未找到Confirm to exit live?信息");
         	return false;}
-        common.infoLog("按返回键，提示:Confirm to exit live?");
         UiDevice.getInstance().pressBack();//返回键消除结束直播提示
-        common.waitTime(1);
-        common.infoLog("按返回键，消除提示Confirm to exit live?");
-        if (common.findViewByText2("Confirm to exit live?").exists()){
+        common.findViewById2("android:id/message").waitForExists(3000);
+        if (common.findViewById2("android:id/message").exists()){
+        	common.infoLog("按返回键后未消除Confirm to exit live?信息");
         	return false;}
-        UiDevice.getInstance().pressBack();
-        common.waitTime(1);
-        common.infoLog("按返回键，提示:Confirm to exit live?");
-        if (!common.findViewByText2("Confirm to exit live?").exists()){
+        
+        UiDevice.getInstance().pressBack();//返回键弹出结束提示
+        common.findViewById2("android:id/message").waitForExists(3000);
+        if (!common.findViewById2("android:id/message").exists()){
+        	common.infoLog("第二次按返回键后未找到Confirm to exit live?信息");
         	return false;}
+        common.findViewByText2("No").waitForExists(2000);
         common.clickViewByText("No");//cancel
-        common.waitTime(1);
-        common.infoLog("点击No，消除提示Confirm to exit live?");
+        common.findViewByText2("broadcasting").waitForExists(5000);
         if (!common.findViewByText2("broadcasting").exists()) {
+        	common.infoLog("按返no未消除Confirm to exit live?信息");
         	return false;}
+        
         UiDevice.getInstance().pressBack();
-        common.waitTime(1);
-        if (!common.findViewByText2("Confirm to exit live?").exists()){
+        common.findViewById2("android:id/message").waitForExists(3000);
+        if (!common.findViewById2("android:id/message").exists()){
+        	common.infoLog("第三次按返回键后未找到Confirm to exit live?信息");
         	return false;}
-        common.clickViewByText("Yes");//cancel
-        common.waitTime(1);
+        common.findViewByText2("Yes").waitForExists(2000);
+        common.clickViewByText("Yes");//停止直播
+        common.findViewByText2("Already Lived").waitForExists(5000);//已直播标志
         if (!common.findViewByText2("Already Lived").exists()){
+        	common.infoLog("停止直播后没找到已直播标志");
         	return false;}
+        checkLiveBottom();
         GalleryAction.startGalleryLive();
         UiDevice.getInstance().pressMenu();//menu键
-        common.waitTime(1);
+        common.findViewByText2("broadcasting").waitForExists(2000);
         if (!common.findViewByText2("broadcasting").exists()) {
         	return false;}
+        
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
-        common.waitTime(1);
-        if (!common.findViewByText2("Confirm to exit live?").exists()){
+        common.findViewById2("android:id/message").waitForExists(3000);
+        if (!common.findViewById2("android:id/message").exists()){
         	return false;}
+        common.findViewByText2("No").waitForExists(2000);
         common.clickViewByText("No");//cancel
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);
-        common.waitTime(1);
+        common.waitTime(2);
         if (UiDevice.getInstance().isScreenOn()) {
         	return false;}
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_POWER);
         common.waitTime(1);
         if (!UiDevice.getInstance().isScreenOn()) {
         	return false;}
-        UiDevice.getInstance().pressKeyCode(276);//S键
-        if (!common.findViewByText2("Confirm to exit live?").exists()) {
-        	return false;}
-        common.clickViewByText("No");//cancel
-        UiDevice.getInstance().pressKeyCode(276);
-        if (!common.findViewByText2("Confirm to exit live?").exists()) {
-        	return false;}
-        common.clickViewByText("Yes");//通过S键结束
+//        UiDevice.getInstance().pressKeyCode(276);//S键
+//        common.findViewById2("android:id/message").waitForExists(3000);
+//        if (!common.findViewById2("android:id/message").exists()){
+//        	common.infoLog("S键没找到Confirm to exit live?信息");
+//        	return false;}
+//        common.findViewByText2("No").waitForExists(3000);
+//        common.clickViewByText("No");//cancel
+//        UiDevice.getInstance().pressKeyCode(276);
+//        common.findViewById2("android:id/message").waitForExists(3000);
+//        if (!common.findViewById2("android:id/message").exists()){
+//        	common.infoLog("第二次S键没找到Confirm to exit live?信息");
+//        	return false;}
+//        common.findViewByText2("Yes").waitForExists(3000);
+//        common.clickViewByText("Yes");//通过S键结束
         return true;
     }
     
     public static Boolean deleteOneVideo() throws Exception{
+    	common.waitTime(2);
         if (!common.findViewById2(GalleryPage.gallery_delete_bottom).exists()){
+        	common.infoLog("点击屏幕");
         	UiDevice.getInstance().click(60, 60);
+        	common.waitTime(1);
         }
         common.clickViewById(GalleryPage.gallery_delete_bottom);
-        common.waitTime(3);
-        if (common.findViewByText2("Do you want to delete this video ?").exists()){
+        common.findViewById2("android:id/button2").waitForExists(30000);
+        if (common.findViewById2("android:id/button2").exists()){
         	common.clickViewByText("Yes");
         	return true;
         }else {
@@ -301,6 +324,9 @@ public class GalleryAction extends Base{
     }
     public static void navToGalleryBitrateSetting() throws Exception {
         common.startGallery();
+        if (!checkLiveBottom()) {
+			UiDevice.getInstance().click(60, 60);
+		}
         while (!common.findViewById2(GalleryPage.gallery_live_bottom).exists()) {
             common.findViewById2(GalleryPage.gallery_root_view).swipeLeft(60);
             common.waitTime(1);
@@ -333,8 +359,14 @@ public class GalleryAction extends Base{
         CameraAction.openCompoundButton("Video&Live(beta)");
         common.waitTime(1);
     }
-    public static void makeSlo_MoSomeTime(int time) throws Exception {
+    public static void makeSlo_MoSomeTime(int time ,String VideoQuality) throws Exception {
     	CameraAction.navconfig(one.hardware.Page.Camera.nav_menu[4]);
+    	CameraAction.cameraSetting();
+    	common.waitTime(1);
+    	common.clickViewByText("Video Quality");
+    	common.ScrollViewByText(VideoQuality);
+    	common.clickViewByText(VideoQuality);
+    	common.waitTime(1);
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
         common.waitTime(time);
         UiDevice.getInstance().pressKeyCode(KeyEvent.KEYCODE_CAMERA);
@@ -400,6 +432,37 @@ public class GalleryAction extends Base{
                  		}
              }else {return false;}
          }else {return false;}
+ 	}
+ 	/*
+ 	 * 清楚输入框文字，参数输入框ID
+ 	 */
+ 	public static void clearText(String resousceID) throws Exception{
+ 		int count=common.getViewTextById(resousceID).length();
+ 		common.infoLog("count="+count+"String:"+common.getViewTextById(resousceID));
+ 		common.clickViewById(resousceID);
+		UiDevice.getInstance().click(132, 12);
+		for (int i = 0; i < count; i++) {
+			UiDevice.getInstance().pressDelete();
+		}
+		UiDevice.getInstance().pressBack();
+ 	}
+ 	public static void navToGalleryLoginWithLiveNow() throws Exception{
+ 		while (!GalleryAction.checkLiveBottom()) {
+            common.findViewById2(GalleryPage.gallery_root_view).swipeLeft(60);}
+		common.clickViewById(GalleryPage.gallery_live_bottom);
+        common.clickViewById(GalleryPage.gallery_live);
+ 	}
+ 	public static void navToGalleryLoginWithClipAndLive() throws Exception{
+ 		while (!GalleryAction.checkLiveBottom()) {
+            common.findViewById2(GalleryPage.gallery_root_view).swipeLeft(60);}
+		common.clickViewById(GalleryPage.gallery_live_bottom);
+        common.clickViewById(GalleryPage.gallery_clip_and_live);
+ 	}
+ 	public static void galleryLogin() throws Exception{
+ 		GalleryAction.clearText(Account.login_id_input);
+        AccountAction.login_id_input(AccountAction.getUserName());
+        AccountAction.login_password_input(AccountAction.getPassword());
+        common.clickViewById(Account.login_btn_login);
  	}
 //    /*
 //    获取信号强度，并在屏幕上显示出来toast；返回
