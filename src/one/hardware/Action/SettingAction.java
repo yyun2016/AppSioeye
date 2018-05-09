@@ -12,7 +12,7 @@ public class SettingAction extends Base {
 	public static void navToStorage() throws Exception {
         Common.waitTime(2);
         common.clickViewByText("Device");
-        common.ScrollViewByText("Display");
+        common.ScrollViewByText2("Storage");
         common.clickViewByText("Storage");
 	}
 	
